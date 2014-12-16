@@ -6,14 +6,14 @@ import java.awt.event.ActionListener;
 /**
  * Created by Sefa on 16-12-2014.
  */
-public class StartListener implements ActionListener {
+public class StartHandler implements ActionListener {
 
-    public static boolean started = true;
+    public boolean started = true;
 
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        if(started) {
+        if(this.started) {
             System.out.println("Started");
             this.started = false;
         }

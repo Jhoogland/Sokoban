@@ -14,6 +14,9 @@ public class PacmanFrame extends JFrame {
     private JFrame frame = new JFrame("Pacman");
     private JPanel TopPanel = new JPanel();
     private JPanel BottomPanel = new JPanel();
+    private JButton startButton = new JButton("Start");
+
+    private StartHandler startHandler = new StartHandler();
 
     public void drawFrame()
     {
@@ -24,8 +27,11 @@ public class PacmanFrame extends JFrame {
         this.addStructure();
         this.addMenu();
         this.drawInitialPacmanGrid();
+        this.starten();
 
         this.frame.setVisible(true);
+        this.frame.setFocusable(true);
+        this.frame.setFocusTraversalKeysEnabled(false);
     }
 
     private void addStructure()
@@ -43,12 +49,9 @@ public class PacmanFrame extends JFrame {
 
     private void addMenu()
     {
-        JButton startButton = new JButton("Start");
         this.TopPanel.add(startButton);
 
-        StartListener startListener = new StartListener();
-
-        startButton.addActionListener(startListener);
+        this.startButton.addActionListener(this.startHandler);
 
         this.TopPanel.add(new JLabel("Score: 00"));
     }
@@ -79,8 +82,8 @@ public class PacmanFrame extends JFrame {
         }
     }
 
-    public void starten(Speelbord speelbord){
-
-
+    public void starten() {
+        KeyHandler keyHandler = new KeyHandler();
+        this.BottomPanel.addKeyListener(keyHandler);
     }
 }

@@ -8,24 +8,25 @@ import java.awt.event.KeyListener;
  */
 public class KeyHandler implements KeyListener
 {
-    Richting richting;
-
     @Override
     public void keyPressed(KeyEvent e)
     {
-        switch (richting)
+        switch (e.getKeyCode())
         {
-            case BOVEN:
+            case KeyEvent.VK_UP:
                 System.out.println("BOVEN");
                 break;
-            case RECHTS:
+            case KeyEvent.VK_RIGHT:
                 System.out.println("RECHTS");
                 break;
-            case LINKS:
+            case KeyEvent.VK_LEFT:
                 System.out.println("LINKS");
                 break;
-            default:
+            case KeyEvent.VK_DOWN:
                 System.out.println("BENEDEN");
+                break;
+            default:
+                System.out.println("Ongeldige toets ingedrukt!");
                 break;
         }
     }

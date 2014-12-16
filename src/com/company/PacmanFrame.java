@@ -39,6 +39,7 @@ public class PacmanFrame extends JFrame {
         this.TopPanel.setLayout(new GridLayout(0, 2));
 
         this.BottomPanel.setPreferredSize(new Dimension(this.WIDTH, 450));
+        this.BottomPanel.setLayout(new GridLayout(5, 5));
         this.BottomPanel.setBackground(Color.red);
 
         this.frame.add(TopPanel, BorderLayout.NORTH);
@@ -47,7 +48,13 @@ public class PacmanFrame extends JFrame {
 
     private void addMenu()
     {
-        this.TopPanel.add(new JButton("Start"));
+        JButton startButton = new JButton("Start");
+        this.TopPanel.add(startButton);
+
+        StartListener startListener = new StartListener();
+
+        startButton.addActionListener(startListener);
+
         this.TopPanel.add(new JLabel("Score: 00"));
     }
 }

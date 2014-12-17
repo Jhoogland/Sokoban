@@ -1,5 +1,6 @@
 package com.company;
 
+import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -14,16 +15,16 @@ public class KeyHandler implements KeyListener
         switch (e.getKeyCode())
         {
             case KeyEvent.VK_UP:
-                System.out.println("BOVEN");
+                BottomPanel.pacman.p.y -= 1;
                 break;
             case KeyEvent.VK_RIGHT:
-                System.out.println("RECHTS");
+                BottomPanel.pacman.p.x += 1;
                 break;
             case KeyEvent.VK_LEFT:
-                System.out.println("LINKS");
+                BottomPanel.pacman.p.x -= 1;
                 break;
             case KeyEvent.VK_DOWN:
-                System.out.println("BENEDEN");
+                BottomPanel.pacman.p.x += 1;
                 break;
             default:
                 System.out.println("Ongeldige toets ingedrukt!");

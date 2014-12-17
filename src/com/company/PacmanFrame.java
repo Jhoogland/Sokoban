@@ -8,12 +8,12 @@ import java.awt.*;
  */
 public class PacmanFrame extends JFrame {
     private Speelbord speelbord = new Speelbord();
-    private final int WIDTH = 600;
-    private final int HEIGHT = 500;
+    private final int WIDTH = 815;
+    private final int HEIGHT = 900;
 
     private JFrame frame = new JFrame("Pacman");
     private JPanel TopPanel = new JPanel();
-    private JPanel BottomPanel = new JPanel();
+    private BottomPanel bottomPanel = new BottomPanel();
     private JButton startButton = new JButton("Start");
 
     private StartHandler startHandler = new StartHandler();
@@ -26,7 +26,7 @@ public class PacmanFrame extends JFrame {
 
         this.addStructure();
         this.addMenu();
-        this.drawInitialPacmanGrid();
+        //this.drawInitialPacmanGrid();
         this.starten();
 
         this.frame.setVisible(true);
@@ -39,12 +39,12 @@ public class PacmanFrame extends JFrame {
         this.TopPanel.setPreferredSize(new Dimension(this.WIDTH, 50));
         this.TopPanel.setLayout(new GridLayout(0, 2));
 
-        this.BottomPanel.setPreferredSize(new Dimension(this.WIDTH, 450));
-        this.BottomPanel.setLayout(new GridLayout(5, 5));
-        this.BottomPanel.setBackground(Color.red);
+        this.bottomPanel.setPreferredSize(new Dimension(this.WIDTH, 800));
+        //this.bottomPanel.setLayout(new GridLayout(5, 5));
+        this.bottomPanel.setBackground(Color.red);
 
         this.frame.add(TopPanel, BorderLayout.NORTH);
-        this.frame.add(BottomPanel, BorderLayout.SOUTH);
+        this.frame.add(bottomPanel, BorderLayout.SOUTH);
     }
 
     private void addMenu()
@@ -63,7 +63,7 @@ public class PacmanFrame extends JFrame {
             for (int y = 0; y < 5; y++)
             {
                 int positie = speelbord.mapArray[x][y];
-                this.BottomPanel.add(new JLabel("" + positie));
+                this.bottomPanel.add(new JLabel("" + positie));
                 if(positie == 0)
                 {
                     //Toon looppad
@@ -84,6 +84,6 @@ public class PacmanFrame extends JFrame {
 
     public void starten() {
         KeyHandler keyHandler = new KeyHandler();
-        this.BottomPanel.addKeyListener(keyHandler);
+        this.frame.addKeyListener(bottomPanel);
     }
 }

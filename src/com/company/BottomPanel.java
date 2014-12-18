@@ -10,34 +10,23 @@ import java.util.ArrayList;
  */
 public class BottomPanel extends JPanel implements KeyListener {
 
-    Speelbord speelbord = new Speelbord();
-
     public static Pacman pacman;
     private int amountOfGhosts = 1;
+    private int amountOfWalls = 36;
 
-    ArrayList<Point> ghosts;
+    private ArrayList<Point> ghosts = SpelElement.initGhosts();
+    private ArrayList<Point> walls = SpelElement.initWalls();
 
-    public int boxWidth = 70;
-    public int boxHeight = 70;
-    public int border = 20;            // Size of blue border around grid.
-    public int boxBorder = 5;            // Size of gray border between boxes.
-    public int boxOuterBorder = 8;
+    public static int boxWidth = 70;
+    public static int boxHeight = 70;
+    public static int border = 20;            // Size of blue border around grid.
+    public static int boxBorder = 5;            // Size of gray border between boxes.
+    public static int boxOuterBorder = 8;
 
 
     public BottomPanel()
     {
-        //Maak ghosts arraylist
-        ghosts = new ArrayList<Point>();
-
-        //Check hoeveel ghosts er moeten worden aagnemaakt
-        for(int i = 0; i < this.amountOfGhosts; i++)
-        {
-
-        }
-
-        pacman = new Pacman(new Point(0, 0), 90);
-        getPixel(pacman.p.x);
-        getPixel(pacman.p.y);
+        pacman = new Pacman(SpelElement.initPacman(), 90);
     }
 
     @Override
@@ -74,9 +63,46 @@ public class BottomPanel extends JPanel implements KeyListener {
             }
         }
 
+        /* ----------- MUREN ---------- */
+
+        for(Point wall : walls)
+        {
+            g.setColor(Color.black);
+            int wallsxPos = getPixel(wall.x);
+            int wallsyPos = getPixel(wall.y);
+
+            g.fillRect(wallsyPos, wallsxPos, boxWidth, boxHeight);
+        }
+
+        /* -------- GHOSTS ---------- */
+
+        for (Point ghost : ghosts)    // Draw the Ghosts.
+        {
+            g.setColor(darkRed);             // Ghosts are dark red.
+            int ghostPixelX = getPixel(ghost.x); // Get X-pixel of Ghost.
+            int ghostPixelY = getPixel(ghost.y); // Get Y-pixel of Ghost.
+
+            // Body of Ghosts.
+            g.fillOval(ghostPixelY, ghostPixelX, 70, 70);
+
+            g.setColor(Color.black);  // Facial features of the Ghosts are black.
+
+            // Left eye of Ghost.
+            g.fillOval(ghostPixelY + 15, ghostPixelX + 20, 10, 10);
+
+            // Right eye of Ghost.
+            g.fillOval(ghostPixelY + 45, ghostPixelX + 20, 10, 10);
+
+            // Mouth of Ghost.
+            g.drawLine(ghostPixelY + 15, ghostPixelX + 50,
+                    ghostPixelY + 55, ghostPixelX + 50);
+        }
+
+        /* -------- PACMAN ----------- */
+
         g.setColor(Color.yellow);    // Pacman is yellow.
-        //getPixel(pacman.p.x);        // Get X-pixel of Pacman.
-        //getPixel(pacman.p.y);        // Get Y-Pixel of Pacman.
+        getPixel(pacman.p.x);        // Get X-pixel of Pacman.
+        getPixel(pacman.p.y);        // Get Y-Pixel of Pacman.
 
         // Draw Pacman using values generated above.
         g.fillArc(getPixel(pacman.p.x), getPixel(pacman.p.y),
@@ -90,16 +116,28 @@ public class BottomPanel extends JPanel implements KeyListener {
         switch (e.getKeyCode())
         {
             case java.awt.event.KeyEvent.VK_UP:
-                BottomPanel.pacman.p.y -= 1;
+                if(!pacman.isAtMuur(Richting.BOVEN))
+                {
+                    pacman.p.y -= 1;
+                }
                 break;
             case java.awt.event.KeyEvent.VK_RIGHT:
-                BottomPanel.pacman.p.x += 1;
+                if(!pacman.isAtMuur(Richting.RECHTS))
+                {
+                    pacman.p.x += 1;
+                }
                 break;
             case java.awt.event.KeyEvent.VK_LEFT:
-                BottomPanel.pacman.p.x -= 1;
+                if(!pacman.isAtMuur(Richting.LINKS))
+                {
+                    pacman.p.x -= 1;
+                }
                 break;
             case java.awt.event.KeyEvent.VK_DOWN:
-                BottomPanel.pacman.p.y += 1;
+                if(!pacman.isAtMuur(Richting.BENEDEN))
+                {
+                    pacman.p.y += 1;
+                }
                 break;
             default:
                 System.out.println("Ongeldige toets ingedrukt!");
@@ -113,7 +151,7 @@ public class BottomPanel extends JPanel implements KeyListener {
     public void keyTyped(java.awt.event.KeyEvent e) { }
 
     // Function that turns the 0-9 value into a valid pixel location on the grid.
-    public int getPixel(int generatedNumber)
+    public static int getPixel(int generatedNumber)
     {
         return (generatedNumber * (boxWidth + boxBorder) + border
                 + boxOuterBorder);

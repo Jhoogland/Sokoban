@@ -28,15 +28,18 @@ public class Pacman extends Poppetje {
                 y -= 1;
                 break;
             case RECHTS:
-                x += 0;
+                x += 1;
                 break;
             case LINKS:
                 x -= 1;
                 break;
             case BENEDEN:
-                y += 2;
+                y += 1;
                 break;
         }
+
+        System.out.println(x + " - " + y);
+
 
         if(map[x][y] == 1)
         {

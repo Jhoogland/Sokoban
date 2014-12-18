@@ -9,7 +9,7 @@ import java.awt.*;
 public class PacmanFrame extends JFrame {
     private Speelbord speelbord = new Speelbord();
     private final int WIDTH = 815;
-    private final int HEIGHT = 600;
+    private final int HEIGHT = 800;
 
     private JFrame frame = new JFrame("Pacman");
     private JPanel TopPanel = new JPanel();
@@ -39,7 +39,7 @@ public class PacmanFrame extends JFrame {
         this.TopPanel.setPreferredSize(new Dimension(this.WIDTH, 50));
         this.TopPanel.setLayout(new GridLayout(0, 2));
 
-        this.bottomPanel.setPreferredSize(new Dimension(this.WIDTH, 700));
+        this.bottomPanel.setPreferredSize(new Dimension(this.WIDTH, 800));
         this.bottomPanel.setLayout(new BorderLayout());
         this.bottomPanel.setBackground(Color.red);
 

@@ -14,14 +14,14 @@ public class SpelElement {
 
     private static int[][]map =
             {{1,1,1,1,1,1,1,1,1,1},
-            {1,2,0,0,0,0,0,0,0,1},
-            {1,0,1,1,1,1,0,0,0,1},
-            {1,0,0,0,0,1,0,0,0,1},
+            {1,0,0,0,0,0,0,0,0,1},
+            {1,0,1,0,1,1,0,0,0,1},
+            {1,2,1,0,0,1,0,0,0,1},
             {1,0,0,0,0,1,1,1,0,1},
             {1,0,0,0,0,0,0,1,0,1},
             {1,0,0,0,0,0,0,1,0,1},
-            {1,0,0,0,0,0,0,1,3,1},
-            {1,0,0,0,0,0,0,3,3,1},
+            {1,0,0,0,0,0,0,1,0,1},
+            {1,0,0,0,0,0,3,3,3,1},
             {1,1,1,1,1,1,1,1,1,1}};
 
 
@@ -29,7 +29,7 @@ public class SpelElement {
     {
         for(int x = 0; x < map.length; x++)
         {
-            for(int y = 0; y < map[x].length; y++)
+            for(int y = 0; y < map[0].length; y++)
             {
                 if(map[x][y] == 1) {
                     Point potentialPoint = new Point(x, y);
@@ -49,7 +49,7 @@ public class SpelElement {
             for(int y = 0; y < map[0].length; y++)
             {
                 if(map[x][y] == 2) {
-                     pacmanPoint = new Point(x, y);
+                     pacmanPoint = new Point(x,y);
                 }
             }
         }

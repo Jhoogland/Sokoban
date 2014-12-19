@@ -105,7 +105,7 @@ public class BottomPanel extends JPanel implements KeyListener {
         getPixel(pacman.p.y);        // Get Y-Pixel of Pacman.
 
         // Draw Pacman using values generated above.
-        g.fillArc(getPixel(pacman.p.x), getPixel(pacman.p.y),
+        g.fillArc(getPixel(pacman.p.y), getPixel(pacman.p.x),
                 boxWidth, boxHeight, pacman.mouthAngle/2,
                 360 - pacman.mouthAngle);
     }
@@ -118,25 +118,25 @@ public class BottomPanel extends JPanel implements KeyListener {
             case java.awt.event.KeyEvent.VK_UP:
                 if(!pacman.isAtMuur(Richting.BOVEN))
                 {
-                    pacman.p.y -= 1;
+                    pacman.p.x -= 1;
                 }
                 break;
             case java.awt.event.KeyEvent.VK_RIGHT:
                 if(!pacman.isAtMuur(Richting.RECHTS))
                 {
-                    pacman.p.x += 1;
+                    pacman.p.y += 1;
                 }
                 break;
             case java.awt.event.KeyEvent.VK_LEFT:
                 if(!pacman.isAtMuur(Richting.LINKS))
                 {
-                    pacman.p.x -= 1;
+                    pacman.p.y -= 1;
                 }
                 break;
             case java.awt.event.KeyEvent.VK_DOWN:
                 if(!pacman.isAtMuur(Richting.BENEDEN))
                 {
-                    pacman.p.y += 1;
+                    pacman.p.x += 1;
                 }
                 break;
             default:

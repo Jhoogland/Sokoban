@@ -25,16 +25,16 @@ public class Pacman extends Poppetje {
         switch (richting)
         {
             case BOVEN:
-                y -= 1;
-                break;
-            case RECHTS:
-                x += 1;
-                break;
-            case LINKS:
                 x -= 1;
                 break;
-            case BENEDEN:
+            case RECHTS:
                 y += 1;
+                break;
+            case LINKS:
+                y -= 1;
+                break;
+            case BENEDEN:
+                x += 1;
                 break;
         }
 

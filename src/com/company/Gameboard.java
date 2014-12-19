@@ -114,28 +114,16 @@ public class Gameboard extends JPanel implements KeyListener {
         switch (e.getKeyCode())
         {
             case java.awt.event.KeyEvent.VK_UP:
-                if(!pacman.isAtMuur(Direction.BOVEN))
-                {
-                    pacman.move(Direction.BOVEN);
-                }
+                pacman.move(Direction.BOVEN);
                 break;
             case java.awt.event.KeyEvent.VK_RIGHT:
-                if(!pacman.isAtMuur(Direction.RECHTS))
-                {
-                    pacman.move(Direction.RECHTS);
-                }
+                pacman.move(Direction.RECHTS);
                 break;
             case java.awt.event.KeyEvent.VK_LEFT:
-                if(!pacman.isAtMuur(Direction.LINKS))
-                {
-                    pacman.move(Direction.LINKS);
-                }
+                pacman.move(Direction.LINKS);
                 break;
             case java.awt.event.KeyEvent.VK_DOWN:
-                if(!pacman.isAtMuur(Direction.BENEDEN))
-                {
-                    pacman.move(Direction.BENEDEN);
-                }
+                pacman.move(Direction.BENEDEN);
                 break;
         }
 

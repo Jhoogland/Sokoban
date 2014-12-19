@@ -19,9 +19,6 @@ public class Pacman extends Poppetje {
         int x = this.p.x;
         int y = this.p.y;
 
-
-        /* CHECK NA!!!!!!! */
-
         switch (direction)
         {
             case BOVEN:
@@ -55,17 +52,28 @@ public class Pacman extends Poppetje {
         switch (direction)
         {
             case BOVEN:
-                this.p.x -= 1;
-                this.mouthAngle = 90;
+                if(!isAtMuur(direction.BOVEN))
+                {
+                    this.p.x -= 1;
+                }
                 break;
             case RECHTS:
-                this.p.y += 1;
+                if(!isAtMuur(direction.RECHTS))
+                {
+                    this.p.y += 1;
+                }
                 break;
             case LINKS:
-                this.p.y -= 1;
+                if(!isAtMuur(direction.LINKS))
+                {
+                    this.p.y -= 1;
+                }
                 break;
             case BENEDEN:
-                this.p.x += 1;
+                if(!isAtMuur(direction.BENEDEN))
+                {
+                    this.p.x += 1;
+                }
                 break;
         }
     }

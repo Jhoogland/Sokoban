@@ -7,15 +7,17 @@ import java.awt.*;
  * Created by Sefa on 15-12-2014.
  */
 public class PacmanFrame extends JFrame {
-    private final int WIDTH = 815;
-    private final int HEIGHT = 800;
+    private final int WIDTH = 600;
+    private final int HEIGHT = 680;
 
-    private JFrame frame = new JFrame("Pacman");
+    private static JFrame frame = new JFrame("Pacman");
     private JPanel TopPanel = new JPanel();
-    private Gameboard gameboard = new Gameboard();
-    private JButton startButton = new JButton("Start");
+    private static Gameboard gameboard = new Gameboard();
+    public static JButton startButton = new JButton("Start");
+    public static JButton resetButton = new JButton("Reset");
 
     private StartHandler startHandler = new StartHandler();
+    private ResetHandler resetHandler = new ResetHandler();
 
     public void drawFrame()
     {
@@ -25,36 +27,46 @@ public class PacmanFrame extends JFrame {
 
         this.addStructure();
         this.addMenu();
-        this.starten();
+
+        if(startButton.getText().equals("Pause")) {
+            this.starten();
+        }
 
         this.frame.setVisible(true);
         this.frame.setFocusable(true);
         this.frame.setFocusTraversalKeysEnabled(false);
+        this.frame.setResizable(false);
     }
 
     private void addStructure()
     {
         this.TopPanel.setPreferredSize(new Dimension(this.WIDTH, 50));
-        this.TopPanel.setLayout(new GridLayout(0, 2));
+        this.TopPanel.setLayout(new GridLayout(0, 3));
 
         this.gameboard.setPreferredSize(new Dimension(this.WIDTH, 800));
         this.gameboard.setLayout(new BorderLayout());
-        this.gameboard.setBackground(Color.red);
+        this.gameboard.setBackground(Color.gray);
 
         this.frame.add(TopPanel, BorderLayout.NORTH);
-        this.frame.add(gameboard, BorderLayout.SOUTH);
+        this.frame.add(gameboard, BorderLayout.CENTER);
     }
 
     private void addMenu()
     {
         this.TopPanel.add(startButton);
+        this.TopPanel.add(resetButton);
+
+        this.startButton.setRequestFocusEnabled(false);
+        this.resetButton.setRequestFocusEnabled(false);
 
         this.startButton.addActionListener(this.startHandler);
+        this.resetButton.addActionListener(this.resetHandler);
 
         this.TopPanel.add(new JLabel("Score: 00"));
     }
 
-    public void starten() {
-        this.frame.addKeyListener(gameboard);
+    public static void starten()
+    {
+        frame.addKeyListener(gameboard);
     }
 }

@@ -8,19 +8,22 @@ import java.awt.event.ActionListener;
  */
 public class StartHandler implements ActionListener {
 
-    public boolean started = true;
+    public boolean started = false;
 
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        if(this.started) {
+        if(!this.started) {
             System.out.println("Started");
-            this.started = false;
+            PacmanFrame.starten();
+            PacmanFrame.startButton.setText("Pause");
+            this.started = true;
         }
         else
         {
             System.out.println("Paused");
-            this.started = true;
+            PacmanFrame.startButton.setText("Start");
+            this.started = false;
         }
     }
 }

@@ -73,7 +73,7 @@ public class GameElement {
         return ghosts;
     }
 
-    public static int[][] getMap(){
-        return map;
+    public static int getNeighbor(int x, int y){
+        return map[x][y];
     }
 }

@@ -18,7 +18,7 @@ public class Pacman extends Poppetje {
     {
         int x = this.p.x;
         int y = this.p.y;
-        int[][] map = GameElement.getMap();
+
 
         /* CHECK NA!!!!!!! */
 
@@ -39,9 +39,9 @@ public class Pacman extends Poppetje {
         }
 
         System.out.println(x + " - " + y);
+        int neighbor = GameElement.getNeighbor(x,y);
 
-
-        if(map[x][y] == 1)
+        if(neighbor == 1)
         {
             System.out.println("@muur");
             return true;

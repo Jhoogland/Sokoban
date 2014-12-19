@@ -7,13 +7,12 @@ import java.awt.*;
  * Created by Sefa on 15-12-2014.
  */
 public class PacmanFrame extends JFrame {
-    private Speelbord speelbord = new Speelbord();
     private final int WIDTH = 815;
     private final int HEIGHT = 800;
 
     private JFrame frame = new JFrame("Pacman");
     private JPanel TopPanel = new JPanel();
-    private BottomPanel bottomPanel = new BottomPanel();
+    private Gameboard gameboard = new Gameboard();
     private JButton startButton = new JButton("Start");
 
     private StartHandler startHandler = new StartHandler();
@@ -26,7 +25,6 @@ public class PacmanFrame extends JFrame {
 
         this.addStructure();
         this.addMenu();
-        //this.drawInitialPacmanGrid();
         this.starten();
 
         this.frame.setVisible(true);
@@ -39,12 +37,12 @@ public class PacmanFrame extends JFrame {
         this.TopPanel.setPreferredSize(new Dimension(this.WIDTH, 50));
         this.TopPanel.setLayout(new GridLayout(0, 2));
 
-        this.bottomPanel.setPreferredSize(new Dimension(this.WIDTH, 800));
-        this.bottomPanel.setLayout(new BorderLayout());
-        this.bottomPanel.setBackground(Color.red);
+        this.gameboard.setPreferredSize(new Dimension(this.WIDTH, 800));
+        this.gameboard.setLayout(new BorderLayout());
+        this.gameboard.setBackground(Color.red);
 
         this.frame.add(TopPanel, BorderLayout.NORTH);
-        this.frame.add(bottomPanel, BorderLayout.SOUTH);
+        this.frame.add(gameboard, BorderLayout.SOUTH);
     }
 
     private void addMenu()
@@ -56,34 +54,7 @@ public class PacmanFrame extends JFrame {
         this.TopPanel.add(new JLabel("Score: 00"));
     }
 
-    private void drawInitialPacmanGrid()
-    {
-        for (int x = 0; x < 5; x++)
-        {
-            for (int y = 0; y < 5; y++)
-            {
-                int positie = speelbord.mapArray[x][y];
-                this.bottomPanel.add(new JLabel("" + positie));
-                if(positie == 0)
-                {
-                    //Toon looppad
-                }
-                else if(positie == 1)
-                {
-                    //Toon muur
-                }
-                else if(positie == 2){
-                    //Toon pacman
-                }
-                else if(positie == 3){
-                    //Toon spookje
-                }
-            }
-        }
-    }
-
     public void starten() {
-        KeyHandler keyHandler = new KeyHandler();
-        this.frame.addKeyListener(bottomPanel);
+        this.frame.addKeyListener(gameboard);
     }
 }

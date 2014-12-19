@@ -14,15 +14,15 @@ public class Pacman extends Poppetje {
         this.mouthAngle = mouthAngle;
     }
 
-    public boolean isAtMuur(Richting richting)
+    public boolean isAtMuur(Direction direction)
     {
         int x = this.p.x;
         int y = this.p.y;
-        int[][] map = SpelElement.getMap();
+        int[][] map = GameElement.getMap();
 
         /* CHECK NA!!!!!!! */
 
-        switch (richting)
+        switch (direction)
         {
             case BOVEN:
                 x -= 1;
@@ -48,6 +48,26 @@ public class Pacman extends Poppetje {
         }
 
         return false;
+    }
+
+    public void move(Direction direction)
+    {
+        switch (direction)
+        {
+            case BOVEN:
+                this.p.x -= 1;
+                this.mouthAngle = 90;
+                break;
+            case RECHTS:
+                this.p.y += 1;
+                break;
+            case LINKS:
+                this.p.y -= 1;
+                break;
+            case BENEDEN:
+                this.p.x += 1;
+                break;
+        }
     }
 
 }

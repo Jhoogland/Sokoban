@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * Created by Sefa Yavuz on 17-12-2014.
  */
-public class SpelElement {
+public class GameElement {
 
     public Point p;
     public static ArrayList<Point> walls = new ArrayList<Point>();
@@ -14,13 +14,13 @@ public class SpelElement {
 
     private static int[][]map =
             {{1,1,1,1,1,1,1,1,1,1},
-            {1,0,0,0,0,0,0,0,0,1},
+            {1,2,0,0,0,0,0,0,0,1},
             {1,0,1,0,1,1,0,0,0,1},
-            {1,2,1,0,0,1,0,0,0,1},
+            {1,0,1,0,0,1,0,0,0,1},
             {1,0,0,0,0,1,1,1,0,1},
             {1,0,0,0,0,0,0,1,0,1},
             {1,0,0,0,0,0,0,1,0,1},
-            {1,0,0,0,0,0,0,1,0,1},
+            {1,0,0,0,0,0,0,1,1,1},
             {1,0,0,0,0,0,3,3,3,1},
             {1,1,1,1,1,1,1,1,1,1}};
 
@@ -74,7 +74,6 @@ public class SpelElement {
     }
 
     public static int[][] getMap(){
-
         return map;
     }
 }

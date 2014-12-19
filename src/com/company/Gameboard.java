@@ -8,25 +8,23 @@ import java.util.ArrayList;
 /**
  * Created by Sefa Yavuz on 17-12-2014.
  */
-public class BottomPanel extends JPanel implements KeyListener {
+public class Gameboard extends JPanel implements KeyListener {
 
     public static Pacman pacman;
-    private int amountOfGhosts = 1;
-    private int amountOfWalls = 36;
 
-    private ArrayList<Point> ghosts = SpelElement.initGhosts();
-    private ArrayList<Point> walls = SpelElement.initWalls();
+    private ArrayList<Point> ghosts = GameElement.initGhosts();
+    private ArrayList<Point> walls = GameElement.initWalls();
 
-    public static int boxWidth = 70;
-    public static int boxHeight = 70;
+    public static int boxWidth = 50;
+    public static int boxHeight = 50;
     public static int border = 20;            // Size of blue border around grid.
     public static int boxBorder = 5;            // Size of gray border between boxes.
     public static int boxOuterBorder = 8;
 
 
-    public BottomPanel()
+    public Gameboard()
     {
-        pacman = new Pacman(SpelElement.initPacman(), 90);
+        pacman = new Pacman(GameElement.initPacman(), 90);
     }
 
     @Override
@@ -35,10 +33,10 @@ public class BottomPanel extends JPanel implements KeyListener {
         super.paintComponent(g);
 
         // Create darker blues for the grid.
-        Color myBlue = Color.blue;
-        Color darkBlue = myBlue.darker();
-        Color maxBlue = darkBlue.darker();
-        Color tooBlue = maxBlue.darker();
+        Color myGray = Color.lightGray;
+        Color darkGray = myGray.darker();
+        Color maxGray = darkGray.darker();
+        Color tooGray = maxGray.darker();
 
         // Create different shades of red for the ghosts/end message.
         Color myRed = Color.red;
@@ -46,18 +44,18 @@ public class BottomPanel extends JPanel implements KeyListener {
         Color lightRed = myRed.brighter();
 
         // Draw the blue outline around the grid.
-        g.setColor(darkBlue);
-        g.fillRect(0, 0, 800, 800);
+        g.setColor(darkGray);
+        g.fillRect(0, 0, 600, 600);
 
         // Draw the gray box that will divide the smaller 10x10 boxes.
-        g.setColor(Color.lightGray);
-        g.fillRect(20, 20, 760, 760);
+        g.setColor(Color.white);
+        g.fillRect(20, 20, 560, 560);
 
         // Draw the 10x10 boxes that make the grid.
-        g.setColor(tooBlue);
-        for (int down = 28; down <= 735; down += 75)
+        g.setColor(Color.black);
+        for (int down = 28; down <= 535; down += 55)
         {
-            for (int right = 28; right <= 735; right += 75)
+            for (int right = 28; right <= 535; right += 55)
             {
                 g.fillRect(down, right, boxWidth, boxHeight);
             }
@@ -67,7 +65,7 @@ public class BottomPanel extends JPanel implements KeyListener {
 
         for(Point wall : walls)
         {
-            g.setColor(Color.black);
+            g.setColor(Color.blue);
             int wallsxPos = getPixel(wall.x);
             int wallsyPos = getPixel(wall.y);
 
@@ -83,19 +81,19 @@ public class BottomPanel extends JPanel implements KeyListener {
             int ghostPixelY = getPixel(ghost.y); // Get Y-pixel of Ghost.
 
             // Body of Ghosts.
-            g.fillOval(ghostPixelY, ghostPixelX, 70, 70);
+            g.fillOval(ghostPixelY, ghostPixelX, 50, 50);
 
             g.setColor(Color.black);  // Facial features of the Ghosts are black.
 
             // Left eye of Ghost.
-            g.fillOval(ghostPixelY + 15, ghostPixelX + 20, 10, 10);
+            g.fillOval(ghostPixelY + 10, ghostPixelX + 20, 5, 5);
 
             // Right eye of Ghost.
-            g.fillOval(ghostPixelY + 45, ghostPixelX + 20, 10, 10);
+            g.fillOval(ghostPixelY + 30, ghostPixelX + 20, 5, 5);
 
             // Mouth of Ghost.
-            g.drawLine(ghostPixelY + 15, ghostPixelX + 50,
-                    ghostPixelY + 55, ghostPixelX + 50);
+            //g.drawLine(ghostPixelY + 15, ghostPixelX + 50,
+            //      ghostPixelY + 55, ghostPixelX + 50);
         }
 
         /* -------- PACMAN ----------- */
@@ -116,31 +114,28 @@ public class BottomPanel extends JPanel implements KeyListener {
         switch (e.getKeyCode())
         {
             case java.awt.event.KeyEvent.VK_UP:
-                if(!pacman.isAtMuur(Richting.BOVEN))
+                if(!pacman.isAtMuur(Direction.BOVEN))
                 {
-                    pacman.p.x -= 1;
+                    pacman.move(Direction.BOVEN);
                 }
                 break;
             case java.awt.event.KeyEvent.VK_RIGHT:
-                if(!pacman.isAtMuur(Richting.RECHTS))
+                if(!pacman.isAtMuur(Direction.RECHTS))
                 {
-                    pacman.p.y += 1;
+                    pacman.move(Direction.RECHTS);
                 }
                 break;
             case java.awt.event.KeyEvent.VK_LEFT:
-                if(!pacman.isAtMuur(Richting.LINKS))
+                if(!pacman.isAtMuur(Direction.LINKS))
                 {
-                    pacman.p.y -= 1;
+                    pacman.move(Direction.LINKS);
                 }
                 break;
             case java.awt.event.KeyEvent.VK_DOWN:
-                if(!pacman.isAtMuur(Richting.BENEDEN))
+                if(!pacman.isAtMuur(Direction.BENEDEN))
                 {
-                    pacman.p.x += 1;
+                    pacman.move(Direction.BENEDEN);
                 }
-                break;
-            default:
-                System.out.println("Ongeldige toets ingedrukt!");
                 break;
         }
 

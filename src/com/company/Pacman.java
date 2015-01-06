@@ -8,17 +8,14 @@ import java.awt.*;
 public class Pacman extends Poppetje {
     public int mouthAngle;
 
-    public Pacman(Point p, int mouthAngle)
+    public Pacman(int mouthAngle)
     {
-        this.p = p;
         this.mouthAngle = mouthAngle;
     }
 
+    /*
     public boolean isAtMuur(Direction direction)
     {
-        int x = this.p.x;
-        int y = this.p.y;
-
         switch (direction)
         {
             case BOVEN:
@@ -45,8 +42,9 @@ public class Pacman extends Poppetje {
         }
 
         return false;
-    }
+    }*/
 
+    /*
     public void move(Direction direction)
     {
         switch (direction)
@@ -77,5 +75,6 @@ public class Pacman extends Poppetje {
                 break;
         }
     }
+    */
 
 }

@@ -3,8 +3,7 @@ package com.company;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * Created by Sefa Yavuz on 17-12-2014.
@@ -13,7 +12,21 @@ public class Gameboard extends JPanel {
 
     private int gridSize = 10;
     private Vak grid[][] = new Vak[this.gridSize][this.gridSize];
-    private HashMap grid2 = new HashMap();
+
+    public static Queue<GameElement> gameElements = new LinkedList<GameElement>();
+
+    private int grid2[][] = {
+            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 2, 0, 0, 0, 0, 0, 0, 0, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1, 0, 1},
+            {1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
+            {1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
+            {1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
+            {1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
+            {1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
+            {1, 0, 0, 0, 0, 0, 0, 1, 3, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+    };
 
     public static int border = 20;            // Size of blue border around grid.
     public static int boxBorder = 5;            // Size of gray border between boxes.
@@ -31,117 +44,107 @@ public class Gameboard extends JPanel {
         {
             for(int y = 0; y < this.gridSize; y++)
             {
-                this.grid[x][y] = new Vak();
+                if(this.grid2[x][y] == 0)
+                {
+                    this.grid[x][y] = new Vak();
+                }
+                else if(this.grid2[x][y] == 1)
+                {
+                    this.grid[x][y] = new Vak(new Wall());
+                }
+                else if(this.grid2[x][y] == 2)
+                {
+                    this.grid[x][y] = new Vak(new Pacman(90));
+                }
+                else if(this.grid2[x][y] == 3)
+                {
+                    this.grid[x][y] = new Vak(new Ghost());
+                }
             }
         }
     }
 
-
-    /*
-    public void setNeighbors(){
-
+    public void setNeighbors()
+    {
         for(int x = 0;  x < this.gridSize; x++)
         {
             for(int y = 0; y < this.gridSize; y++)
             {
-                if(y > 0){
+                if(y > 0)
+                {
                     grid[x][y].neighbors.add(grid[x][y-1]);
                 }
-                if(y < this.gridSize){
+                if(y < this.gridSize)
+                {
                     grid[x][y].neighbors.add(grid[x][y+1]);
                 }
-                if(x > 0){
+                if(x > 0)
+                {
                     grid[x][y].neighbors.add(grid[x-1][y]);
                 }
-                if(x < this.gridSize){
+                if(x < this.gridSize)
+                {
                     grid[x][y].neighbors.add(grid[x+1][y]);
                 }
             }
         }
     }
-*/
+
     @Override
-    public void paintComponent(Graphics g)
-    {
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
-
-        // Create darker blues for the grid.
-        Color myGray = Color.lightGray;
-        Color darkGray = myGray.darker();
-        Color maxGray = darkGray.darker();
-        Color tooGray = maxGray.darker();
-
-        // Create different shades of red for the ghosts/end message.
-        Color myRed = Color.red;
-        Color darkRed = myRed.darker();
-        Color lightRed = myRed.brighter();
-
-        // Draw the blue outline around the grid.
-        g.setColor(darkGray);
-        g.fillRect(0, 0, 600, 600);
 
         // Draw the gray box that will divide the smaller 10x10 boxes.
         g.setColor(Color.white);
         g.fillRect(0, 0, 600, 600);
 
         // Draw the 10x10 boxes that make the grid.
-        g.setColor(Color.black);
-        for (int x = 0; x <= this.grid.length; x++)
+        for (int x = 0; x < this.gridSize; x++)
         {
-            for (int y = 0; y <= this.grid[0].length; y++) {
+            for (int y = 0; y < this.gridSize; y++)
+            {
+                int newX = x * 55;
+                int newY = y * 55;
 
-                System.out.println(x + " - " + y);
-                g.fillRect((x * 55), (y * 55), 50, 50);
+                g.setColor(Color.black);
+                g.fillRect(newX, newY, 50, 50);
+
+                if (this.grid[x][y].gameElement instanceof Wall)
+                {
+                    g.setColor(Color.blue);
+                    g.fillRect(newX, newY, 50, 50);
+
+                    System.out.println("Wall");
+                }
+                else if (this.grid[x][y].gameElement instanceof Pacman)
+                {
+
+                    g.setColor(Color.yellow);
+                    g.fillArc(newX, newY, 50, 50, 90 / 2, 360 - 90);
+                }
+                else if (this.grid[x][y].gameElement instanceof Ghost)
+                {
+                    g.setColor(Color.red.darker());             // Ghosts are dark red.
+
+                    // Body of Ghosts.
+                    g.fillOval(newX, newY, 50, 50);
+
+                    g.setColor(Color.black);  // Facial features of the Ghosts are black.
+
+                    // Left eye of Ghost.
+                    g.fillOval(newX + 10, newY + 20, 5, 5);
+
+                    // Right eye of Ghost.
+                    g.fillOval(newX + 30, newY + 20, 5, 5);
+
+                    // Mouth of Ghost.
+                    //g.drawLine(ghostPixelY + 15, ghostPixelX + 50,
+                    //      ghostPixelY + 55, ghostPixelX + 50);
+                }
             }
         }
-
-
-        /* ----------- MUREN ----------
-
-        for(Wall wall : walls)
-        {
-            g.setColor(Color.blue);
-            int wallsxPos = getPixel(wall.p.x);
-            int wallsyPos = getPixel(wall.p.y);
-
-            g.fillRect(wallsyPos, wallsxPos, boxWidth, boxHeight);
-        }
-
-        /* -------- GHOSTS ----------
-
-        for (Ghost ghost : ghosts)    // Draw the Ghosts.
-        {
-            g.setColor(darkRed);             // Ghosts are dark red.
-            int ghostPixelX = getPixel(ghost.p.x); // Get X-pixel of Ghost.
-            int ghostPixelY = getPixel(ghost.p.y); // Get Y-pixel of Ghost.
-
-            // Body of Ghosts.
-            g.fillOval(ghostPixelY, ghostPixelX, 50, 50);
-
-            g.setColor(Color.black);  // Facial features of the Ghosts are black.
-
-            // Left eye of Ghost.
-            g.fillOval(ghostPixelY + 10, ghostPixelX + 20, 5, 5);
-
-            // Right eye of Ghost.
-            g.fillOval(ghostPixelY + 30, ghostPixelX + 20, 5, 5);
-
-            // Mouth of Ghost.
-            //g.drawLine(ghostPixelY + 15, ghostPixelX + 50,
-            //      ghostPixelY + 55, ghostPixelX + 50);
-        }
-
-        /* -------- PACMAN -----------
-
-        g.setColor(Color.yellow);    // Pacman is yellow.
-        getPixel(pacman.p.x);        // Get X-pixel of Pacman.
-        getPixel(pacman.p.y);        // Get Y-Pixel of Pacman.
-
-        // Draw Pacman using values generated above.
-        g.fillArc(getPixel(pacman.p.y), getPixel(pacman.p.x),
-                boxWidth, boxHeight, pacman.mouthAngle/2,
-                360 - pacman.mouthAngle); */
     }
+
     /*
     @Override
     public void keyPressed(java.awt.event.KeyEvent e)
@@ -168,12 +171,6 @@ public class Gameboard extends JPanel {
     public void keyReleased(java.awt.event.KeyEvent e) { }
     public void keyTyped(java.awt.event.KeyEvent e) { }
 
-    // Function that turns the 0-9 value into a valid pixel location on the grid.
-    public static int getPixel(int generatedNumber)
-    {
-        return (generatedNumber * (boxWidth + boxBorder) + border
-                + boxOuterBorder);
-    }
 */
 
 }

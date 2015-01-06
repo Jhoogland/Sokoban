@@ -7,8 +7,7 @@ import java.awt.*;
  */
 public class Ghost extends Poppetje {
 
-    public Ghost(Point p)
+    public Ghost()
     {
-        this.p = p;
     }
 }

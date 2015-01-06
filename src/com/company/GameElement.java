@@ -8,7 +8,6 @@ import java.util.ArrayList;
  */
 public class GameElement {
 
-    public Point p;
     public static ArrayList<Wall> walls = new ArrayList<Wall>();
     public static ArrayList<Ghost> ghosts = new ArrayList<Ghost>();
 
@@ -53,6 +52,7 @@ public class GameElement {
         return walls;
     }
 */
+    /*
     public static Pacman initPacman()
     {
         Pacman pacmanPoint = null;
@@ -67,8 +67,8 @@ public class GameElement {
             }
         }
         return pacmanPoint;
-    }
-
+    }*/
+/*
     public static ArrayList<Ghost> initGhosts()
     {
         for(int x = 0; x < map.length; x++)
@@ -84,7 +84,7 @@ public class GameElement {
         }
 
         return ghosts;
-    }
+    } */
 
     public static int getNeighbor(int x, int y){
         return map[x][y];

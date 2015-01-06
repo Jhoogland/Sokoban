@@ -1,19 +1,18 @@
 package com.company;
 
-import java.awt.*;
 import java.util.*;
 
 /**
  * Created by Sefa on 5-1-2015.
  */
-public class Vak {
+public class Box {
 
     public GameElement gameElement;
-    public ArrayList<Vak> neighbors;
+    public ArrayList<Box> neighbors;
 
-    public Vak(){}
+    public Box(){}
 
-    public Vak(GameElement gameElement)
+    public Box(GameElement gameElement)
     {
         this.gameElement = gameElement;
     }

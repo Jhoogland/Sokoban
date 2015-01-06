@@ -10,19 +10,6 @@ public class GameElement {
 
     public static ArrayList<Wall> walls = new ArrayList<Wall>();
     public static ArrayList<Ghost> ghosts = new ArrayList<Ghost>();
-
-    private static int[][]map =
-            {{1,1,1,1,1,1,1,1,1,1},
-            {1,2,0,0,0,0,0,0,0,1},
-            {1,0,1,0,1,1,0,0,0,1},
-            {1,0,1,0,0,1,0,0,0,1},
-            {1,0,0,0,0,1,1,1,0,1},
-            {1,0,0,0,0,0,0,1,0,1},
-            {1,0,0,0,0,0,0,1,0,1},
-            {1,0,0,0,0,0,0,1,1,1},
-            {1,0,0,0,0,3,4,5,6,1},
-            {1,1,1,1,1,1,1,1,1,1}};
-
     /*
 
         0 = Looppad
@@ -85,8 +72,4 @@ public class GameElement {
 
         return ghosts;
     } */
-
-    public static int getNeighbor(int x, int y){
-        return map[x][y];
-    }
 }

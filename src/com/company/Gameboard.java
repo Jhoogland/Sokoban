@@ -2,19 +2,20 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
 
 /**
  * Created by Sefa Yavuz on 17-12-2014.
  */
 public class Gameboard extends JPanel {
 
-    private int gridSize = 10;
-    private Vak grid[][] = new Vak[this.gridSize][this.gridSize];
+    private final int GRIDSIZE = 10; //Set the gridsize
+    private Box grid[][] = new Box[this.GRIDSIZE][this.GRIDSIZE]; // 2D Array thats holds all Boxes
 
-    public static Queue<GameElement> gameElements = new LinkedList<GameElement>();
-
+    //2D Array that holds the structure
+    // 0 = Nothing ( Pathway )
+    // 1 = Walls
+    // 2 = Pacman
+    // 3 = Ghost
     private int grid2[][] = {
             {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
             {1, 2, 0, 0, 0, 0, 0, 0, 0, 1},
@@ -28,10 +29,6 @@ public class Gameboard extends JPanel {
             {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
     };
 
-    public static int border = 20;            // Size of blue border around grid.
-    public static int boxBorder = 5;            // Size of gray border between boxes.
-    public static int boxOuterBorder = 8;
-
     public Gameboard()
     {
         drawEverything();
@@ -40,25 +37,25 @@ public class Gameboard extends JPanel {
 
     public void drawEverything()
     {
-        for(int x = 0;  x < this.gridSize; x++)
+        for(int x = 0;  x < this.GRIDSIZE; x++)
         {
-            for(int y = 0; y < this.gridSize; y++)
+            for(int y = 0; y < this.GRIDSIZE; y++)
             {
                 if(this.grid2[x][y] == 0)
                 {
-                    this.grid[x][y] = new Vak();
+                    this.grid[x][y] = new Box();
                 }
                 else if(this.grid2[x][y] == 1)
                 {
-                    this.grid[x][y] = new Vak(new Wall());
+                    this.grid[x][y] = new Box(new Wall());
                 }
                 else if(this.grid2[x][y] == 2)
                 {
-                    this.grid[x][y] = new Vak(new Pacman(90));
+                    this.grid[x][y] = new Box(new Pacman(90));
                 }
                 else if(this.grid2[x][y] == 3)
                 {
-                    this.grid[x][y] = new Vak(new Ghost());
+                    this.grid[x][y] = new Box(new Ghost());
                 }
             }
         }
@@ -66,15 +63,15 @@ public class Gameboard extends JPanel {
 
     public void setNeighbors()
     {
-        for(int x = 0;  x < this.gridSize; x++)
+        for(int x = 0;  x < this.GRIDSIZE; x++)
         {
-            for(int y = 0; y < this.gridSize; y++)
+            for(int y = 0; y < this.GRIDSIZE; y++)
             {
                 if(y > 0)
                 {
                     grid[x][y].neighbors.add(grid[x][y-1]);
                 }
-                if(y < this.gridSize)
+                if(y < this.GRIDSIZE)
                 {
                     grid[x][y].neighbors.add(grid[x][y+1]);
                 }
@@ -82,7 +79,7 @@ public class Gameboard extends JPanel {
                 {
                     grid[x][y].neighbors.add(grid[x-1][y]);
                 }
-                if(x < this.gridSize)
+                if(x < this.GRIDSIZE)
                 {
                     grid[x][y].neighbors.add(grid[x+1][y]);
                 }
@@ -99,9 +96,9 @@ public class Gameboard extends JPanel {
         g.fillRect(0, 0, 600, 600);
 
         // Draw the 10x10 boxes that make the grid.
-        for (int x = 0; x < this.gridSize; x++)
+        for (int x = 0; x < this.GRIDSIZE; x++)
         {
-            for (int y = 0; y < this.gridSize; y++)
+            for (int y = 0; y < this.GRIDSIZE; y++)
             {
                 int newX = x * 55;
                 int newY = y * 55;
@@ -109,20 +106,20 @@ public class Gameboard extends JPanel {
                 g.setColor(Color.black);
                 g.fillRect(newX, newY, 50, 50);
 
-                if (this.grid[x][y].gameElement instanceof Wall)
+                if (this.grid[y][x].gameElement instanceof Wall)
                 {
                     g.setColor(Color.blue);
                     g.fillRect(newX, newY, 50, 50);
 
                     System.out.println("Wall");
                 }
-                else if (this.grid[x][y].gameElement instanceof Pacman)
+                else if (this.grid[y][x].gameElement instanceof Pacman)
                 {
 
                     g.setColor(Color.yellow);
                     g.fillArc(newX, newY, 50, 50, 90 / 2, 360 - 90);
                 }
-                else if (this.grid[x][y].gameElement instanceof Ghost)
+                else if (this.grid[y][x].gameElement instanceof Ghost)
                 {
                     g.setColor(Color.red.darker());             // Ghosts are dark red.
 

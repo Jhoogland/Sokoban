@@ -4,29 +4,62 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Sefa Yavuz on 17-12-2014.
  */
-public class Gameboard extends JPanel implements KeyListener {
+public class Gameboard extends JPanel {
 
-    public static Pacman pacman;
+    private int gridSize = 10;
+    private Vak grid[][] = new Vak[this.gridSize][this.gridSize];
+    private HashMap grid2 = new HashMap();
 
-    private ArrayList<Point> ghosts = GameElement.initGhosts();
-    private ArrayList<Point> walls = GameElement.initWalls();
-
-    public static int boxWidth = 50;
-    public static int boxHeight = 50;
     public static int border = 20;            // Size of blue border around grid.
     public static int boxBorder = 5;            // Size of gray border between boxes.
     public static int boxOuterBorder = 8;
 
-
     public Gameboard()
     {
-        pacman = new Pacman(GameElement.initPacman(), 90);
+        drawEverything();
+        //setNeighbors();
     }
 
+    public void drawEverything()
+    {
+        for(int x = 0;  x < this.gridSize; x++)
+        {
+            for(int y = 0; y < this.gridSize; y++)
+            {
+                this.grid[x][y] = new Vak();
+            }
+        }
+    }
+
+
+    /*
+    public void setNeighbors(){
+
+        for(int x = 0;  x < this.gridSize; x++)
+        {
+            for(int y = 0; y < this.gridSize; y++)
+            {
+                if(y > 0){
+                    grid[x][y].neighbors.add(grid[x][y-1]);
+                }
+                if(y < this.gridSize){
+                    grid[x][y].neighbors.add(grid[x][y+1]);
+                }
+                if(x > 0){
+                    grid[x][y].neighbors.add(grid[x-1][y]);
+                }
+                if(x < this.gridSize){
+                    grid[x][y].neighbors.add(grid[x+1][y]);
+                }
+            }
+        }
+    }
+*/
     @Override
     public void paintComponent(Graphics g)
     {
@@ -49,36 +82,38 @@ public class Gameboard extends JPanel implements KeyListener {
 
         // Draw the gray box that will divide the smaller 10x10 boxes.
         g.setColor(Color.white);
-        g.fillRect(20, 20, 560, 560);
+        g.fillRect(0, 0, 600, 600);
 
         // Draw the 10x10 boxes that make the grid.
         g.setColor(Color.black);
-        for (int down = 28; down <= 535; down += 55)
+        for (int x = 0; x <= this.grid.length; x++)
         {
-            for (int right = 28; right <= 535; right += 55)
-            {
-                g.fillRect(down, right, boxWidth, boxHeight);
+            for (int y = 0; y <= this.grid[0].length; y++) {
+
+                System.out.println(x + " - " + y);
+                g.fillRect((x * 55), (y * 55), 50, 50);
             }
         }
 
-        /* ----------- MUREN ---------- */
 
-        for(Point wall : walls)
+        /* ----------- MUREN ----------
+
+        for(Wall wall : walls)
         {
             g.setColor(Color.blue);
-            int wallsxPos = getPixel(wall.x);
-            int wallsyPos = getPixel(wall.y);
+            int wallsxPos = getPixel(wall.p.x);
+            int wallsyPos = getPixel(wall.p.y);
 
             g.fillRect(wallsyPos, wallsxPos, boxWidth, boxHeight);
         }
 
-        /* -------- GHOSTS ---------- */
+        /* -------- GHOSTS ----------
 
-        for (Point ghost : ghosts)    // Draw the Ghosts.
+        for (Ghost ghost : ghosts)    // Draw the Ghosts.
         {
             g.setColor(darkRed);             // Ghosts are dark red.
-            int ghostPixelX = getPixel(ghost.x); // Get X-pixel of Ghost.
-            int ghostPixelY = getPixel(ghost.y); // Get Y-pixel of Ghost.
+            int ghostPixelX = getPixel(ghost.p.x); // Get X-pixel of Ghost.
+            int ghostPixelY = getPixel(ghost.p.y); // Get Y-pixel of Ghost.
 
             // Body of Ghosts.
             g.fillOval(ghostPixelY, ghostPixelX, 50, 50);
@@ -96,7 +131,7 @@ public class Gameboard extends JPanel implements KeyListener {
             //      ghostPixelY + 55, ghostPixelX + 50);
         }
 
-        /* -------- PACMAN ----------- */
+        /* -------- PACMAN -----------
 
         g.setColor(Color.yellow);    // Pacman is yellow.
         getPixel(pacman.p.x);        // Get X-pixel of Pacman.
@@ -105,9 +140,9 @@ public class Gameboard extends JPanel implements KeyListener {
         // Draw Pacman using values generated above.
         g.fillArc(getPixel(pacman.p.y), getPixel(pacman.p.x),
                 boxWidth, boxHeight, pacman.mouthAngle/2,
-                360 - pacman.mouthAngle);
+                360 - pacman.mouthAngle); */
     }
-
+    /*
     @Override
     public void keyPressed(java.awt.event.KeyEvent e)
     {
@@ -139,6 +174,6 @@ public class Gameboard extends JPanel implements KeyListener {
         return (generatedNumber * (boxWidth + boxBorder) + border
                 + boxOuterBorder);
     }
-
+*/
 
 }

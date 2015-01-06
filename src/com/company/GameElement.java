@@ -9,8 +9,8 @@ import java.util.ArrayList;
 public class GameElement {
 
     public Point p;
-    public static ArrayList<Point> walls = new ArrayList<Point>();
-    public static ArrayList<Point> ghosts = new ArrayList<Point>();
+    public static ArrayList<Wall> walls = new ArrayList<Wall>();
+    public static ArrayList<Ghost> ghosts = new ArrayList<Ghost>();
 
     private static int[][]map =
             {{1,1,1,1,1,1,1,1,1,1},
@@ -21,11 +21,22 @@ public class GameElement {
             {1,0,0,0,0,0,0,1,0,1},
             {1,0,0,0,0,0,0,1,0,1},
             {1,0,0,0,0,0,0,1,1,1},
-            {1,0,0,0,0,0,3,3,3,1},
+            {1,0,0,0,0,3,4,5,6,1},
             {1,1,1,1,1,1,1,1,1,1}};
 
+    /*
 
-    public static ArrayList<Point> initWalls()
+        0 = Looppad
+        1 = Wall
+        2 = Pacman
+        3 = Spookje 1
+        4 = Spookje 2
+        5 = Spookje 3
+        6 = Spookje 4
+
+     */
+/*
+    public static ArrayList<Wall> initWalls()
     {
         for(int x = 0; x < map.length; x++)
         {
@@ -33,39 +44,41 @@ public class GameElement {
             {
                 if(map[x][y] == 1) {
                     Point potentialPoint = new Point(x, y);
-                    walls.add(potentialPoint);
+                    Wall wallPoint = new Wall(potentialPoint);
+                    walls.add(wallPoint);
                 }
             }
         }
 
         return walls;
     }
-
-    public static Point initPacman()
+*/
+    public static Pacman initPacman()
     {
-        Point pacmanPoint = null;
+        Pacman pacmanPoint = null;
         for(int x = 0; x < map.length; x++)
         {
             for(int y = 0; y < map[0].length; y++)
             {
                 if(map[x][y] == 2) {
-                     pacmanPoint = new Point(x,y);
+                    Point potentialPoint = new Point(x, y);
+                    pacmanPoint = new Pacman(potentialPoint, 90);
                 }
             }
         }
-
         return pacmanPoint;
     }
 
-    public static ArrayList<Point> initGhosts()
+    public static ArrayList<Ghost> initGhosts()
     {
         for(int x = 0; x < map.length; x++)
         {
             for(int y = 0; y < map[0].length; y++)
             {
-                if(map[x][y] == 3) {
+                if(map[x][y] == 3 || map[x][y] == 4 || map[x][y] == 5 || map[x][y] == 6) {
                     Point potentialPoint = new Point(x, y);
-                    ghosts.add(potentialPoint);
+                    Ghost ghostPoint = new Ghost(potentialPoint);
+                    ghosts.add(ghostPoint);
                 }
             }
         }

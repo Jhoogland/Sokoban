@@ -15,7 +15,7 @@ public class StartHandler implements ActionListener {
     {
         if(!this.started) {
             System.out.println("Started");
-            PacmanFrame.starten();
+            //PacmanFrame.starten();
             PacmanFrame.startButton.setText("Pause");
             this.started = true;
         }

@@ -28,9 +28,9 @@ public class PacmanFrame extends JFrame {
         this.addStructure();
         this.addMenu();
 
-        if(startButton.getText().equals("Pause")) {
+        /*if(startButton.getText().equals("Pause")) {
             this.starten();
-        }
+        }*/
 
         this.frame.setVisible(true);
         this.frame.setFocusable(true);
@@ -64,9 +64,10 @@ public class PacmanFrame extends JFrame {
 
         this.TopPanel.add(new JLabel("Score: 00"));
     }
-
+/*
     public static void starten()
     {
         frame.addKeyListener(gameboard);
     }
+    */
 }

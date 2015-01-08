@@ -19,43 +19,46 @@ public class Gameboard extends JPanel {
     private int grid2[][] = {
             {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
             {1, 2, 0, 0, 0, 0, 0, 0, 0, 1},
-            {1, 1, 1, 1, 1, 1, 1, 1, 0, 1},
+            {1, 3, 1, 1, 1, 1, 1, 1, 0, 1},
             {1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
             {1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
             {1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
             {1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
             {1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
-            {1, 0, 0, 0, 0, 0, 0, 1, 3, 1},
+            {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
             {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
     };
 
     public Gameboard()
     {
         drawEverything();
-        //setNeighbors();
+        setNeighbors();
+        Box a = grid[1][1].getNeighbors().get("Right");
+        System.out.println(a.gameElement);
+
     }
 
     public void drawEverything()
     {
-        for(int x = 0;  x < this.GRIDSIZE; x++)
+        for(int row = 0;  row < this.GRIDSIZE; row++)
         {
-            for(int y = 0; y < this.GRIDSIZE; y++)
+            for(int col = 0; col < this.GRIDSIZE; col++)
             {
-                if(this.grid2[x][y] == 0)
+                if(this.grid2[row][col] == 0)
                 {
-                    this.grid[x][y] = new Box();
+                    this.grid[row][col] = new Box();
                 }
-                else if(this.grid2[x][y] == 1)
+                else if(this.grid2[row][col] == 1)
                 {
-                    this.grid[x][y] = new Box(new Wall());
+                    this.grid[row][col] = new Box(new Wall());
                 }
-                else if(this.grid2[x][y] == 2)
+                else if(this.grid2[row][col] == 2)
                 {
-                    this.grid[x][y] = new Box(new Pacman(90));
+                    this.grid[row][col] = new Box(new Pacman(90));
                 }
-                else if(this.grid2[x][y] == 3)
+                else if(this.grid2[row][col] == 3)
                 {
-                    this.grid[x][y] = new Box(new Ghost());
+                    this.grid[row][col] = new Box(new Ghost());
                 }
             }
         }
@@ -63,26 +66,33 @@ public class Gameboard extends JPanel {
 
     public void setNeighbors()
     {
-        for(int x = 0;  x < this.GRIDSIZE; x++)
+        for(int row = 0;  row < this.GRIDSIZE; row++)
         {
-            for(int y = 0; y < this.GRIDSIZE; y++)
-            {
-                if(y > 0)
+            for(int col = 0; col < this.GRIDSIZE; col++) {
+
+                int upRow =  row - 1;
+                int downRow = row + 1;
+                int leftCol = col - 1;
+                int rightCol = col + 1;
+
+                if (upRow >= 0)
                 {
-                    grid[x][y].neighbors.add(grid[x][y-1]);
+                    grid[row][col].addTopNeighbor(grid[upRow][col]);
                 }
-                if(y < this.GRIDSIZE)
+                if (downRow <= (this.GRIDSIZE -1))
                 {
-                    grid[x][y].neighbors.add(grid[x][y+1]);
+                    grid[row][col].addBottomNeighbor(grid[downRow][col]);
                 }
-                if(x > 0)
+                if(leftCol >=0 )
                 {
-                    grid[x][y].neighbors.add(grid[x-1][y]);
+                    grid[row][col].addLeftNeighbor(grid[row][leftCol]);
                 }
-                if(x < this.GRIDSIZE)
+                if (rightCol <= (this.GRIDSIZE - 1))
                 {
-                    grid[x][y].neighbors.add(grid[x+1][y]);
+                    grid[row][col].addRightNeighbor(grid[row][rightCol]);
                 }
+
+
             }
         }
     }
@@ -91,53 +101,59 @@ public class Gameboard extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        // Draw the gray box that will divide the smaller 10x10 boxes.
+        // Draw the gray borow that will divide the smaller 10row10 borowes.
         g.setColor(Color.white);
         g.fillRect(0, 0, 600, 600);
 
-        // Draw the 10x10 boxes that make the grid.
-        for (int x = 0; x < this.GRIDSIZE; x++)
+        // Draw the 10row10 borowes that make the grid.
+
+        for (int row = 0; row < this.GRIDSIZE; row++)
         {
-            for (int y = 0; y < this.GRIDSIZE; y++)
+            for (int col = 0; col < this.GRIDSIZE; col++)
             {
-                int newX = x * 55;
-                int newY = y * 55;
+
+                int newrow = row * 55;
+                int newY = col * 55;
 
                 g.setColor(Color.black);
-                g.fillRect(newX, newY, 50, 50);
+                g.fillRect(newrow, newY, 50, 50);
 
-                if (this.grid[y][x].gameElement instanceof Wall)
+                if (this.grid[col][row].gameElement instanceof Wall)
                 {
                     g.setColor(Color.blue);
-                    g.fillRect(newX, newY, 50, 50);
+                    g.fillRect(newrow, newY, 50, 50);
 
-                    System.out.println("Wall");
+
                 }
-                else if (this.grid[y][x].gameElement instanceof Pacman)
+                else if (this.grid[col][row].gameElement instanceof Pacman)
                 {
 
                     g.setColor(Color.yellow);
-                    g.fillArc(newX, newY, 50, 50, 90 / 2, 360 - 90);
+                    g.fillArc(newrow, newY, 50, 50, 90 / 2, 360 - 90);
+
                 }
-                else if (this.grid[y][x].gameElement instanceof Ghost)
+                else if (this.grid[col][row].gameElement instanceof Ghost)
                 {
                     g.setColor(Color.red.darker());             // Ghosts are dark red.
 
                     // Body of Ghosts.
-                    g.fillOval(newX, newY, 50, 50);
+                    g.fillOval(newrow, newY, 50, 50);
 
                     g.setColor(Color.black);  // Facial features of the Ghosts are black.
 
                     // Left eye of Ghost.
-                    g.fillOval(newX + 10, newY + 20, 5, 5);
+                    g.fillOval(newrow + 10, newY + 20, 5, 5);
 
                     // Right eye of Ghost.
-                    g.fillOval(newX + 30, newY + 20, 5, 5);
+                    g.fillOval(newrow + 30, newY + 20, 5, 5);
+
 
                     // Mouth of Ghost.
-                    //g.drawLine(ghostPixelY + 15, ghostPixelX + 50,
-                    //      ghostPixelY + 55, ghostPixelX + 50);
+                    //g.drawLine(ghostPirowelY + 15, ghostPirowelrow + 50,
+                    //      ghostPirowelY + 55, ghostPirowelrow + 50);
+
                 }
+
             }
         }
     }

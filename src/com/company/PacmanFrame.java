@@ -7,17 +7,17 @@ import java.awt.*;
  * Created by Sefa on 15-12-2014.
  */
 public class PacmanFrame extends JFrame {
-    private final int WIDTH = 600;
-    private final int HEIGHT = 680;
+    private final int WIDTH             = 600;
+    private final int HEIGHT            = 680;
 
-    private static JFrame frame = new JFrame("Pacman");
-    private JPanel TopPanel = new JPanel();
-    private static Gameboard gameboard = new Gameboard();
-    public static JButton startButton = new JButton("Start");
-    public static JButton resetButton = new JButton("Reset");
+    private JFrame frame                = new JFrame("Pacman");
+    private JPanel TopPanel             = new JPanel();
+    private Gameboard gameboard         = new Gameboard();
+    public static JButton startButton   = new JButton("Start");
+    public static JButton resetButton   = new JButton("Reset");
 
-    private StartHandler startHandler = new StartHandler();
-    private ResetHandler resetHandler = new ResetHandler();
+    private StartHandler startHandler   = new StartHandler();
+    private ResetHandler resetHandler   = new ResetHandler();
 
     public void drawFrame()
     {

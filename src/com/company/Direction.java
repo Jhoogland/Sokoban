@@ -5,5 +5,5 @@ package com.company;
  */
 public enum Direction
 {
-        BOVEN, RECHTS, LINKS, BENEDEN
+        UP, DOWN, LEFT, RIGHT
 }

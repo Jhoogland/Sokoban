@@ -7,7 +7,7 @@ import java.util.*;
  */
 public class Box {
 
-    public GameElement gameElement;
+    private GameElement gameElement;
     private HashMap<String, Box> neighbors = new HashMap<String, Box>();
 
 
@@ -15,16 +15,18 @@ public class Box {
 
     public Box(GameElement gameElement)
     {
-
         this.gameElement = gameElement;
     }
 
-    public HashMap<String, Box> getNeighbors(){
+    public Box getNeighbor(String key){
 
-        return neighbors;
+        return neighbors.get(key);
     }
 
-
+    public GameElement getGameElement()
+    {
+        return this.gameElement;
+    }
 
     public void addTopNeighbor(Box box){
 

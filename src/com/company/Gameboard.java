@@ -33,12 +33,9 @@ public class Gameboard extends JPanel {
     {
         drawEverything();
         setNeighbors();
-        Box a = grid[1][1].getNeighbors().get("Right");
-        System.out.println(a.gameElement);
-
     }
 
-    public void drawEverything()
+    private void drawEverything()
     {
         for(int row = 0;  row < this.GRIDSIZE; row++)
         {
@@ -64,7 +61,7 @@ public class Gameboard extends JPanel {
         }
     }
 
-    public void setNeighbors()
+    private void setNeighbors()
     {
         for(int row = 0;  row < this.GRIDSIZE; row++)
         {
@@ -112,40 +109,40 @@ public class Gameboard extends JPanel {
             for (int col = 0; col < this.GRIDSIZE; col++)
             {
 
-                int newrow = row * 55;
-                int newY = col * 55;
+                int newRow = row * 55;
+                int newCol = col * 55;
 
                 g.setColor(Color.black);
-                g.fillRect(newrow, newY, 50, 50);
+                g.fillRect(newRow, newCol, 50, 50);
 
-                if (this.grid[col][row].gameElement instanceof Wall)
+                if (this.grid[col][row].getGameElement() instanceof Wall)
                 {
                     g.setColor(Color.blue);
-                    g.fillRect(newrow, newY, 50, 50);
+                    g.fillRect(newRow, newCol, 50, 50);
 
 
                 }
-                else if (this.grid[col][row].gameElement instanceof Pacman)
+                else if (this.grid[col][row].getGameElement() instanceof Pacman)
                 {
 
                     g.setColor(Color.yellow);
-                    g.fillArc(newrow, newY, 50, 50, 90 / 2, 360 - 90);
+                    g.fillArc(newRow, newCol, 50, 50, 90 / 2, 360 - 90);
 
                 }
-                else if (this.grid[col][row].gameElement instanceof Ghost)
+                else if (this.grid[col][row].getGameElement() instanceof Ghost)
                 {
                     g.setColor(Color.red.darker());             // Ghosts are dark red.
 
                     // Body of Ghosts.
-                    g.fillOval(newrow, newY, 50, 50);
+                    g.fillOval(newRow, newCol, 50, 50);
 
                     g.setColor(Color.black);  // Facial features of the Ghosts are black.
 
                     // Left eye of Ghost.
-                    g.fillOval(newrow + 10, newY + 20, 5, 5);
+                    g.fillOval(newRow + 10, newCol + 20, 5, 5);
 
                     // Right eye of Ghost.
-                    g.fillOval(newrow + 30, newY + 20, 5, 5);
+                    g.fillOval(newRow + 30, newCol + 20, 5, 5);
 
 
                     // Mouth of Ghost.

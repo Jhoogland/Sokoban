@@ -21,7 +21,6 @@ public class Box {
 
     public void addTopNeighbor(Box box)
     {
-
         neighbors.put("Top", box);
     }
 

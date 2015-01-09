@@ -2,14 +2,16 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyListener;
 
 /**
  * Created by Sefa Yavuz on 17-12-2014.
  */
-public class Gameboard extends JPanel {
+public class Gameboard extends JPanel implements KeyListener{
 
     private final int GRIDSIZE = 10; //Set the gridsize
     private Box grid[][] = new Box[this.GRIDSIZE][this.GRIDSIZE]; // 2D Array thats holds all Boxes
+    public Pacman pacman;
 
     //2D Array that holds the structure
     // 0 = Nothing ( Pathway )
@@ -51,7 +53,8 @@ public class Gameboard extends JPanel {
                 }
                 else if(this.grid2[row][col] == 2)
                 {
-                    this.grid[row][col] = new Box(new Pacman(90));
+                    this.pacman = new Pacman(90, this.grid[row][col]);
+                    this.grid[row][col] = new Box(this.pacman);
                 }
                 else if(this.grid2[row][col] == 3)
                 {
@@ -155,32 +158,28 @@ public class Gameboard extends JPanel {
         }
     }
 
-    /*
+
     @Override
     public void keyPressed(java.awt.event.KeyEvent e)
     {
         switch (e.getKeyCode())
         {
             case java.awt.event.KeyEvent.VK_UP:
-                pacman.move(Direction.BOVEN);
+                pacman.move(Direction.UP);
                 break;
             case java.awt.event.KeyEvent.VK_RIGHT:
-                pacman.move(Direction.RECHTS);
+                pacman.move(Direction.RIGHT);
                 break;
             case java.awt.event.KeyEvent.VK_LEFT:
-                pacman.move(Direction.LINKS);
+                pacman.move(Direction.LEFT);
                 break;
             case java.awt.event.KeyEvent.VK_DOWN:
-                pacman.move(Direction.BENEDEN);
+                pacman.move(Direction.DOWN);
                 break;
         }
-
         repaint();
     }
 
     public void keyReleased(java.awt.event.KeyEvent e) { }
     public void keyTyped(java.awt.event.KeyEvent e) { }
-
-*/
-
 }

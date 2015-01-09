@@ -8,73 +8,68 @@ import java.awt.*;
 public class Pacman extends Poppetje {
     public int mouthAngle;
 
-    public Pacman(int mouthAngle)
-    {
+
+    public Pacman(int mouthAngle, Box box) {
         this.mouthAngle = mouthAngle;
+        this.box = box;
     }
 
-    /*
+
     public boolean isAtMuur(Direction direction)
     {
+        Box neighbor = null;
+
         switch (direction)
         {
-            case BOVEN:
-                x -= 1;
+            case UP:
+                neighbor = this.box.getNeighbor("Top");
                 break;
-            case RECHTS:
-                y += 1;
+            case DOWN:
+                neighbor = this.box.getNeighbor("Bottom");
                 break;
-            case LINKS:
-                y -= 1;
+            case LEFT:
+                neighbor = this.box.getNeighbor("Left");
                 break;
-            case BENEDEN:
-                x += 1;
+            case RIGHT:
+                neighbor = this.box.getNeighbor("Right");
                 break;
         }
 
-        System.out.println(x + " - " + y);
-        int neighbor = GameElement.getNeighbor(x,y);
-
-        if(neighbor == 1)
+        if(neighbor.getGameElement() instanceof Wall )
         {
             System.out.println("@muur");
             return true;
         }
 
         return false;
-    }*/
+    }
 
-    /*
     public void move(Direction direction)
     {
         switch (direction)
         {
-            case BOVEN:
-                if(!isAtMuur(direction.BOVEN))
+            case UP:
+                if(!isAtMuur(direction.UP))
                 {
-                    this.p.x -= 1;
                 }
                 break;
-            case RECHTS:
-                if(!isAtMuur(direction.RECHTS))
+            case DOWN:
+                if(!isAtMuur(direction.DOWN))
                 {
-                    this.p.y += 1;
                 }
                 break;
-            case LINKS:
-                if(!isAtMuur(direction.LINKS))
+            case LEFT:
+                if(!isAtMuur(direction.LEFT))
                 {
-                    this.p.y -= 1;
                 }
                 break;
-            case BENEDEN:
-                if(!isAtMuur(direction.BENEDEN))
+            case RIGHT:
+                if(!isAtMuur(direction.RIGHT))
                 {
-                    this.p.x += 1;
                 }
                 break;
         }
     }
-    */
+
 
 }

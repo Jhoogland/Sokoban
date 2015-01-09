@@ -9,8 +9,12 @@ import java.awt.event.KeyListener;
  */
 public class Gameboard extends JPanel implements KeyListener{
 
+    private final int BOXSIZE      = 50;
+    private final int BOXGAP       = 5;
+
     private final int GRIDSIZE     = 10; //Set the gridsize
     private Box grid[][]           = new Box[this.GRIDSIZE][this.GRIDSIZE]; // 2D Array thats holds all Boxes
+
     public GameElement pacman      = new Pacman();
     public GameElement drunkGhost1 = new DrunkGhost();
     public GameElement drunkGhost2 = new DrunkGhost();
@@ -133,17 +137,18 @@ public class Gameboard extends JPanel implements KeyListener{
         {
             for (int col = 0; col < this.GRIDSIZE; col++)
             {
+                int newBoxSize = this.BOXSIZE + this.BOXGAP;
 
-                int newRow = row * 55;
-                int newCol = col * 55;
+                int newRow = row * newBoxSize;
+                int newCol = col * newBoxSize;
 
                 g.setColor(Color.black);
-                g.fillRect(newRow, newCol, 50, 50);
+                g.fillRect(newRow, newCol, this.BOXSIZE, this.BOXSIZE);
 
                 if (this.grid[col][row].getGameElement() instanceof Wall)
                 {
                     g.setColor(Color.blue);
-                    g.fillRect(newRow, newCol, 50, 50);
+                    g.fillRect(newRow, newCol, this.BOXSIZE, this.BOXSIZE);
 
 
                 }
@@ -151,7 +156,7 @@ public class Gameboard extends JPanel implements KeyListener{
                 {
 
                     g.setColor(Color.yellow);
-                    g.fillArc(newRow, newCol, 50, 50, 90 / 2, 360 - 90);
+                    g.fillArc(newRow, newCol, this.BOXSIZE, this.BOXSIZE, 90 / 2, 360 - 90);
 
                 }
                 else if (this.grid[col][row].getGameElement() instanceof Ghost)
@@ -174,12 +179,12 @@ public class Gameboard extends JPanel implements KeyListener{
                     }
 
                     // Body of Ghosts.
-                    g.fillOval(newRow, newCol, 50, 50);
+                    g.fillOval(newRow, newCol, this.BOXSIZE, this.BOXSIZE);
 
                     g.setColor(Color.black);  // Facial features of the Ghosts are black.
 
                     // Left eye of Ghost.
-                    g.fillOval(newRow + 10, newCol + 20, 5, 5);
+                    g.fillOval(newRow + 15, newCol + 20, 5, 5);
 
                     // Right eye of Ghost.
                     g.fillOval(newRow + 30, newCol + 20, 5, 5);

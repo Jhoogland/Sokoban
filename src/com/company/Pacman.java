@@ -6,42 +6,13 @@ import java.awt.*;
  * Created by Sefa on 15-12-2014.
  */
 public class Pacman extends Poppetje {
-    public int mouthAngle;
+    public int mouthAngle = 90;
 
+    public Pacman() { }
 
-    public Pacman(int mouthAngle, Box box) {
-        this.mouthAngle = mouthAngle;
-        this.box = box;
-    }
-
-
-    public boolean isAtMuur(Direction direction)
+    public Pacman(Box box)
     {
-        Box neighbor = null;
-
-        switch (direction)
-        {
-            case UP:
-                neighbor = this.box.getNeighbor("Top");
-                break;
-            case DOWN:
-                neighbor = this.box.getNeighbor("Bottom");
-                break;
-            case LEFT:
-                neighbor = this.box.getNeighbor("Left");
-                break;
-            case RIGHT:
-                neighbor = this.box.getNeighbor("Right");
-                break;
-        }
-
-        if(neighbor.getGameElement() instanceof Wall )
-        {
-            System.out.println("@muur");
-            return true;
-        }
-
-        return false;
+        super.setBox(box);
     }
 
     public void move(Direction direction)
@@ -49,27 +20,37 @@ public class Pacman extends Poppetje {
         switch (direction)
         {
             case UP:
-                if(!isAtMuur(direction.UP))
+                if(!(this.checkNeighbor(direction.UP) instanceof Wall))
                 {
+                    this.setPacmanPosition();
                 }
                 break;
             case DOWN:
-                if(!isAtMuur(direction.DOWN))
+                if(!(this.checkNeighbor(direction.DOWN) instanceof Wall))
                 {
+                    this.setPacmanPosition();
                 }
                 break;
             case LEFT:
-                if(!isAtMuur(direction.LEFT))
+                if(!(this.checkNeighbor(direction.LEFT) instanceof Wall))
                 {
+                    this.setPacmanPosition();
                 }
                 break;
             case RIGHT:
-                if(!isAtMuur(direction.RIGHT))
+                if(!(this.checkNeighbor(direction.RIGHT) instanceof Wall))
                 {
+                    this.setPacmanPosition();
                 }
                 break;
         }
     }
 
+    private void setPacmanPosition()
+    {
+        this.getBox().setGameElement(null);
+        this.setBox(this.getNeighbor());
+        this.getNeighbor().setGameElement(this);
+    }
 
 }

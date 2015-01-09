@@ -6,14 +6,22 @@ import java.util.ArrayList;
 /**
  * Created by Sefa Yavuz on 17-12-2014.
  */
-public class GameElement {
-    public Box box;
+public abstract class GameElement {
+    private Box box;
 
-    GameElement(){
+    public GameElement() { }
 
+    /* Getters & Setters */
+
+    public Box getBox()
+    {
+        return this.box;
     }
 
-    GameElement(Box box){
+    public void setBox(Box box)
+    {
         this.box = box;
     }
+
+    public void move(Direction direction) { }
 }

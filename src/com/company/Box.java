@@ -19,24 +19,25 @@ public class Box {
 
     /* All these methods adds the neighbor of a Box into an HashMap; */
 
-    public void addTopNeighbor(Box box)
-    {
-        neighbors.put("Top", box);
-    }
 
-    public void addBottomNeighbor(Box box)
+    public void addNeighbor(String neighbor, Box box)
     {
-        neighbors.put("Bottom", box);
-    }
-
-    public void addLeftNeighbor(Box box)
-    {
-        neighbors.put("Left", box);
-    }
-
-    public void addRightNeighbor(Box box)
-    {
-        neighbors.put("Right", box);
+        if(neighbor.equals("Top"))
+        {
+            this.neighbors.put(neighbor, box);
+        }
+        else if(neighbor.equals("Bottom"))
+        {
+            this.neighbors.put(neighbor, box);
+        }
+        else if(neighbor.equals("Left"))
+        {
+            this.neighbors.put(neighbor, box);
+        }
+        else if(neighbor.equals("Right"))
+        {
+            this.neighbors.put(neighbor, box);
+        }
     }
 
     /*  Getters & Setters */
@@ -46,6 +47,7 @@ public class Box {
         return neighbors.get(key);
     }
 
+    public HashMap<String, Box> getNeighbors(){return neighbors;}
     public GameElement getGameElement()
     {
         return this.gameElement;

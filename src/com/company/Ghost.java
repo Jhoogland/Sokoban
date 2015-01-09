@@ -5,7 +5,8 @@ import java.awt.*;
 /**
  * Created by Sefa on 19-12-2014.
  */
-public class Ghost extends Poppetje {
+public abstract class Ghost extends Poppetje {
 
     public Ghost() { }
+
 }

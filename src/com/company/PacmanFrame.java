@@ -10,9 +10,9 @@ public class PacmanFrame extends JFrame {
     private final int WIDTH             = 600;
     private final int HEIGHT            = 680;
 
-    private JFrame frame                = new JFrame("Pacman");
+    private static JFrame frame                = new JFrame("Pacman");
     private JPanel TopPanel             = new JPanel();
-    private Gameboard gameboard         = new Gameboard();
+    private static Gameboard gameboard         = new Gameboard();
     public static JButton startButton   = new JButton("Start");
     public static JButton resetButton   = new JButton("Reset");
 
@@ -28,9 +28,9 @@ public class PacmanFrame extends JFrame {
         this.addStructure();
         this.addMenu();
 
-        /*if(startButton.getText().equals("Pause")) {
+        if(startButton.getText().equals("Pause")) {
             this.starten();
-        }*/
+        }
 
         this.frame.setVisible(true);
         this.frame.setFocusable(true);
@@ -64,10 +64,10 @@ public class PacmanFrame extends JFrame {
 
         this.TopPanel.add(new JLabel("Score: 00"));
     }
-/*
+
     public static void starten()
     {
         frame.addKeyListener(gameboard);
     }
-    */
+
 }

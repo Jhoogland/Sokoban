@@ -9,25 +9,32 @@ import java.awt.event.KeyListener;
  */
 public class Gameboard extends JPanel implements KeyListener{
 
-    private final int GRIDSIZE = 10; //Set the gridsize
-    private Box grid[][] = new Box[this.GRIDSIZE][this.GRIDSIZE]; // 2D Array thats holds all Boxes
-    public Pacman pacman;
+    private final int GRIDSIZE     = 10; //Set the gridsize
+    private Box grid[][]           = new Box[this.GRIDSIZE][this.GRIDSIZE]; // 2D Array thats holds all Boxes
+    public GameElement pacman      = new Pacman();
+    public GameElement drunkGhost1 = new DrunkGhost();
+    public GameElement drunkGhost2 = new DrunkGhost();
+    public GameElement smartGhost1 = new SmartGhost();
+    public GameElement smartGhost2 = new SmartGhost();
 
     //2D Array that holds the structure
     // 0 = Nothing ( Pathway )
     // 1 = Walls
     // 2 = Pacman
-    // 3 = Ghost
+    // 3 = DrunkGhost1
+    // 4 = DrunkGhost2
+    // 5 = SmartGhost1
+    // 6 = SmartGhost2
     private int grid2[][] = {
             {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
             {1, 2, 0, 0, 0, 0, 0, 0, 0, 1},
-            {1, 3, 1, 1, 1, 1, 1, 1, 0, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1, 0, 1},
             {1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
             {1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
             {1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
             {1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
             {1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
-            {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+            {1, 0, 0, 0, 0, 3, 4, 5, 6, 1},
             {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
     };
 
@@ -43,24 +50,41 @@ public class Gameboard extends JPanel implements KeyListener{
         {
             for(int col = 0; col < this.GRIDSIZE; col++)
             {
-                if(this.grid2[row][col] == 0)
+                if(this.grid2[row][col] == 0) // Box
                 {
                     this.grid[row][col] = new Box();
                 }
-                else if(this.grid2[row][col] == 1)
+                else if(this.grid2[row][col] == 1) // Wall
                 {
                     this.grid[row][col] = new Box(new Wall());
                 }
-                else if(this.grid2[row][col] == 2)
+                else if(this.grid2[row][col] == 2) // Pacman
                 {
-                    this.pacman = new Pacman(90, this.grid[row][col]);
                     this.grid[row][col] = new Box(this.pacman);
+                    this.pacman.setBox(this.grid[row][col]);
                 }
-                else if(this.grid2[row][col] == 3)
+                else if(this.grid2[row][col] == 3) // DrunkGhost 1
                 {
-                    this.grid[row][col] = new Box(new Ghost());
+                    this.grid[row][col] = new Box(this.drunkGhost1);
+                    this.drunkGhost1.setBox(this.grid[row][col]);
+                }
+                else if(this.grid2[row][col] == 4) // DrunkGhost 2
+                {
+                    this.grid[row][col] = new Box(this.drunkGhost2);
+                    this.drunkGhost2.setBox(this.grid[row][col]);
+                }
+                else if(this.grid2[row][col] == 5) // SmartGhost 1
+                {
+                    this.grid[row][col] = new Box(this.smartGhost1);
+                    this.smartGhost1.setBox(this.grid[row][col]);
+                }
+                else if(this.grid2[row][col] == 6) // SmartGhost 2
+                {
+                    this.grid[row][col] = new Box(this.smartGhost2);
+                    this.smartGhost2.setBox(this.grid[row][col]);
                 }
             }
+
         }
     }
 
@@ -77,22 +101,20 @@ public class Gameboard extends JPanel implements KeyListener{
 
                 if (upRow >= 0)
                 {
-                    grid[row][col].addTopNeighbor(grid[upRow][col]);
+                    grid[row][col].addNeighbor("Top", grid[upRow][col]);
                 }
                 if (downRow <= (this.GRIDSIZE -1))
                 {
-                    grid[row][col].addBottomNeighbor(grid[downRow][col]);
+                    grid[row][col].addNeighbor("Bottom", grid[downRow][col]);
                 }
                 if(leftCol >=0 )
                 {
-                    grid[row][col].addLeftNeighbor(grid[row][leftCol]);
+                    grid[row][col].addNeighbor("Left", grid[row][leftCol]);
                 }
                 if (rightCol <= (this.GRIDSIZE - 1))
                 {
-                    grid[row][col].addRightNeighbor(grid[row][rightCol]);
+                    grid[row][col].addNeighbor("Right", grid[row][rightCol]);
                 }
-
-
             }
         }
     }
@@ -134,7 +156,22 @@ public class Gameboard extends JPanel implements KeyListener{
                 }
                 else if (this.grid[col][row].getGameElement() instanceof Ghost)
                 {
-                    g.setColor(Color.red.darker());             // Ghosts are dark red.
+                    if(this.grid[col][row].getGameElement().equals(this.drunkGhost1))
+                    {
+                        g.setColor(Color.RED); // Ghosts are dark red.
+                    }
+                    else if(this.grid[col][row].getGameElement().equals(this.drunkGhost2))
+                    {
+                        g.setColor(Color.ORANGE);
+                    }
+                    else if(this.grid[col][row].getGameElement().equals(this.smartGhost1))
+                    {
+                        g.setColor(Color.CYAN);
+                    }
+                    else if(this.grid[col][row].getGameElement().equals(this.smartGhost2))
+                    {
+                        g.setColor(Color.PINK);
+                    }
 
                     // Body of Ghosts.
                     g.fillOval(newRow, newCol, 50, 50);
@@ -148,16 +185,11 @@ public class Gameboard extends JPanel implements KeyListener{
                     g.fillOval(newRow + 30, newCol + 20, 5, 5);
 
 
-                    // Mouth of Ghost.
-                    //g.drawLine(ghostPirowelY + 15, ghostPirowelrow + 50,
-                    //      ghostPirowelY + 55, ghostPirowelrow + 50);
-
                 }
 
             }
         }
     }
-
 
     @Override
     public void keyPressed(java.awt.event.KeyEvent e)

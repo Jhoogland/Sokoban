@@ -29,7 +29,9 @@ public class DrunkGhost extends Ghost {
             }
             else
             {
-                this.setGhostPosition();
+                this.getBox().setGameElement(null);
+                this.setBox(this.getNeighbor());
+                this.getNeighbor().setGameElement(this);
             }
 
         }

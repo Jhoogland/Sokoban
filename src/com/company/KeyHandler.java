@@ -28,19 +28,10 @@ public class KeyHandler implements KeyListener {
                 PacmanFrame.getGameboard().getPacman().move(Direction.DOWN);
                 break;
             case KeyEvent.VK_Z:
-                if(!timer.isRunning())
-                {
-                    timer.start();
-                    System.out.println("started");
-                }
-                else
-                {
-                    timer.stop();
-                    System.out.println("Paused");
-                }
+                    PacmanFrame.getGameboard().start();
                 break;
             case KeyEvent.VK_X:
-                System.out.println("Reset");
+                PacmanFrame.getGameboard().reset();
                 break;
         }
     }

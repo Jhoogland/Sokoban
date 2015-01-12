@@ -40,8 +40,8 @@ public class Gameboard extends JPanel implements ActionListener {
             {1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
             {1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
             {1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
-            {1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
-            {1, 0, 0, 0, 0, 3, 4, 5, 6, 1},
+            {1, 0, 0, 0, 0, 3, 0, 1, 0, 1},
+            {1, 0, 0, 0, 0, 0, 4, 5, 6, 1},
             {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
     };
 
@@ -49,6 +49,26 @@ public class Gameboard extends JPanel implements ActionListener {
     {
         createEverything();
         setNeighbors();
+    }
+
+    protected void reset()
+    {
+        if(timer.isRunning())
+        {
+            timer.stop();
+        }
+    }
+
+    protected void start()
+    {
+        if(!timer.isRunning())
+        {
+            timer.start();
+        }
+        else
+        {
+            timer.stop();
+        }
     }
 
     @Override

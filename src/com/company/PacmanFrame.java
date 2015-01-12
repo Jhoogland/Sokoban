@@ -23,12 +23,13 @@ public class PacmanFrame extends JFrame {
 
         this.addStructure();
         this.addMenu();
-        this.starten();
 
         this.frame.setVisible(true);
         this.frame.setFocusable(true);
         this.frame.setFocusTraversalKeysEnabled(false);
         this.frame.setResizable(false);
+
+        frame.addKeyListener(keyHandler);
     }
 
     private void addStructure()
@@ -60,7 +61,6 @@ public class PacmanFrame extends JFrame {
 
     public static void starten()
     {
-        frame.addKeyListener(keyHandler);
     }
 
     public static Gameboard getGameboard()

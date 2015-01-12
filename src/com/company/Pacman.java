@@ -54,4 +54,9 @@ public class Pacman extends Icon {
         this.getNeighbor().setGameElement(this);
     }
 
+    public int getMouthAngle()
+    {
+        return this.mouthAngle;
+    }
+
 }

@@ -60,8 +60,12 @@ public class PacmanFrame extends JFrame {
 
     public static void starten()
     {
-
         frame.addKeyListener(keyHandler);
+    }
+
+    public static Gameboard getGameboard()
+    {
+        return gameboard;
     }
 
 }

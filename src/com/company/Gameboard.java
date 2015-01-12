@@ -54,7 +54,7 @@ public class Gameboard extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e)
     {
-
+        System.out.println('s');
     }
 
     private void createEverything()
@@ -134,7 +134,8 @@ public class Gameboard extends JPanel implements ActionListener {
     }
 
     @Override
-    public void paintComponent(Graphics g) {
+    public void paintComponent(Graphics g)
+    {
         super.paintComponent(g);
 
         // Draw the white box that will divide the smaller 10x10 boxes.
@@ -202,30 +203,4 @@ public class Gameboard extends JPanel implements ActionListener {
     {
         return this.pacman;
     }
-/*
-    @Override
-    public void keyPressed(java.awt.event.KeyEvent e)
-    {
-        switch (e.getKeyCode())
-        {
-            case java.awt.event.KeyEvent.VK_UP:
-                pacman.move(Direction.UP);
-                break;
-            case java.awt.event.KeyEvent.VK_RIGHT:
-                pacman.move(Direction.RIGHT);
-                break;
-            case java.awt.event.KeyEvent.VK_LEFT:
-                pacman.move(Direction.LEFT);
-                break;
-            case java.awt.event.KeyEvent.VK_DOWN:
-                pacman.move(Direction.DOWN);
-                break;
-
-        }
-
-        repaint();
-    }
-
-    public void keyReleased(java.awt.event.KeyEvent e) { }
-    public void keyTyped(java.awt.event.KeyEvent e) { } */
 }

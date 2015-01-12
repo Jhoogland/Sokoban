@@ -7,24 +7,22 @@ import java.awt.event.*;
  */
 public class KeyHandler implements KeyListener {
 
-    public Gameboard gameboard = new Gameboard();
-
     @Override
     public void keyPressed(KeyEvent e)
     {
         switch (e.getKeyCode())
         {
             case KeyEvent.VK_UP:
-                gameboard.getPacman().move(Direction.UP);
+                PacmanFrame.getGameboard().getPacman().move(Direction.UP);
                 break;
             case KeyEvent.VK_RIGHT:
-                gameboard.getPacman().move(Direction.RIGHT);
+                PacmanFrame.getGameboard().getPacman().move(Direction.RIGHT);
                 break;
             case KeyEvent.VK_LEFT:
-                gameboard.getPacman().move(Direction.LEFT);
+                PacmanFrame.getGameboard().getPacman().move(Direction.LEFT);
                 break;
             case KeyEvent.VK_DOWN:
-                gameboard.getPacman().move(Direction.DOWN);
+                PacmanFrame.getGameboard().getPacman().move(Direction.DOWN);
                 break;
             case KeyEvent.VK_Z:
                 System.out.println("started");
@@ -34,7 +32,7 @@ public class KeyHandler implements KeyListener {
                 break;
         }
 
-        gameboard.repaint();
+        PacmanFrame.getGameboard().repaint();
     }
 
     public void keyReleased(KeyEvent e) { }

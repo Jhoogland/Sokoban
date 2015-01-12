@@ -17,19 +17,19 @@ public class DrunkGhost extends Ghost {
 
     public void move(Box box)
     {
-        HashMap<String, Box> neighbors = this.getBox().getNeighbors();
-        Random generator = new Random();
-        Object[] values = neighbors.values().toArray();
-        Object randomValue = values[generator.nextInt(values.length)];
+        HashMap<String, Box> neighbors  = this.getBox().getNeighbors();
+        Random generator                = new Random();
+        Object[] values                 = neighbors.values().toArray();
+        Object randomValue              = values[generator.nextInt(values.length)];
         if(!(randomValue instanceof Wall))
         {
             if (randomValue instanceof Pacman)
             {
-                //dood code
+
             }
             else
             {
-                //veranderen van vak code
+                this.setGhostPosition();
             }
 
         }

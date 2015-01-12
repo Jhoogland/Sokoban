@@ -10,9 +10,9 @@ public class PacmanFrame extends JFrame {
     private final int WIDTH             = 600;
     private final int HEIGHT            = 680;
 
-    private static JFrame frame                = new JFrame("Pacman");
+    private static JFrame frame         = new JFrame("Pacman");
     private JPanel TopPanel             = new JPanel();
-    private static Gameboard gameboard         = new Gameboard();
+    private static Gameboard gameboard  = new Gameboard();
     public static JButton startButton   = new JButton("Start");
     public static JButton resetButton   = new JButton("Reset");
 

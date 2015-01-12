@@ -2,12 +2,13 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 
 /**
  * Created by Sefa Yavuz on 17-12-2014.
  */
-public class Gameboard extends JPanel implements KeyListener{
+public class Gameboard extends JPanel implements KeyListener {
 
     private final int BOXSIZE      = 50;
     private final int BOXGAP       = 5;
@@ -15,11 +16,13 @@ public class Gameboard extends JPanel implements KeyListener{
     private final int GRIDSIZE     = 10; //Set the gridsize
     private Box grid[][]           = new Box[this.GRIDSIZE][this.GRIDSIZE]; // 2D Array thats holds all Boxes
 
-    public GameElement pacman      = new Pacman();
-    public GameElement drunkGhost1 = new DrunkGhost();
-    public GameElement drunkGhost2 = new DrunkGhost();
-    public GameElement smartGhost1 = new SmartGhost();
-    public GameElement smartGhost2 = new SmartGhost();
+    private GameElement pacman      = new Pacman();
+    private GameElement drunkGhost1 = new DrunkGhost();
+    private GameElement drunkGhost2 = new DrunkGhost();
+    private GameElement smartGhost1 = new SmartGhost();
+    private GameElement smartGhost2 = new SmartGhost();
+
+    public Timer timer;
 
     //2D Array that holds the structure
     // 0 = Nothing ( Pathway )
@@ -44,11 +47,11 @@ public class Gameboard extends JPanel implements KeyListener{
 
     public Gameboard()
     {
-        drawEverything();
+        createEverything();
         setNeighbors();
     }
 
-    private void drawEverything()
+    private void createEverything()
     {
         for(int row = 0;  row < this.GRIDSIZE; row++)
         {
@@ -88,7 +91,6 @@ public class Gameboard extends JPanel implements KeyListener{
                     this.smartGhost2.setBox(this.grid[row][col]);
                 }
             }
-
         }
     }
 
@@ -96,13 +98,15 @@ public class Gameboard extends JPanel implements KeyListener{
     {
         for(int row = 0;  row < this.GRIDSIZE; row++)
         {
-            for(int col = 0; col < this.GRIDSIZE; col++) {
+            for(int col = 0; col < this.GRIDSIZE; col++)
+            {
+                // Neighbors from each box
+                int upRow =  row - 1;   // TOP
+                int downRow = row + 1;  // BOTTOM
+                int leftCol = col - 1;  // LEFT
+                int rightCol = col + 1; // RIGHT
 
-                int upRow =  row - 1;
-                int downRow = row + 1;
-                int leftCol = col - 1;
-                int rightCol = col + 1;
-
+                // Checks whether the row values are correct with the condition and adds them the Neighbor HashMap in the Box class
                 if (upRow >= 0)
                 {
                     grid[row][col].addNeighbor("Top", grid[upRow][col]);
@@ -127,12 +131,11 @@ public class Gameboard extends JPanel implements KeyListener{
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        // Draw the gray borow that will divide the smaller 10row10 borowes.
+        // Draw the white box that will divide the smaller 10x10 boxes.
         g.setColor(Color.white);
         g.fillRect(0, 0, 600, 600);
 
-        // Draw the 10row10 borowes that make the grid.
-
+        // Draw the 10x10 boxes that make the grid.
         for (int row = 0; row < this.GRIDSIZE; row++)
         {
             for (int col = 0; col < this.GRIDSIZE; col++)
@@ -145,25 +148,21 @@ public class Gameboard extends JPanel implements KeyListener{
                 g.setColor(Color.black);
                 g.fillRect(newRow, newCol, this.BOXSIZE, this.BOXSIZE);
 
-                if (this.grid[col][row].getGameElement() instanceof Wall)
+                if (this.grid[col][row].getGameElement() instanceof Wall) // Draw all Walls
                 {
                     g.setColor(Color.blue);
                     g.fillRect(newRow, newCol, this.BOXSIZE, this.BOXSIZE);
-
-
                 }
-                else if (this.grid[col][row].getGameElement() instanceof Pacman)
+                else if (this.grid[col][row].getGameElement() instanceof Pacman) // Draw Pacman
                 {
-
                     g.setColor(Color.yellow);
                     g.fillArc(newRow, newCol, this.BOXSIZE, this.BOXSIZE, 90 / 2, 360 - 90);
-
                 }
-                else if (this.grid[col][row].getGameElement() instanceof Ghost)
+                else if (this.grid[col][row].getGameElement() instanceof Ghost) // Draw all Ghost each with a unique color
                 {
                     if(this.grid[col][row].getGameElement().equals(this.drunkGhost1))
                     {
-                        g.setColor(Color.RED); // Ghosts are dark red.
+                        g.setColor(Color.RED);
                     }
                     else if(this.grid[col][row].getGameElement().equals(this.drunkGhost2))
                     {
@@ -188,12 +187,14 @@ public class Gameboard extends JPanel implements KeyListener{
 
                     // Right eye of Ghost.
                     g.fillOval(newRow + 30, newCol + 20, 5, 5);
-
-
                 }
-
             }
         }
+    }
+
+    public GameElement getPacman()
+    {
+        return this.pacman;
     }
 
     @Override
@@ -213,7 +214,9 @@ public class Gameboard extends JPanel implements KeyListener{
             case java.awt.event.KeyEvent.VK_DOWN:
                 pacman.move(Direction.DOWN);
                 break;
+
         }
+
         repaint();
     }
 

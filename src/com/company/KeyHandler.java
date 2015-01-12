@@ -1,11 +1,14 @@
 package com.company;
 
+import javax.swing.*;
 import java.awt.event.*;
 
 /**
  * Created by Sefa on 12-1-2015.
  */
 public class KeyHandler implements KeyListener {
+
+    Timer timer = PacmanFrame.getGameboard().timer;
 
     @Override
     public void keyPressed(KeyEvent e)
@@ -25,14 +28,21 @@ public class KeyHandler implements KeyListener {
                 PacmanFrame.getGameboard().getPacman().move(Direction.DOWN);
                 break;
             case KeyEvent.VK_Z:
-                System.out.println("started");
+                if(!timer.isRunning())
+                {
+                    timer.start();
+                    System.out.println("started");
+                }
+                else
+                {
+                    timer.stop();
+                    System.out.println("Paused");
+                }
                 break;
             case KeyEvent.VK_X:
                 System.out.println("Reset");
                 break;
         }
-
-        PacmanFrame.getGameboard().repaint();
     }
 
     public void keyReleased(KeyEvent e) { }

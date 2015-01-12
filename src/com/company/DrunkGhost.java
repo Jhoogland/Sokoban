@@ -15,7 +15,7 @@ public class DrunkGhost extends Ghost {
         super.setBox(box);
     }
 
-    public void move(Box box)
+    public void moveRandom()
     {
         HashMap<String, Box> neighbors  = this.getBox().getNeighbors();
         Random generator                = new Random();
@@ -25,7 +25,7 @@ public class DrunkGhost extends Ghost {
         {
             if (randomValue instanceof Pacman)
             {
-
+                PacmanFrame.getGameboard().timer.stop();
             }
             else
             {

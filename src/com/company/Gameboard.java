@@ -16,13 +16,13 @@ public class Gameboard extends JPanel implements ActionListener {
     private final int GRIDSIZE     = 10; //Set the gridsize
     private Box grid[][]           = new Box[this.GRIDSIZE][this.GRIDSIZE]; // 2D Array thats holds all Boxes
 
-    private Icon pacman      = new Pacman();
-    private Icon drunkGhost1 = new DrunkGhost();
-    private Icon drunkGhost2 = new DrunkGhost();
-    private Icon smartGhost1 = new SmartGhost();
-    private Icon smartGhost2 = new SmartGhost();
+    private Icon pacman            = new Pacman();
+    private Icon drunkGhost1       = new DrunkGhost();
+    private Icon drunkGhost2       = new DrunkGhost();
+    private Icon smartGhost1       = new SmartGhost();
+    private Icon smartGhost2       = new SmartGhost();
 
-    public Timer timer;
+    public Timer timer             = new Timer(100, this);
 
     //2D Array that holds the structure
     // 0 = Nothing ( Pathway )
@@ -54,7 +54,8 @@ public class Gameboard extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        System.out.println('s');
+        //drunkGhost1.moveRandom();
+        repaint();
     }
 
     private void createEverything()

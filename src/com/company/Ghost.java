@@ -14,4 +14,6 @@ public abstract class Ghost extends Icon {
         this.getNeighbor().setGameElement(this);
     }
 
+    public void moveRandom() { }
+
 }

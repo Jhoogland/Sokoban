@@ -15,32 +15,35 @@ public class Pacman extends Icon {
 
     public void move(Direction direction)
     {
-        switch (direction)
+        if(PacmanFrame.getGameboard().timer.isRunning())
         {
-            case UP:
-                if(!(this.checkNeighbor(direction.UP) instanceof Wall))
-                {
-                    this.setPacmanPosition();
-                }
-                break;
-            case DOWN:
-                if(!(this.checkNeighbor(direction.DOWN) instanceof Wall))
-                {
-                    this.setPacmanPosition();
-                }
-                break;
-            case LEFT:
-                if(!(this.checkNeighbor(direction.LEFT) instanceof Wall))
-                {
-                    this.setPacmanPosition();
-                }
-                break;
-            case RIGHT:
-                if(!(this.checkNeighbor(direction.RIGHT) instanceof Wall))
-                {
-                    this.setPacmanPosition();
-                }
-                break;
+            switch (direction)
+            {
+                case UP:
+                    if (!(this.checkNeighbor(direction.UP) instanceof Wall))
+                    {
+                        this.setPacmanPosition();
+                    }
+                    break;
+                case DOWN:
+                    if (!(this.checkNeighbor(direction.DOWN) instanceof Wall))
+                    {
+                        this.setPacmanPosition();
+                    }
+                    break;
+                case LEFT:
+                    if (!(this.checkNeighbor(direction.LEFT) instanceof Wall))
+                    {
+                        this.setPacmanPosition();
+                    }
+                    break;
+                case RIGHT:
+                    if (!(this.checkNeighbor(direction.RIGHT) instanceof Wall))
+                    {
+                        this.setPacmanPosition();
+                    }
+                    break;
+            }
         }
     }
 

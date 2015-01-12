@@ -8,6 +8,8 @@ public abstract class Icon extends GameElement {
 
     public void move(Direction direction) {}
 
+    public void moveRandom() {}
+
     public GameElement checkNeighbor(Direction direction)
     {
         switch (direction)

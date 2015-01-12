@@ -1,11 +1,9 @@
 package com.company;
 
-import java.awt.*;
-
 /**
  * Created by Sefa on 15-12-2014.
  */
-public class Pacman extends Poppetje {
+public class Pacman extends Icon {
     public int mouthAngle = 90;
 
     public Pacman() { }

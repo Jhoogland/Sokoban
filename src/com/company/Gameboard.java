@@ -2,13 +2,13 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyListener;
 
 /**
  * Created by Sefa Yavuz on 17-12-2014.
  */
-public class Gameboard extends JPanel implements KeyListener {
+public class Gameboard extends JPanel implements ActionListener {
 
     private final int BOXSIZE      = 50;
     private final int BOXGAP       = 5;
@@ -16,11 +16,11 @@ public class Gameboard extends JPanel implements KeyListener {
     private final int GRIDSIZE     = 10; //Set the gridsize
     private Box grid[][]           = new Box[this.GRIDSIZE][this.GRIDSIZE]; // 2D Array thats holds all Boxes
 
-    private GameElement pacman      = new Pacman();
-    private GameElement drunkGhost1 = new DrunkGhost();
-    private GameElement drunkGhost2 = new DrunkGhost();
-    private GameElement smartGhost1 = new SmartGhost();
-    private GameElement smartGhost2 = new SmartGhost();
+    private Icon pacman      = new Pacman();
+    private Icon drunkGhost1 = new DrunkGhost();
+    private Icon drunkGhost2 = new DrunkGhost();
+    private Icon smartGhost1 = new SmartGhost();
+    private Icon smartGhost2 = new SmartGhost();
 
     public Timer timer;
 
@@ -32,7 +32,7 @@ public class Gameboard extends JPanel implements KeyListener {
     // 4 = DrunkGhost2
     // 5 = SmartGhost1
     // 6 = SmartGhost2
-    private int grid2[][] = {
+    private int gridStructure[][] = {
             {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
             {1, 2, 0, 0, 0, 0, 0, 0, 0, 1},
             {1, 1, 1, 1, 1, 1, 1, 1, 0, 1},
@@ -51,41 +51,47 @@ public class Gameboard extends JPanel implements KeyListener {
         setNeighbors();
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e)
+    {
+
+    }
+
     private void createEverything()
     {
         for(int row = 0;  row < this.GRIDSIZE; row++)
         {
             for(int col = 0; col < this.GRIDSIZE; col++)
             {
-                if(this.grid2[row][col] == 0) // Box
+                if(this.gridStructure[row][col] == 0) // Box
                 {
                     this.grid[row][col] = new Box();
                 }
-                else if(this.grid2[row][col] == 1) // Wall
+                else if(this.gridStructure[row][col] == 1) // Wall
                 {
                     this.grid[row][col] = new Box(new Wall());
                 }
-                else if(this.grid2[row][col] == 2) // Pacman
+                else if(this.gridStructure[row][col] == 2) // Pacman
                 {
                     this.grid[row][col] = new Box(this.pacman);
                     this.pacman.setBox(this.grid[row][col]);
                 }
-                else if(this.grid2[row][col] == 3) // DrunkGhost 1
+                else if(this.gridStructure[row][col] == 3) // DrunkGhost 1
                 {
                     this.grid[row][col] = new Box(this.drunkGhost1);
                     this.drunkGhost1.setBox(this.grid[row][col]);
                 }
-                else if(this.grid2[row][col] == 4) // DrunkGhost 2
+                else if(this.gridStructure[row][col] == 4) // DrunkGhost 2
                 {
                     this.grid[row][col] = new Box(this.drunkGhost2);
                     this.drunkGhost2.setBox(this.grid[row][col]);
                 }
-                else if(this.grid2[row][col] == 5) // SmartGhost 1
+                else if(this.gridStructure[row][col] == 5) // SmartGhost 1
                 {
                     this.grid[row][col] = new Box(this.smartGhost1);
                     this.smartGhost1.setBox(this.grid[row][col]);
                 }
-                else if(this.grid2[row][col] == 6) // SmartGhost 2
+                else if(this.gridStructure[row][col] == 6) // SmartGhost 2
                 {
                     this.grid[row][col] = new Box(this.smartGhost2);
                     this.smartGhost2.setBox(this.grid[row][col]);
@@ -192,11 +198,11 @@ public class Gameboard extends JPanel implements KeyListener {
         }
     }
 
-    public GameElement getPacman()
+    public Icon getPacman()
     {
         return this.pacman;
     }
-
+/*
     @Override
     public void keyPressed(java.awt.event.KeyEvent e)
     {
@@ -221,5 +227,5 @@ public class Gameboard extends JPanel implements KeyListener {
     }
 
     public void keyReleased(java.awt.event.KeyEvent e) { }
-    public void keyTyped(java.awt.event.KeyEvent e) { }
+    public void keyTyped(java.awt.event.KeyEvent e) { } */
 }

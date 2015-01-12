@@ -13,11 +13,7 @@ public class PacmanFrame extends JFrame {
     private static JFrame frame         = new JFrame("Pacman");
     private JPanel TopPanel             = new JPanel();
     private static Gameboard gameboard  = new Gameboard();
-    public static JButton startButton   = new JButton("Start");
-    public static JButton resetButton   = new JButton("Reset");
-
-    private StartHandler startHandler   = new StartHandler();
-    private ResetHandler resetHandler   = new ResetHandler();
+    private static KeyHandler keyHandler = new KeyHandler();
 
     public void drawFrame()
     {
@@ -27,10 +23,7 @@ public class PacmanFrame extends JFrame {
 
         this.addStructure();
         this.addMenu();
-
-        if(startButton.getText().equals("Pause")) {
-            this.starten();
-        }
+        this.starten();
 
         this.frame.setVisible(true);
         this.frame.setFocusable(true);
@@ -40,8 +33,8 @@ public class PacmanFrame extends JFrame {
 
     private void addStructure()
     {
-        this.TopPanel.setPreferredSize(new Dimension(this.WIDTH, 50));
-        this.TopPanel.setLayout(new GridLayout(0, 3));
+        this.TopPanel.setPreferredSize(new Dimension(this.WIDTH, 100));
+        this.TopPanel.setLayout(new GridLayout(0, 2));
 
         this.gameboard.setPreferredSize(new Dimension(this.WIDTH, 800));
         this.gameboard.setLayout(new BorderLayout());
@@ -53,21 +46,22 @@ public class PacmanFrame extends JFrame {
 
     private void addMenu()
     {
-        this.TopPanel.add(startButton);
-        this.TopPanel.add(resetButton);
-
-        this.startButton.setRequestFocusEnabled(false);
-        this.resetButton.setRequestFocusEnabled(false);
-
-        this.startButton.addActionListener(this.startHandler);
-        this.resetButton.addActionListener(this.resetHandler);
-
-        this.TopPanel.add(new JLabel("Score: 00"));
+        this.TopPanel.add(new JLabel(
+                "<html>" +
+                    "<div style='padding: 15;'>" +
+                        "<h2 style='margin: 0; padding: 0;'>Instructies:</h2> " +
+                        "- Beweeg door de pijltjes toetsen in te drukken " +
+                        "<br> - 'Z' = start/pause " +
+                        "<br> - 'X' = reset" +
+                    "</div>" +
+                "</html>"));
+        this.TopPanel.add(new JLabel("<Html><h2 style='float: right;'>Score:<br> 00</h3></html>"));
     }
 
     public static void starten()
     {
-        frame.addKeyListener(gameboard);
+
+        frame.addKeyListener(keyHandler);
     }
 
 }

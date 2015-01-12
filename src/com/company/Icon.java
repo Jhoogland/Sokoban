@@ -3,9 +3,10 @@ package com.company;
 /**
  * Created by Sefa on 18-12-2014.
  */
-public abstract class Poppetje extends GameElement {
+public abstract class Icon extends GameElement {
     private Box neighbor = null;
 
+    public void move(Direction direction) {}
 
     public GameElement checkNeighbor(Direction direction)
     {
@@ -37,6 +38,4 @@ public abstract class Poppetje extends GameElement {
     {
         return this.neighbor;
     }
-
-    public void move(Direction direction) {}
 }

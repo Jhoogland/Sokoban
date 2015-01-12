@@ -26,6 +26,12 @@ public class KeyHandler implements KeyListener {
             case KeyEvent.VK_DOWN:
                 gameboard.getPacman().move(Direction.DOWN);
                 break;
+            case KeyEvent.VK_Z:
+                System.out.println("started");
+                break;
+            case KeyEvent.VK_X:
+                System.out.println("Reset");
+                break;
         }
 
         gameboard.repaint();

@@ -22,6 +22,4 @@ public abstract class GameElement {
     {
         this.box = box;
     }
-
-    public void move(Direction direction) { }
 }

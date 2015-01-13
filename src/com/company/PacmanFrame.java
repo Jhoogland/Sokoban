@@ -10,10 +10,9 @@ public class PacmanFrame extends JFrame {
     private final int WIDTH             = 600;
     private final int HEIGHT            = 680;
 
-    private static JFrame frame         = new JFrame("Pacman");
+    public static JFrame frame         = new JFrame("Pacman");
     private JPanel TopPanel             = new JPanel();
     private static Gameboard gameboard  = new Gameboard();
-    private static KeyHandler keyHandler = new KeyHandler();
 
     public void drawFrame()
     {
@@ -28,8 +27,6 @@ public class PacmanFrame extends JFrame {
         this.frame.setFocusable(true);
         this.frame.setFocusTraversalKeysEnabled(false);
         this.frame.setResizable(false);
-
-        frame.addKeyListener(keyHandler);
     }
 
     private void addStructure()

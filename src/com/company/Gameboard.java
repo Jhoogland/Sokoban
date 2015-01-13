@@ -22,7 +22,9 @@ public class Gameboard extends JPanel implements ActionListener {
     private Icon smartGhost1       = new SmartGhost();
     private Icon smartGhost2       = new SmartGhost();
 
-    public Timer timer             = new Timer(100, this);
+    public Timer timer             = new Timer(200, this);
+
+    private KeyHandler keyHandler = new KeyHandler();
 
     //2D Array that holds the structure
     // 0 = Nothing ( Pathway )
@@ -47,6 +49,7 @@ public class Gameboard extends JPanel implements ActionListener {
 
     public Gameboard()
     {
+        PacmanFrame.frame.addKeyListener(keyHandler);
         createEverything();
         setNeighbors();
     }
@@ -226,10 +229,7 @@ public class Gameboard extends JPanel implements ActionListener {
     {
         pacman.getBox().setGameElement(null);
         pacman.setBox(grid[1][1]);
-
-
     }
-
 
     public Icon getPacman()
     {

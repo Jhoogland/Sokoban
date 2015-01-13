@@ -8,8 +8,6 @@ import java.awt.event.*;
  */
 public class KeyHandler implements KeyListener {
 
-    Timer timer = PacmanFrame.getGameboard().timer;
-
     @Override
     public void keyPressed(KeyEvent e)
     {
@@ -28,7 +26,7 @@ public class KeyHandler implements KeyListener {
                 PacmanFrame.getGameboard().getPacman().move(Direction.DOWN);
                 break;
             case KeyEvent.VK_Z:
-                    PacmanFrame.getGameboard().start();
+                PacmanFrame.getGameboard().start();
                 break;
             case KeyEvent.VK_X:
                 PacmanFrame.getGameboard().reset();

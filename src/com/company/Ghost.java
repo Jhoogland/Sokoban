@@ -10,8 +10,8 @@ public abstract class Ghost extends Icon {
     protected void setGhostPosition()
     {
         this.getBox().setGameElement(null);
-        this.setBox(this.getNeighbor());
-        this.getNeighbor().setGameElement(this);
+        this.setBox(this.getNextBox());
+        this.getNextBox().setGameElement(this);
     }
 
     public void moveRandom() { }

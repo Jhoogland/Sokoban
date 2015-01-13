@@ -10,28 +10,25 @@ public class DrunkGhost extends Ghost {
 
     public DrunkGhost() { }
 
-    public DrunkGhost(Box box)
-    {
-        super.setBox(box);
-    }
-
     public void moveRandom()
     {
         HashMap<String, Box> neighbors  = this.getBox().getNeighbors();
         Random generator                = new Random();
         Object[] values                 = neighbors.values().toArray();
         Object randomValue              = values[generator.nextInt(values.length)];
-        if(!(randomValue instanceof Wall))
+        Box nextBox                     = (Box) randomValue;
+        GameElement nextGameElement     = nextBox.getGameElement();
+        if(!(nextGameElement instanceof Wall))
         {
-            if (randomValue instanceof Pacman)
+            if ((nextGameElement instanceof Pacman))
             {
-                PacmanFrame.getGameboard().timer.stop();
+                PacmanFrame.getGameboard().reset();
             }
             else
             {
                 this.getBox().setGameElement(null);
-                this.setBox(this.getNeighbor());
-                this.getNeighbor().setGameElement(this);
+                this.setBox(nextBox);
+                nextBox.setGameElement(this);
             }
 
         }

@@ -4,7 +4,8 @@ package com.company;
  * Created by Sefa on 18-12-2014.
  */
 public abstract class Icon extends GameElement {
-    private Box neighbor = null;
+    private Box nextBox = null;
+    public Icon(){}
 
     public void move(Direction direction) {}
 
@@ -15,29 +16,24 @@ public abstract class Icon extends GameElement {
         switch (direction)
         {
             case UP:
-                this.setNeighbor(getBox().getNeighbor("Top"));
+                this.nextBox = this.getBox().getNeighbor("Top");
                 break;
             case DOWN:
-                this.setNeighbor(getBox().getNeighbor("Bottom"));
+                this.nextBox = this.getBox().getNeighbor("Bottom");
                 break;
             case LEFT:
-                this.setNeighbor(getBox().getNeighbor("Left"));
+                this.nextBox = this.getBox().getNeighbor("Left");
                 break;
             case RIGHT:
-                this.setNeighbor(getBox().getNeighbor("Right"));
+                this.nextBox = this.getBox().getNeighbor("Right");
                 break;
         }
 
-        return this.getNeighbor().getGameElement();
+        return this.nextBox.getGameElement();
     }
 
-    public void setNeighbor(Box box)
+    public Box getNextBox()
     {
-        this.neighbor = box;
-    }
-
-    public Box getNeighbor()
-    {
-        return this.neighbor;
+        return this.nextBox;
     }
 }

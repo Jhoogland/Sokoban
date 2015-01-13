@@ -8,11 +8,6 @@ public class Pacman extends Icon {
 
     public Pacman() { }
 
-    public Pacman(Box box)
-    {
-        super.setBox(box);
-    }
-
     public void move(Direction direction)
     {
         if(PacmanFrame.getGameboard().timer.isRunning())
@@ -50,8 +45,8 @@ public class Pacman extends Icon {
     private void setPacmanPosition()
     {
         this.getBox().setGameElement(null);
-        this.setBox(this.getNeighbor());
-        this.getNeighbor().setGameElement(this);
+        this.setBox(this.getNextBox());
+        this.getNextBox().setGameElement(this);
     }
 
     public int getMouthAngle()

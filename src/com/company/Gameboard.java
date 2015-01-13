@@ -55,7 +55,9 @@ public class Gameboard extends JPanel implements ActionListener {
     {
         if(timer.isRunning())
         {
-            timer.stop();
+            resetPosition();
+            repaint();
+
         }
     }
 
@@ -74,7 +76,7 @@ public class Gameboard extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        //drunkGhost1.moveRandom();
+        drunkGhost1.moveRandom();
         repaint();
     }
 
@@ -219,6 +221,15 @@ public class Gameboard extends JPanel implements ActionListener {
             }
         }
     }
+
+    private void resetPosition()
+    {
+        pacman.getBox().setGameElement(null);
+        pacman.setBox(grid[1][1]);
+
+
+    }
+
 
     public Icon getPacman()
     {

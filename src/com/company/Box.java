@@ -7,6 +7,7 @@ import java.util.*;
  */
 public class Box {
 
+    private ArrayList<GameElement> gameElements = new ArrayList<GameElement>();
     private GameElement gameElement;
     private HashMap<String, Box> neighbors = new HashMap<String, Box>();
 
@@ -57,4 +58,7 @@ public class Box {
     {
         this.gameElement = gameElement;
     }
+
+    public void addGameElements(GameElement gameElement) { this.gameElements.add(gameElement); }
+    public ArrayList<GameElement> getGameElements() { return this.gameElements; }
 }

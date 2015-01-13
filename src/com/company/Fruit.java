@@ -1,0 +1,10 @@
+package com.company;
+
+/**
+ * Created by Sefa on 13-1-2015.
+ */
+public class Fruit extends GameElement {
+    private int value = 10;
+
+
+}

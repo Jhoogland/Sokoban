@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 public class Gameboard extends JPanel implements ActionListener {
 
     private final int BOXSIZE      = 50;
-    private final int BOXGAP       = 5;
+    private final int BOXGAP       = 0;
 
     private final int GRIDSIZE     = 10; //Set the gridsize
     private Box grid[][]           = new Box[this.GRIDSIZE][this.GRIDSIZE]; // 2D Array thats holds all Boxes
@@ -34,16 +34,17 @@ public class Gameboard extends JPanel implements ActionListener {
     // 4 = DrunkGhost2
     // 5 = SmartGhost1
     // 6 = SmartGhost2
+    // 7 = Fruit
     private int gridStructure[][] = {
             {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
             {1, 2, 0, 0, 0, 0, 0, 0, 0, 1},
-            {1, 1, 1, 1, 1, 1, 1, 1, 0, 1},
-            {1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
-            {1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
-            {1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
-            {1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
-            {1, 0, 0, 0, 0, 3, 0, 1, 0, 1},
-            {1, 0, 0, 0, 0, 0, 4, 5, 6, 1},
+            {1, 0, 1, 1, 1, 0, 1, 1, 1, 1},
+            {1, 0, 1, 1, 1, 0, 1, 1, 1, 1},
+            {1, 0, 1, 1, 1, 0, 1, 1, 1, 1},
+            {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+            {1, 0, 1, 1, 1, 0, 1, 1, 0, 1},
+            {1, 0, 1, 1, 1, 0, 1, 1, 0, 1},
+            {1, 0, 0, 0, 0, 3, 4, 5, 6, 1},
             {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
     };
 
@@ -58,7 +59,11 @@ public class Gameboard extends JPanel implements ActionListener {
     {
         if(timer.isRunning())
         {
-            resetPosition();
+            resetPosition(this.pacman, this.grid[1][1]);
+            resetPosition(this.drunkGhost1, this.grid[8][5]);
+            resetPosition(this.drunkGhost2, this.grid[8][6]);
+            resetPosition(this.smartGhost1, this.grid[8][7]);
+            resetPosition(this.smartGhost2, this.grid[8][8]);
             repaint();
 
         }
@@ -122,6 +127,10 @@ public class Gameboard extends JPanel implements ActionListener {
                     this.grid[row][col] = new Box(this.smartGhost2);
                     this.smartGhost2.setBox(this.grid[row][col]);
                 }
+                else if(this.gridStructure[row][col] == 7)
+                {
+                    this.grid[row][col] = new Box(new Fruit());
+                }
             }
         }
     }
@@ -181,6 +190,7 @@ public class Gameboard extends JPanel implements ActionListener {
                 g.setColor(Color.black);
                 g.fillRect(newRow, newCol, this.BOXSIZE, this.BOXSIZE);
 
+
                 if (this.grid[col][row].getGameElement() instanceof Wall) // Draw all Walls
                 {
                     g.setColor(Color.blue);
@@ -221,18 +231,25 @@ public class Gameboard extends JPanel implements ActionListener {
                     // Right eye of Ghost.
                     g.fillOval(newRow + 30, newCol + 20, 5, 5);
                 }
+                else if(this.grid[col][row].getGameElement() instanceof Fruit)
+                {
+                    g.setColor(Color.white);
+
+                    g.fillOval(newRow + 20, newCol + 20, this.BOXSIZE / 4, this.BOXSIZE / 4);
+                }
             }
         }
     }
 
-    private void resetPosition()
+    private void resetPosition(Icon icon, Box grid)
     {
-        pacman.getBox().setGameElement(null);
-        pacman.setBox(grid[1][1]);
+        icon.getBox().setGameElement(null);
+        icon.setBox(grid);
+        icon.getBox().setGameElement(icon);
     }
 
-    public Icon getPacman()
+    public Pacman getPacman()
     {
-        return this.pacman;
+        return (Pacman) this.pacman;
     }
 }

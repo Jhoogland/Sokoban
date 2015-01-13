@@ -53,11 +53,7 @@ public class PacmanFrame extends JFrame {
                         "<br> - 'X' = reset" +
                     "</div>" +
                 "</html>"));
-        this.TopPanel.add(new JLabel("<Html><h2 style='float: right;'>Score:<br> 00</h3></html>"));
-    }
-
-    public static void starten()
-    {
+        this.TopPanel.add(new JLabel("<Html><h2 style='float: right;'>Score:<br> </h3></html>"));
     }
 
     public static Gameboard getGameboard()

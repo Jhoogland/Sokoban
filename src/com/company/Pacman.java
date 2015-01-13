@@ -5,6 +5,7 @@ package com.company;
  */
 public class Pacman extends Icon {
     public int mouthAngle = 90;
+    private int score = 0;
 
     public Pacman() { }
 
@@ -17,25 +18,53 @@ public class Pacman extends Icon {
                 case UP:
                     if (!(this.checkNeighbor(direction.UP) instanceof Wall))
                     {
-                        this.setPacmanPosition();
+                        if(!(this.checkNeighbor(direction.UP) instanceof Ghost))
+                        {
+                            this.setPacmanPosition();
+                        }
+                        else
+                        {
+                            PacmanFrame.getGameboard().reset();
+                        }
                     }
                     break;
                 case DOWN:
                     if (!(this.checkNeighbor(direction.DOWN) instanceof Wall))
                     {
-                        this.setPacmanPosition();
+                        if(!(this.checkNeighbor(direction.DOWN) instanceof Ghost))
+                        {
+                            this.setPacmanPosition();
+                        }
+                        else
+                        {
+                            PacmanFrame.getGameboard().reset();
+                        }
                     }
                     break;
                 case LEFT:
                     if (!(this.checkNeighbor(direction.LEFT) instanceof Wall))
                     {
-                        this.setPacmanPosition();
+                        if(!(this.checkNeighbor(direction.LEFT) instanceof Ghost))
+                        {
+                            this.setPacmanPosition();
+                        }
+                        else
+                        {
+                            PacmanFrame.getGameboard().reset();
+                        }
                     }
                     break;
                 case RIGHT:
                     if (!(this.checkNeighbor(direction.RIGHT) instanceof Wall))
                     {
-                        this.setPacmanPosition();
+                        if(!(this.checkNeighbor(direction.RIGHT) instanceof Ghost))
+                        {
+                            this.setPacmanPosition();
+                        }
+                        else
+                        {
+                            PacmanFrame.getGameboard().reset();
+                        }
                     }
                     break;
             }
@@ -54,4 +83,13 @@ public class Pacman extends Icon {
         return this.mouthAngle;
     }
 
+    public int getScore()
+    {
+        return this.score;
+    }
+
+    public void setScore(int score)
+    {
+        this.score = score;
+    }
 }

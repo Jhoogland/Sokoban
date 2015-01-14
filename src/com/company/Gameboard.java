@@ -16,15 +16,15 @@ public class Gameboard extends JPanel implements ActionListener {
     private final int GRIDSIZE     = 10; //Set the gridsize
     private Box grid[][]           = new Box[this.GRIDSIZE][this.GRIDSIZE]; // 2D Array thats holds all Boxes
 
-    private Icon pacman            = new Pacman();
-    private Icon drunkGhost1       = new DrunkGhost();
-    private Icon drunkGhost2       = new DrunkGhost();
-    private Icon smartGhost1       = new SmartGhost();
-    private Icon smartGhost2       = new SmartGhost();
+    private Pacman pacman          = new Pacman();
+    private DrunkGhost drunkGhost1 = new DrunkGhost();
+    private DrunkGhost drunkGhost2 = new DrunkGhost();
+    private SmartGhost smartGhost1 = new SmartGhost();
+    private SmartGhost smartGhost2 = new SmartGhost();
 
     public Timer timer             = new Timer(200, this);
 
-    private KeyHandler keyHandler = new KeyHandler();
+    private KeyHandler keyHandler  = new KeyHandler(this.pacman);
 
     //2D Array that holds the structure
     // 0 = Nothing ( Pathway )
@@ -37,7 +37,7 @@ public class Gameboard extends JPanel implements ActionListener {
     // 7 = Fruit
     private int gridStructure[][] = {
             {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-            {1, 2, 0, 0, 0, 0, 0, 0, 0, 1},
+            {1, 2, 7, 7, 7, 7, 7, 7, 7, 1},
             {1, 0, 1, 1, 1, 0, 1, 1, 1, 1},
             {1, 0, 1, 1, 1, 0, 1, 1, 1, 1},
             {1, 0, 1, 1, 1, 0, 1, 1, 1, 1},
@@ -64,8 +64,8 @@ public class Gameboard extends JPanel implements ActionListener {
             resetPosition(this.drunkGhost2, this.grid[8][6]);
             resetPosition(this.smartGhost1, this.grid[8][7]);
             resetPosition(this.smartGhost2, this.grid[8][8]);
-            repaint();
 
+            repaint();
         }
     }
 
@@ -250,6 +250,6 @@ public class Gameboard extends JPanel implements ActionListener {
 
     public Pacman getPacman()
     {
-        return (Pacman) this.pacman;
+        return this.pacman;
     }
 }

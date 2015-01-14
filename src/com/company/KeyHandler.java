@@ -8,28 +8,42 @@ import java.awt.event.*;
  */
 public class KeyHandler implements KeyListener {
 
+    private Pacman pacman;
+
+    public KeyHandler(Pacman pacman)
+    {
+        this.pacman = pacman;
+    }
+
     @Override
     public void keyPressed(KeyEvent e)
     {
         switch (e.getKeyCode())
         {
             case KeyEvent.VK_UP:
-                PacmanFrame.getGameboard().getPacman().move(Direction.UP);
+                this.pacman.move(Direction.UP);
+                PacmanFrame.score.setText("<Html><h2 style='float: right;'>Score: " + this.pacman.getScore() + "<br> </h3></html>");
                 break;
             case KeyEvent.VK_RIGHT:
-                PacmanFrame.getGameboard().getPacman().move(Direction.RIGHT);
+                this.pacman.move(Direction.RIGHT);
+                PacmanFrame.score.setText("<Html><h2 style='float: right;'>Score: " + this.pacman.getScore() + "<br> </h3></html>");
                 break;
             case KeyEvent.VK_LEFT:
-                PacmanFrame.getGameboard().getPacman().move(Direction.LEFT);
+                this.pacman.move(Direction.LEFT);
+                PacmanFrame.score.setText("<Html><h2 style='float: right;'>Score: " + this.pacman.getScore() + "<br> </h3></html>");
                 break;
             case KeyEvent.VK_DOWN:
-                PacmanFrame.getGameboard().getPacman().move(Direction.DOWN);
+                this.pacman.move(Direction.DOWN);
+                PacmanFrame.score.setText("<Html><h2 style='float: right;'>Score: " + this.pacman.getScore() + "<br> </h3></html>");
                 break;
             case KeyEvent.VK_Z:
                 PacmanFrame.getGameboard().start();
+                PacmanFrame.score.setText("<Html><h2 style='float: right;'>Score: " + this.pacman.getScore() + "<br> </h3></html>");
                 break;
             case KeyEvent.VK_X:
                 PacmanFrame.getGameboard().reset();
+                this.pacman.setScore(0);
+                PacmanFrame.score.setText("<Html><h2 style='float: right;'>Score: " + this.pacman.getScore() + "<br> </h3></html>");
                 break;
         }
     }

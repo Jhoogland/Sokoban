@@ -2,6 +2,8 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by Sefa on 15-12-2014.
@@ -10,9 +12,10 @@ public class PacmanFrame extends JFrame {
     private final int WIDTH             = 600;
     private final int HEIGHT            = 680;
 
-    public static JFrame frame         = new JFrame("Pacman");
+    public static JFrame frame          = new JFrame("Pacman");
     private JPanel TopPanel             = new JPanel();
     private static Gameboard gameboard  = new Gameboard();
+    public static JLabel score          = new JLabel("<Html><h2 style='float: right;'>Score: " + gameboard.getPacman().getScore() + "<br> </h3></html>");
 
     public void drawFrame()
     {
@@ -27,6 +30,7 @@ public class PacmanFrame extends JFrame {
         this.frame.setFocusable(true);
         this.frame.setFocusTraversalKeysEnabled(false);
         this.frame.setResizable(false);
+
     }
 
     private void addStructure()
@@ -36,7 +40,8 @@ public class PacmanFrame extends JFrame {
 
         this.gameboard.setPreferredSize(new Dimension(this.WIDTH, 800));
         this.gameboard.setLayout(new BorderLayout());
-        this.gameboard.setBackground(Color.gray);
+        this.gameboard.setBackground(
+                Color.gray);
 
         this.frame.add(TopPanel, BorderLayout.NORTH);
         this.frame.add(gameboard, BorderLayout.CENTER);
@@ -53,7 +58,8 @@ public class PacmanFrame extends JFrame {
                         "<br> - 'X' = reset" +
                     "</div>" +
                 "</html>"));
-        this.TopPanel.add(new JLabel("<Html><h2 style='float: right;'>Score:<br> </h3></html>"));
+
+        this.TopPanel.add(score);
     }
 
     public static Gameboard getGameboard()

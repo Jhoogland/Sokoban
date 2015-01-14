@@ -6,5 +6,13 @@ package com.company;
 public class Fruit extends GameElement {
     private int value = 10;
 
+    public Fruit()
+    {
 
+    }
+
+    public int getValue()
+    {
+        return this.value;
+    }
 }

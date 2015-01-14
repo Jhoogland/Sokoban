@@ -16,13 +16,16 @@ public class Pacman extends Icon {
             switch (direction)
             {
                 case UP:
-                    if (!(this.checkNeighbor(direction.UP) instanceof Wall))
+
+                    GameElement checkNeighborUp = this.checkNeighbor(direction.UP);
+
+                    if (!(checkNeighborUp instanceof Wall))
                     {
-                        if(!(this.checkNeighbor(direction.UP) instanceof Ghost))
+                        if(!(checkNeighborUp instanceof Ghost))
                         {
-                            if(this.checkNeighbor(direction.UP) instanceof Fruit)
+                            if(checkNeighborUp instanceof Fruit)
                             {
-                                this.score = ((Fruit) this.checkNeighbor(direction.UP)).getValue() + this.score;
+                                this.score = ((Fruit) checkNeighborUp).getValue() + this.score;
                             }
 
                             this.setPacmanPosition();
@@ -34,13 +37,16 @@ public class Pacman extends Icon {
                     }
                     break;
                 case DOWN:
-                    if (!(this.checkNeighbor(direction.DOWN) instanceof Wall))
+
+                    GameElement checkNeighborDown = this.checkNeighbor(direction.DOWN);
+
+                    if (!(checkNeighborDown instanceof Wall))
                     {
-                        if(!(this.checkNeighbor(direction.DOWN) instanceof Ghost))
+                        if(!(checkNeighborDown instanceof Ghost))
                         {
-                            if(this.checkNeighbor(direction.DOWN) instanceof Fruit)
+                            if(checkNeighborDown instanceof Fruit)
                             {
-                                this.score = ((Fruit) this.checkNeighbor(direction.DOWN)).getValue() + this.score;
+                                this.score = ((Fruit) checkNeighborDown).getValue() + this.score;
                             }
 
                             this.setPacmanPosition();
@@ -52,13 +58,16 @@ public class Pacman extends Icon {
                     }
                     break;
                 case LEFT:
-                    if (!(this.checkNeighbor(direction.LEFT) instanceof Wall))
+
+                    GameElement checkNeigborLeft = this.checkNeighbor(direction.LEFT);
+
+                    if (!(checkNeigborLeft instanceof Wall))
                     {
-                        if(!(this.checkNeighbor(direction.LEFT) instanceof Ghost))
+                        if(!(checkNeigborLeft instanceof Ghost))
                         {
-                            if(this.checkNeighbor(direction.LEFT) instanceof Fruit)
+                            if(checkNeigborLeft instanceof Fruit)
                             {
-                                this.score = ((Fruit) this.checkNeighbor(direction.LEFT)).getValue() + this.score;
+                                this.score = ((Fruit) checkNeigborLeft).getValue() + this.score;
                             }
 
                             this.setPacmanPosition();
@@ -70,13 +79,16 @@ public class Pacman extends Icon {
                     }
                     break;
                 case RIGHT:
-                    if (!(this.checkNeighbor(direction.RIGHT) instanceof Wall))
+
+                    GameElement checkNeigborRight = this.checkNeighbor(direction.RIGHT);
+
+                    if (!(checkNeigborRight instanceof Wall))
                     {
-                        if(!(this.checkNeighbor(direction.RIGHT) instanceof Ghost))
+                        if(!(checkNeigborRight instanceof Ghost))
                         {
-                            if(this.checkNeighbor(direction.RIGHT) instanceof Fruit)
+                            if(checkNeigborRight instanceof Fruit)
                             {
-                                this.score = ((Fruit) this.checkNeighbor(direction.RIGHT)).getValue() + this.score;
+                                this.score = ((Fruit) checkNeigborRight).getValue() + this.score;
                             }
 
                             this.setPacmanPosition();

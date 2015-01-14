@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="534cffdd-4da8-482a-bd6c-73361abfd7ef" name="Default" comment="Pacman dies when he is on a ghost">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/company/TimerListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Fruit.java" afterPath="$PROJECT_DIR$/src/com/company/Fruit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Gameboard.java" afterPath="$PROJECT_DIR$/src/com/company/Gameboard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/KeyHandler.java" afterPath="$PROJECT_DIR$/src/com/company/KeyHandler.java" />
+    <list default="true" id="534cffdd-4da8-482a-bd6c-73361abfd7ef" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Pacman.java" afterPath="$PROJECT_DIR$/src/com/company/Pacman.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/PacmanFrame.java" afterPath="$PROJECT_DIR$/src/com/company/PacmanFrame.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Pacman.iws" />
@@ -40,33 +35,33 @@
       <file leaf-file-name="PacmanFrame.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/PacmanFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="711" max-vertical-offset="1190">
-              <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1190">
+              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Pacman.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Pacman.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/Pacman.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="2006">
-              <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
+            <state vertical-scroll-proportion="0.9128205" vertical-offset="1667" max-vertical-offset="2210">
+              <caret line="122" column="35" selection-start-line="122" selection-start-column="35" selection-end-line="122" selection-end-column="35" />
               <folding>
-                <element signature="e#3742#3743#0" expanded="true" />
-                <element signature="e#3775#3776#0" expanded="true" />
                 <element signature="e#3818#3819#0" expanded="true" />
-                <element signature="e#3852#3853#0" expanded="true" />
+                <element signature="e#3851#3852#0" expanded="true" />
+                <element signature="e#3894#3895#0" expanded="true" />
+                <element signature="e#3928#3929#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Gameboard.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Gameboard.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/Gameboard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2825485" vertical-offset="918" max-vertical-offset="4437">
-              <caret line="60" column="9" selection-start-line="60" selection-start-column="9" selection-end-line="60" selection-end-column="9" />
+            <state vertical-scroll-proportion="-9.965517" vertical-offset="918" max-vertical-offset="4437">
+              <caret line="71" column="26" selection-start-line="71" selection-start-column="26" selection-end-line="71" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#8586#8587#0" expanded="true" />
@@ -179,10 +174,10 @@
         <option value="$PROJECT_DIR$/src/com/company/Fruits.java" />
         <option value="$PROJECT_DIR$/src/com/company/TimerListener.java" />
         <option value="$PROJECT_DIR$/src/com/company/Fruit.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Pacman.java" />
         <option value="$PROJECT_DIR$/src/com/company/KeyHandler.java" />
         <option value="$PROJECT_DIR$/src/com/company/PacmanFrame.java" />
         <option value="$PROJECT_DIR$/src/com/company/Gameboard.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Pacman.java" />
       </list>
     </option>
   </component>
@@ -567,7 +562,7 @@
       <workItem from="1421059536401" duration="2667000" />
       <workItem from="1421062251565" duration="7865000" />
       <workItem from="1421144477481" duration="4866000" />
-      <workItem from="1421149564895" duration="7949000" />
+      <workItem from="1421149564895" duration="8743000" />
     </task>
     <task id="LOCAL-00001" summary="dg">
       <created>1417185083178</created>
@@ -665,11 +660,17 @@
       <option name="project" value="LOCAL" />
       <updated>1421154634588</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Score works">
+      <created>1421239731965</created>
+      <option name="number" value="00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1421239731965</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="111175000" />
+    <option name="totallyTimeSpent" value="111969000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="26" width="1374" height="746" extended-state="6" />
@@ -766,7 +767,8 @@
     <MESSAGE value="Added a timer to pause and start the game" />
     <MESSAGE value="RAndom ghost werkt!" />
     <MESSAGE value="Pacman dies when he is on a ghost" />
-    <option name="LAST_COMMIT_MESSAGE" value="Pacman dies when he is on a ghost" />
+    <MESSAGE value="Score works" />
+    <option name="LAST_COMMIT_MESSAGE" value="Score works" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -796,10 +798,10 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="969">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#3742#3743#0" expanded="true" />
-            <element signature="e#3775#3776#0" expanded="true" />
             <element signature="e#3818#3819#0" expanded="true" />
-            <element signature="e#3852#3853#0" expanded="true" />
+            <element signature="e#3851#3852#0" expanded="true" />
+            <element signature="e#3894#3895#0" expanded="true" />
+            <element signature="e#3928#3929#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -989,10 +991,10 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="238">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#3742#3743#0" expanded="true" />
-            <element signature="e#3775#3776#0" expanded="true" />
             <element signature="e#3818#3819#0" expanded="true" />
-            <element signature="e#3852#3853#0" expanded="true" />
+            <element signature="e#3851#3852#0" expanded="true" />
+            <element signature="e#3894#3895#0" expanded="true" />
+            <element signature="e#3928#3929#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1016,10 +1018,10 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="238">
           <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
           <folding>
-            <element signature="e#3742#3743#0" expanded="true" />
-            <element signature="e#3775#3776#0" expanded="true" />
             <element signature="e#3818#3819#0" expanded="true" />
-            <element signature="e#3852#3853#0" expanded="true" />
+            <element signature="e#3851#3852#0" expanded="true" />
+            <element signature="e#3894#3895#0" expanded="true" />
+            <element signature="e#3928#3929#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1043,10 +1045,10 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="238">
           <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
           <folding>
-            <element signature="e#3742#3743#0" expanded="true" />
-            <element signature="e#3775#3776#0" expanded="true" />
             <element signature="e#3818#3819#0" expanded="true" />
-            <element signature="e#3852#3853#0" expanded="true" />
+            <element signature="e#3851#3852#0" expanded="true" />
+            <element signature="e#3894#3895#0" expanded="true" />
+            <element signature="e#3928#3929#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1070,10 +1072,10 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="238">
           <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
           <folding>
-            <element signature="e#3742#3743#0" expanded="true" />
-            <element signature="e#3775#3776#0" expanded="true" />
             <element signature="e#3818#3819#0" expanded="true" />
-            <element signature="e#3852#3853#0" expanded="true" />
+            <element signature="e#3851#3852#0" expanded="true" />
+            <element signature="e#3894#3895#0" expanded="true" />
+            <element signature="e#3928#3929#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1097,10 +1099,10 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="238">
           <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
           <folding>
-            <element signature="e#3742#3743#0" expanded="true" />
-            <element signature="e#3775#3776#0" expanded="true" />
             <element signature="e#3818#3819#0" expanded="true" />
-            <element signature="e#3852#3853#0" expanded="true" />
+            <element signature="e#3851#3852#0" expanded="true" />
+            <element signature="e#3894#3895#0" expanded="true" />
+            <element signature="e#3928#3929#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1204,19 +1206,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Pacman.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="2006">
-          <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
-          <folding>
-            <element signature="e#3742#3743#0" expanded="true" />
-            <element signature="e#3775#3776#0" expanded="true" />
-            <element signature="e#3818#3819#0" expanded="true" />
-            <element signature="e#3852#3853#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/GameElement.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="6" max-vertical-offset="425">
@@ -1239,22 +1228,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/PacmanFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="711" max-vertical-offset="1190">
-          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Gameboard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2825485" vertical-offset="918" max-vertical-offset="4437">
-          <caret line="60" column="9" selection-start-line="60" selection-start-column="9" selection-end-line="60" selection-end-column="9" />
+        <state vertical-scroll-proportion="-9.965517" vertical-offset="918" max-vertical-offset="4437">
+          <caret line="71" column="26" selection-start-line="71" selection-start-column="26" selection-end-line="71" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#8586#8587#0" expanded="true" />
             <element signature="e#8620#8621#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/PacmanFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1190">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Pacman.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9128205" vertical-offset="1667" max-vertical-offset="2210">
+          <caret line="122" column="35" selection-start-line="122" selection-start-column="35" selection-end-line="122" selection-end-column="35" />
+          <folding>
+            <element signature="e#3818#3819#0" expanded="true" />
+            <element signature="e#3851#3852#0" expanded="true" />
+            <element signature="e#3894#3895#0" expanded="true" />
+            <element signature="e#3928#3929#0" expanded="true" />
           </folding>
         </state>
       </provider>

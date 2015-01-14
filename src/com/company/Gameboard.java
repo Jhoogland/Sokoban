@@ -17,7 +17,7 @@ public class Gameboard extends JPanel implements ActionListener {
     private Box grid[][]           = new Box[this.GRIDSIZE][this.GRIDSIZE]; // 2D Array thats holds all Boxes
 
     private Pacman pacman          = new Pacman();
-    private DrunkGhost drunkGhost1 = new DrunkGhost();
+    private Icon drunkGhost1 = new DrunkGhost();
     private DrunkGhost drunkGhost2 = new DrunkGhost();
     private SmartGhost smartGhost1 = new SmartGhost();
     private SmartGhost smartGhost2 = new SmartGhost();

@@ -20,7 +20,7 @@ public class DrunkGhost extends Ghost {
         Box nextBox                     = (Box) randomValue;
         if(!(nextBox.containsInstanceOf("Wall")))
         {
-            if (nextBox.containsInstanceOf("Pacman"))
+            if (nextBox.containsInstanceOf("Pacman")  && PacmanFrame.getGameboard().getPacman().getInvincible() == false)
             {
                 PacmanFrame.getGameboard().reset();
                 PacmanFrame.getGameboard().getPacman().loseLife();

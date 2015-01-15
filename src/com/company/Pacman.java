@@ -39,8 +39,14 @@ public class Pacman extends Icon {
                                 this.getBox().removeGameElement(fruit);
                                 PacmanFrame.getGameboard().setAmountOfFruits(PacmanFrame.getGameboard().getAmountOfFruits() - 1);
                                 this.score = fruit.getValue() + this.score;
-
                             }
+                        }
+                        else if(checkNeighborUp.containsInstanceOf("Ghost") && this.isInvincible == true)
+                        {
+                            this.setPacmanPosition();
+                            this.score += 200;
+                            Ghost ghost = (Ghost) checkNeighborUp.getGameElements().get(0);
+                            this.getBox().removeGameElement(ghost);
                         }
                         else
                         {
@@ -69,9 +75,14 @@ public class Pacman extends Icon {
                                 this.getBox().removeGameElement(fruit);
                                 PacmanFrame.getGameboard().setAmountOfFruits(PacmanFrame.getGameboard().getAmountOfFruits() - 1);
                                 this.score = fruit.getValue() + this.score;
-
-
                             }
+                        }
+                        else if(checkNeighborDown.containsInstanceOf("Ghost") && this.isInvincible == true)
+                        {
+                            this.setPacmanPosition();
+                            this.score += 200;
+                            Ghost ghost = (Ghost) checkNeighborDown.getGameElements().get(0);
+                            this.getBox().removeGameElement(ghost);
                         }
                         else
                         {
@@ -90,7 +101,6 @@ public class Pacman extends Icon {
                             this.setPacmanPosition();
                             if(checkNeighborLeft.containsInstanceOf("Fruit"))
                             {
-
                                 if(checkNeighborLeft.containsInstanceOf("SuperFruit"))
                                 {
                                     System.out.println("true!");
@@ -103,6 +113,13 @@ public class Pacman extends Icon {
                                 this.score = fruit.getValue() + this.score;
 
                             }
+                        }
+                        else if(checkNeighborLeft.containsInstanceOf("Ghost") && this.isInvincible == true)
+                        {
+                            this.setPacmanPosition();
+                            this.score += 200;
+                            Ghost ghost = (Ghost) checkNeighborLeft.getGameElements().get(0);
+                            this.getBox().removeGameElement(ghost);
                         }
                         else
                         {
@@ -119,11 +136,11 @@ public class Pacman extends Icon {
                         if(!(checkNeighborRight.containsInstanceOf("Ghost")))
                         {
                             this.setPacmanPosition();
+
                             if(checkNeighborRight.containsInstanceOf("Fruit"))
                             {
                                 if(checkNeighborRight.containsInstanceOf("SuperFruit"))
                                 {
-                                    System.out.println("true!");
                                     this.isInvincible = true;
                                 }
 
@@ -131,10 +148,14 @@ public class Pacman extends Icon {
                                 this.getBox().removeGameElement(fruit);
                                 PacmanFrame.getGameboard().setAmountOfFruits(PacmanFrame.getGameboard().getAmountOfFruits() - 1);
                                 this.score = fruit.getValue() + this.score;
-
                             }
-
-
+                        }
+                        else if(checkNeighborRight.containsInstanceOf("Ghost") && this.isInvincible == true)
+                        {
+                            this.setPacmanPosition();
+                            this.score += 200;
+                            Ghost ghost = (Ghost) checkNeighborRight.getGameElements().get(0);
+                            this.getBox().removeGameElement(ghost);
                         }
                         else
                         {

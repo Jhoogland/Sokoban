@@ -81,8 +81,22 @@ public class Box {
                     instance = true;
                 }
             }
-
+            if(element.equals("SuperFruit"))
+            {
+                if(ge instanceof SuperFruit)
+                {
+                    instance = true;
+                }
+            }
+            if(element.equals("Cherry"))
+            {
+                if(ge instanceof Cherry)
+                {
+                    instance = true;
+                }
+            }
         }
+
         return instance;
     }
 

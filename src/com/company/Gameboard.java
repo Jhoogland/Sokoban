@@ -39,7 +39,7 @@ public class Gameboard extends JPanel {
     // 8 = SuperFruit
     private int gridStructure[][] = {
             {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-            {1, 2, 7, 7, 7, 7, 7, 7, 7, 7, 1, 7, 7, 7, 7, 7, 7, 7, 8, 1},
+            {1, 2, 8, 8, 7, 7, 7, 7, 7, 7, 1, 7, 7, 7, 7, 7, 7, 7, 8, 1},
             {1, 7, 1, 1, 1, 7, 1, 1, 1, 7, 1, 7, 1, 1, 7, 1, 1, 1, 7, 1},
             {1, 7, 1, 1, 1, 7, 1, 1, 1, 7, 1, 7, 1, 1, 7, 1, 1, 1, 7, 1},
             {1, 7, 1, 1, 1, 7, 1, 1, 1, 7, 1, 7, 1, 1, 7, 1, 1, 1, 7, 1},
@@ -55,7 +55,7 @@ public class Gameboard extends JPanel {
         PacmanFrame.frame.addKeyListener(keyHandler);
         createEverything();
         setNeighbors();
-        System.out.println(grid[1][8].getGameElements().toString());
+        System.out.println(grid[1][2].getGameElements().toString());
     }
 
     protected void reset()

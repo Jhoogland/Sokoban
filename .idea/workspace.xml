@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="534cffdd-4da8-482a-bd6c-73361abfd7ef" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Gameboard.java" afterPath="$PROJECT_DIR$/src/com/company/Gameboard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/PacmanFrame.java" afterPath="$PROJECT_DIR$/src/com/company/PacmanFrame.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Pacman.iws" />
@@ -73,8 +72,8 @@
       <file leaf-file-name="Gameboard.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/Gameboard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.0502431" vertical-offset="2970" max-vertical-offset="4964">
-              <caret line="64" column="56" selection-start-line="64" selection-start-column="56" selection-end-line="64" selection-end-column="56" />
+            <state vertical-scroll-proportion="0.28363046" vertical-offset="352" max-vertical-offset="5100">
+              <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -607,7 +606,13 @@
       <option name="project" value="LOCAL" />
       <updated>1421340223314</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="cahnged GRIDSIZE to GRIDROW &amp; GRIDCOL alongside with the actual gridsize of the grid">
+      <created>1421341086975</created>
+      <option name="number" value="00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1421341086975</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -711,7 +716,8 @@
     <MESSAGE value="Score works" />
     <MESSAGE value="Optimized move method" />
     <MESSAGE value="Addec cherry and superfruit class&#10;Added superfruit to the grid&#10;Added AmountOfFruits to place a cherry when more then half of the fruits are eaten (Needs some work)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Addec cherry and superfruit class&#10;Added superfruit to the grid&#10;Added AmountOfFruits to place a cherry when more then half of the fruits are eaten (Needs some work)" />
+    <MESSAGE value="cahnged GRIDSIZE to GRIDROW &amp; GRIDCOL alongside with the actual gridsize of the grid" />
+    <option name="LAST_COMMIT_MESSAGE" value="cahnged GRIDSIZE to GRIDROW &amp; GRIDCOL alongside with the actual gridsize of the grid" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1186,8 +1192,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Gameboard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.0502431" vertical-offset="2970" max-vertical-offset="4964">
-          <caret line="64" column="56" selection-start-line="64" selection-start-column="56" selection-end-line="64" selection-end-column="56" />
+        <state vertical-scroll-proportion="0.28363046" vertical-offset="352" max-vertical-offset="5100">
+          <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

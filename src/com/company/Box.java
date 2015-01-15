@@ -46,15 +46,7 @@ public class Box {
     }
 
     public HashMap<String, Box> getNeighbors(){return neighbors;}
-    public GameElement getGameElement()
-    {
-        return this.gameElement;
-    }
 
-    public void setGameElement(GameElement gameElement)
-    {
-        this.gameElement = gameElement;
-    }
 
     public boolean containsInstanceOf(String element)
     {

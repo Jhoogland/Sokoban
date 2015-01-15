@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
  * Created by Sefa on 15-12-2014.
  */
 public class PacmanFrame extends JFrame {
-    private final int WIDTH             = 600;
+    private final int WIDTH             = 1000;
     private final int HEIGHT            = 680;
 
     public static JFrame frame          = new JFrame("Pacman");

@@ -12,8 +12,9 @@ public class Gameboard extends JPanel {
     private final int BOXSIZE      = 50;
     private final int BOXGAP       = 0;
 
-    private final int GRIDSIZE     = 10; //Set the gridsize
-    private Box grid[][]           = new Box[this.GRIDSIZE][this.GRIDSIZE]; // 2D Array thats holds all Boxes
+    private final int GRIDROW      = 10; //Set the gridsize
+    private final int GRIDCOL      = 20;
+    private Box grid[][]           = new Box[this.GRIDROW][this.GRIDCOL]; // 2D Array thats holds all Boxes
 
     private Pacman pacman          = new Pacman();
     private DrunkGhost drunkGhost1 = new DrunkGhost();
@@ -37,16 +38,16 @@ public class Gameboard extends JPanel {
     // 7 = Fruit
     // 8 = SuperFruit
     private int gridStructure[][] = {
-            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-            {1, 2, 7, 7, 7, 7, 7, 7, 8, 1},
-            {1, 0, 1, 1, 1, 0, 1, 1, 1, 1},
-            {1, 0, 1, 1, 1, 0, 1, 1, 1, 1},
-            {1, 0, 1, 1, 1, 0, 1, 1, 1, 1},
-            {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-            {1, 0, 1, 1, 1, 0, 1, 1, 0, 1},
-            {1, 0, 1, 1, 1, 0, 1, 1, 0, 1},
-            {1, 0, 0, 0, 0, 3, 4, 5, 6, 1},
-            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 2, 7, 7, 7, 7, 7, 7, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+            {1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+            {1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+            {1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+            {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+            {1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+            {1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+            {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 4, 5, 6, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
     };
 
     public Gameboard()
@@ -62,10 +63,10 @@ public class Gameboard extends JPanel {
         if(timerHandler.timer.isRunning())
         {
             resetPosition(this.pacman, this.grid[1][1]);
-            resetPosition(this.drunkGhost1, this.grid[8][5]);
-            resetPosition(this.drunkGhost2, this.grid[8][6]);
-            resetPosition(this.smartGhost1, this.grid[8][7]);
-            resetPosition(this.smartGhost2, this.grid[8][8]);
+            resetPosition(this.drunkGhost1, this.grid[8][15]);
+            resetPosition(this.drunkGhost2, this.grid[8][16]);
+            resetPosition(this.smartGhost1, this.grid[8][17]);
+            resetPosition(this.smartGhost2, this.grid[8][18]);
 
             repaint();
         }
@@ -85,9 +86,9 @@ public class Gameboard extends JPanel {
 
     private void createEverything()
     {
-        for(int row = 0;  row < this.GRIDSIZE; row++)
+        for(int row = 0;  row < this.GRIDROW; row++)
         {
-            for(int col = 0; col < this.GRIDSIZE; col++)
+            for(int col = 0; col < this.GRIDCOL; col++)
             {
                 if(gridStructure[row][col] == 0) // Box
                 {
@@ -148,9 +149,9 @@ public class Gameboard extends JPanel {
 
     private void setNeighbors()
     {
-        for(int row = 0;  row < this.GRIDSIZE; row++)
+        for(int row = 0;  row < this.GRIDROW; row++)
         {
-            for(int col = 0; col < this.GRIDSIZE; col++)
+            for(int col = 0; col < this.GRIDCOL; col++)
             {
                 // Neighbors from each box
                 int upRow =  row - 1;   // TOP
@@ -163,7 +164,7 @@ public class Gameboard extends JPanel {
                 {
                     grid[row][col].addNeighbor("Top", grid[upRow][col]);
                 }
-                if (downRow <= (this.GRIDSIZE -1))
+                if (downRow <= (this.GRIDROW -1))
                 {
                     grid[row][col].addNeighbor("Bottom", grid[downRow][col]);
                 }
@@ -171,7 +172,7 @@ public class Gameboard extends JPanel {
                 {
                     grid[row][col].addNeighbor("Left", grid[row][leftCol]);
                 }
-                if (rightCol <= (this.GRIDSIZE - 1))
+                if (rightCol <= (this.GRIDCOL - 1))
                 {
                     grid[row][col].addNeighbor("Right", grid[row][rightCol]);
                 }
@@ -191,12 +192,12 @@ public class Gameboard extends JPanel {
 
         // Draw the white box that will divide the smaller 10x10 boxes.
         g.setColor(Color.white);
-        g.fillRect(0, 0, 600, 600);
+        g.fillRect(0, 0, 1000, 600);
 
         // Draw the 10x10 boxes that make the grid.
-        for (int row = 0; row < this.GRIDSIZE; row++)
+        for (int row = 0; row < this.GRIDROW; row++)
         {
-            for (int col = 0; col < this.GRIDSIZE; col++) {
+            for (int col = 0; col < this.GRIDCOL; col++) {
                 int newBoxSize = this.BOXSIZE + this.BOXGAP;
 
                 int newRow = row * newBoxSize;

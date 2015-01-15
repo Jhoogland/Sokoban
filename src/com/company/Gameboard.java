@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /**
  * Created by Sefa Yavuz on 17-12-2014.
@@ -17,7 +18,7 @@ public class Gameboard extends JPanel implements ActionListener {
     private Box grid[][]           = new Box[this.GRIDSIZE][this.GRIDSIZE]; // 2D Array thats holds all Boxes
 
     private Pacman pacman          = new Pacman();
-    private Icon drunkGhost1 = new DrunkGhost();
+    private DrunkGhost drunkGhost1 = new DrunkGhost();
     private DrunkGhost drunkGhost2 = new DrunkGhost();
     private SmartGhost smartGhost1 = new SmartGhost();
     private SmartGhost smartGhost2 = new SmartGhost();
@@ -53,6 +54,8 @@ public class Gameboard extends JPanel implements ActionListener {
         PacmanFrame.frame.addKeyListener(keyHandler);
         createEverything();
         setNeighbors();
+        System.out.println(grid[8][8].getGameElements().toString());
+
     }
 
     protected void reset()
@@ -85,6 +88,7 @@ public class Gameboard extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e)
     {
         drunkGhost1.moveRandom();
+        drunkGhost2.moveRandom();
         repaint();
     }
 
@@ -100,36 +104,43 @@ public class Gameboard extends JPanel implements ActionListener {
                 }
                 else if(this.gridStructure[row][col] == 1) // Wall
                 {
-                    this.grid[row][col] = new Box(new Wall());
+                    this.grid[row][col] = new Box();
+                    insertInitialElement(row, col, new Wall());
                 }
                 else if(this.gridStructure[row][col] == 2) // Pacman
                 {
-                    this.grid[row][col] = new Box(this.pacman);
+                    this.grid[row][col] = new Box();
+                    insertInitialElement(row, col, this.pacman);
                     this.pacman.setBox(this.grid[row][col]);
                 }
                 else if(this.gridStructure[row][col] == 3) // DrunkGhost 1
                 {
-                    this.grid[row][col] = new Box(this.drunkGhost1);
+                    this.grid[row][col] = new Box();
+                    insertInitialElement(row, col, this.drunkGhost1);
                     this.drunkGhost1.setBox(this.grid[row][col]);
                 }
                 else if(this.gridStructure[row][col] == 4) // DrunkGhost 2
                 {
-                    this.grid[row][col] = new Box(this.drunkGhost2);
+                    this.grid[row][col] = new Box();
+                    insertInitialElement(row, col, this.drunkGhost2);
                     this.drunkGhost2.setBox(this.grid[row][col]);
                 }
                 else if(this.gridStructure[row][col] == 5) // SmartGhost 1
                 {
-                    this.grid[row][col] = new Box(this.smartGhost1);
+                    this.grid[row][col] = new Box();
+                    insertInitialElement(row, col, this.smartGhost1);
                     this.smartGhost1.setBox(this.grid[row][col]);
                 }
                 else if(this.gridStructure[row][col] == 6) // SmartGhost 2
                 {
-                    this.grid[row][col] = new Box(this.smartGhost2);
+                    this.grid[row][col] = new Box();
+                    insertInitialElement(row, col, this.smartGhost2);
                     this.smartGhost2.setBox(this.grid[row][col]);
                 }
                 else if(this.gridStructure[row][col] == 7)
                 {
-                    this.grid[row][col] = new Box(new Fruit());
+                    this.grid[row][col] = new Box();
+                    insertInitialElement(row, col, new Fruit());
                 }
             }
         }
@@ -168,6 +179,11 @@ public class Gameboard extends JPanel implements ActionListener {
         }
     }
 
+    private void insertInitialElement(int row, int col, GameElement ge)
+    {
+        grid[row][col].addGameElement(ge);
+    }
+
     @Override
     public void paintComponent(Graphics g)
     {
@@ -180,72 +196,92 @@ public class Gameboard extends JPanel implements ActionListener {
         // Draw the 10x10 boxes that make the grid.
         for (int row = 0; row < this.GRIDSIZE; row++)
         {
-            for (int col = 0; col < this.GRIDSIZE; col++)
-            {
+            for (int col = 0; col < this.GRIDSIZE; col++) {
                 int newBoxSize = this.BOXSIZE + this.BOXGAP;
 
                 int newRow = row * newBoxSize;
                 int newCol = col * newBoxSize;
 
                 g.setColor(Color.black);
-                g.fillRect(newRow, newCol, this.BOXSIZE, this.BOXSIZE);
+                g.fillRect(newCol, newRow, this.BOXSIZE, this.BOXSIZE);
 
+                ArrayList elements = grid[row][col].getGameElements();
 
-                if (this.grid[col][row].getGameElement() instanceof Wall) // Draw all Walls
+                if(elements.size() == 1)
                 {
-                    g.setColor(Color.blue);
-                    g.fillRect(newRow, newCol, this.BOXSIZE, this.BOXSIZE);
+                    paintGameElement(g, (GameElement) elements.get(0), newRow, newCol);
                 }
-                else if (this.grid[col][row].getGameElement() instanceof Pacman) // Draw Pacman
+                if(elements.size() > 1)
                 {
-                    g.setColor(Color.yellow);
-                    g.fillArc(newRow, newCol, this.BOXSIZE, this.BOXSIZE, 90 / 2, 360 - 90);
+                    int lastIndex = elements.size()-1;
+                    paintGameElement(g, (GameElement) elements.get(lastIndex), newRow, newCol);
+
                 }
-                else if (this.grid[col][row].getGameElement() instanceof Ghost) // Draw all Ghost each with a unique color
-                {
-                    if(this.grid[col][row].getGameElement().equals(this.drunkGhost1))
-                    {
-                        g.setColor(Color.RED);
-                    }
-                    else if(this.grid[col][row].getGameElement().equals(this.drunkGhost2))
-                    {
-                        g.setColor(Color.ORANGE);
-                    }
-                    else if(this.grid[col][row].getGameElement().equals(this.smartGhost1))
-                    {
-                        g.setColor(Color.CYAN);
-                    }
-                    else if(this.grid[col][row].getGameElement().equals(this.smartGhost2))
-                    {
-                        g.setColor(Color.PINK);
-                    }
 
-                    // Body of Ghosts.
-                    g.fillOval(newRow, newCol, this.BOXSIZE, this.BOXSIZE);
 
-                    g.setColor(Color.black);  // Facial features of the Ghosts are black.
-
-                    // Left eye of Ghost.
-                    g.fillOval(newRow + 15, newCol + 20, 5, 5);
-
-                    // Right eye of Ghost.
-                    g.fillOval(newRow + 30, newCol + 20, 5, 5);
-                }
-                else if(this.grid[col][row].getGameElement() instanceof Fruit)
-                {
-                    g.setColor(Color.white);
-
-                    g.fillOval(newRow + 20, newCol + 20, this.BOXSIZE / 4, this.BOXSIZE / 4);
-                }
             }
         }
     }
 
+    private void paintGameElement(Graphics g, GameElement ge, int newRow, int newCol)
+    {
+        if(ge instanceof Wall)
+        {
+            g.setColor(Color.blue);
+            g.fillRect(newCol, newRow, this.BOXSIZE, this.BOXSIZE);
+        }
+        if(ge.equals(this.pacman))
+        {
+            g.setColor(Color.yellow);
+            g.fillArc(newCol, newRow, this.BOXSIZE, this.BOXSIZE, 90 / 2, 360 - 90);
+        }
+        if(ge instanceof Fruit)
+        {
+            g.setColor(Color.white);
+
+            g.fillOval(newCol + 20, newRow + 20, this.BOXSIZE / 4, this.BOXSIZE / 4);
+        }
+        if(ge instanceof Ghost)
+        {
+            if(ge.equals(this.drunkGhost1))
+            {
+                g.setColor(Color.RED);
+            }
+            else if(ge.equals(this.drunkGhost2))
+            {
+                g.setColor(Color.ORANGE);
+            }
+            else if(ge.equals(this.smartGhost1))
+            {
+                g.setColor(Color.CYAN);
+            }
+            else if(ge.equals(this.smartGhost2))
+            {
+                g.setColor(Color.PINK);
+            }
+
+            // Body of Ghosts.
+            g.fillOval(newCol, newRow, this.BOXSIZE, this.BOXSIZE);
+
+            g.setColor(Color.black);  // Facial features of the Ghosts are black.
+
+            // Left eye of Ghost.
+            g.fillOval(newCol + 15, newRow + 20, 5, 5);
+
+            // Right eye of Ghost.
+            g.fillOval(newCol + 30, newRow + 20, 5, 5);
+        }
+
+    }
+
+
+
+
     private void resetPosition(Icon icon, Box grid)
     {
-        icon.getBox().setGameElement(null);
+        icon.getBox().removeGameElement(icon);
         icon.setBox(grid);
-        icon.getBox().setGameElement(icon);
+        icon.getBox().addGameElement(icon);
     }
 
     public Pacman getPacman()

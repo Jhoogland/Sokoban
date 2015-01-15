@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -17,18 +18,17 @@ public class DrunkGhost extends Ghost {
         Object[] values                 = neighbors.values().toArray();
         Object randomValue              = values[generator.nextInt(values.length)];
         Box nextBox                     = (Box) randomValue;
-        GameElement nextGameElement     = nextBox.getGameElement();
-        if(!(nextGameElement instanceof Wall))
+        if(!(nextBox.containsInstanceOf("Wall")))
         {
-            if ((nextGameElement instanceof Pacman))
+            if (nextBox.containsInstanceOf("Pacman"))
             {
                 PacmanFrame.getGameboard().reset();
+                PacmanFrame.getGameboard().getPacman().loseLife();
+                PacmanFrame.life.setText("<Html><h2 style='float: right;'>Life: " + PacmanFrame.getGameboard().getPacman().getLife() + "<br> </h3></html>");
             }
             else
             {
-                this.getBox().setGameElement(null);
-                this.setBox(nextBox);
-                nextBox.setGameElement(this);
+                this.setGhostPosition(nextBox);
             }
 
         }

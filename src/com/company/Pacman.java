@@ -1,11 +1,14 @@
 package com.company;
 
+import java.util.ArrayList;
+
 /**
  * Created by Sefa on 15-12-2014.
  */
 public class Pacman extends Icon {
     public int mouthAngle = 90;
     private int score = 0;
+    private int life = 3;
 
     public Pacman() { }
 
@@ -17,85 +20,89 @@ public class Pacman extends Icon {
             {
                 case UP:
 
-                    GameElement checkNeighborUp = this.checkNeighbor(direction.UP);
+                    Box checkNeighborUp = this.checkNeighbor(direction.UP);
 
-                    if (!(checkNeighborUp instanceof Wall))
+                    if (!checkNeighborUp.containsInstanceOf("Wall"))
                     {
-                        if(!(checkNeighborUp instanceof Ghost))
+                        if(!(checkNeighborUp.containsInstanceOf("Ghost")))
                         {
-                            if(checkNeighborUp instanceof Fruit)
-                            {
-                                this.score = ((Fruit) checkNeighborUp).getValue() + this.score;
-                            }
-
                             this.setPacmanPosition();
+                            if(checkNeighborUp.containsInstanceOf("Fruit"))
+                            {
+                                Fruit fruit = (Fruit) checkNeighborUp.getGameElements().get(0);
+                                this.getBox().removeGameElement(fruit);
+                                this.score = fruit.getValue() + this.score;
+                            }
                         }
                         else
                         {
-                            PacmanFrame.getGameboard().reset();
+                            //collision();
                         }
                     }
                     break;
                 case DOWN:
 
-                    GameElement checkNeighborDown = this.checkNeighbor(direction.DOWN);
+                    Box checkNeighborDown = this.checkNeighbor(direction.DOWN);
 
-                    if (!(checkNeighborDown instanceof Wall))
+                    if (!(checkNeighborDown.containsInstanceOf("Wall")))
                     {
-                        if(!(checkNeighborDown instanceof Ghost))
+                        if(!(checkNeighborDown.containsInstanceOf("Ghost")))
                         {
-                            if(checkNeighborDown instanceof Fruit)
-                            {
-                                this.score = ((Fruit) checkNeighborDown).getValue() + this.score;
-                            }
-
                             this.setPacmanPosition();
+                            if(checkNeighborDown.containsInstanceOf("Fruit"))
+                            {
+                                Fruit fruit = (Fruit) checkNeighborDown.getGameElements().get(0);
+                                this.getBox().removeGameElement(fruit);
+                                this.score = fruit.getValue() + this.score;
+                            }
                         }
                         else
                         {
-                            PacmanFrame.getGameboard().reset();
+                           //collision();
                         }
                     }
                     break;
                 case LEFT:
 
-                    GameElement checkNeigborLeft = this.checkNeighbor(direction.LEFT);
+                    Box checkNeigborLeft = this.checkNeighbor(direction.LEFT);
 
-                    if (!(checkNeigborLeft instanceof Wall))
+                    if (!(checkNeigborLeft.containsInstanceOf("Wall")))
                     {
-                        if(!(checkNeigborLeft instanceof Ghost))
+                        if(!(checkNeigborLeft.containsInstanceOf("Ghost")))
                         {
-                            if(checkNeigborLeft instanceof Fruit)
-                            {
-                                this.score = ((Fruit) checkNeigborLeft).getValue() + this.score;
-                            }
-
                             this.setPacmanPosition();
+                            if(checkNeigborLeft.containsInstanceOf("Fruit"))
+                            {
+                                Fruit fruit = (Fruit) checkNeigborLeft.getGameElements().get(0);
+                                this.getBox().removeGameElement(fruit);
+                                this.score = fruit.getValue() + this.score;
+                            }
                         }
                         else
                         {
-                            PacmanFrame.getGameboard().reset();
+                            //collision();
                         }
                     }
                     break;
                 case RIGHT:
 
-                    GameElement checkNeigborRight = this.checkNeighbor(direction.RIGHT);
+                    Box checkNeigborRight = this.checkNeighbor(direction.RIGHT);
 
-                    if (!(checkNeigborRight instanceof Wall))
+                    if (!(checkNeigborRight.containsInstanceOf("Wall")))
                     {
-                        if(!(checkNeigborRight instanceof Ghost))
+                        if(!(checkNeigborRight.containsInstanceOf("Ghost")))
                         {
-                            if(checkNeigborRight instanceof Fruit)
-                            {
-                                this.score = ((Fruit) checkNeigborRight).getValue() + this.score;
-                            }
-
                             this.setPacmanPosition();
+                            if(checkNeigborRight.containsInstanceOf("Fruit"))
+                            {
+                                Fruit fruit = (Fruit) checkNeigborRight.getGameElements().get(0);
+                                this.getBox().removeGameElement(fruit);
+                                this.score = fruit.getValue() + this.score;
+                            }
                         }
                         else
                         {
-                            PacmanFrame.getGameboard().reset();
+                            //collision();
                         }
                     }
                     break;
@@ -105,9 +112,15 @@ public class Pacman extends Icon {
 
     private void setPacmanPosition()
     {
-        this.getBox().setGameElement(null);
+        this.getBox().removeGameElement(this);
         this.setBox(this.getNextBox());
-        this.getNextBox().setGameElement(this);
+        this.getNextBox().addGameElement(this);
+    }
+    private void collision()
+    {
+        PacmanFrame.getGameboard().reset();
+        this.loseLife();
+        PacmanFrame.life.setText("<Html><h2 style='float: right;'>Life: " + this.getLife() + "<br> </h3></html>");
     }
 
     public int getMouthAngle()
@@ -119,9 +132,13 @@ public class Pacman extends Icon {
     {
         return this.score;
     }
+    public int getLife(){return this.life;}
+
+    public void loseLife(){life -= 1;}
 
     public void setScore(int score)
     {
         this.score = score;
     }
+
 }

@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.ArrayList;
+
 /**
  * Created by Sefa on 18-12-2014.
  */
@@ -11,7 +13,7 @@ public abstract class Icon extends GameElement {
 
     public void moveRandom() {}
 
-    public GameElement checkNeighbor(Direction direction)
+    public Box checkNeighbor(Direction direction)
     {
         switch (direction)
         {
@@ -29,7 +31,7 @@ public abstract class Icon extends GameElement {
                 break;
         }
 
-        return this.nextBox.getGameElement();
+        return this.nextBox;
     }
 
     public Box getNextBox()

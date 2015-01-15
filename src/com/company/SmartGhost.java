@@ -5,10 +5,21 @@ package com.company;
  */
 public class SmartGhost extends Ghost {
 
+
+
     public SmartGhost() { }
 
-    public SmartGhost(Box box)
+    private void findPacman(Box current, Box pacman)
     {
-        super.setBox(box);
+        current = this.getBox();
+        pacman = PacmanFrame.getGameboard().getPacman().getBox();
+
+
+
+
+
     }
+
+
+
 }

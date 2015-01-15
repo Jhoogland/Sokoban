@@ -13,10 +13,7 @@ public class Box {
 
     public Box(){}
 
-    public Box(GameElement gameElement)
-    {
-        this.gameElement = gameElement;
-    }
+
 
     /* All these methods adds the neighbor of a Box into an HashMap; */
 
@@ -59,6 +56,45 @@ public class Box {
         this.gameElement = gameElement;
     }
 
-    public void addGameElements(GameElement gameElement) { this.gameElements.add(gameElement); }
+    public boolean containsInstanceOf(String element)
+    {
+        boolean instance = false;
+        for(GameElement ge: gameElements)
+        {
+            if(element.equals("Fruit"))
+            {
+                if (ge instanceof Fruit)
+                {
+                    instance = true;
+                }
+            }
+            if(element.equals("Ghost"))
+            {
+                if (ge instanceof Ghost)
+                {
+                    instance = true;
+                }
+            }
+            if(element.equals("Wall"))
+            {
+                if (ge instanceof Wall)
+                {
+                    instance = true;
+                }
+            }
+            if(element.equals("Pacman"))
+            {
+                if (ge instanceof Pacman)
+                {
+                    instance = true;
+                }
+            }
+
+        }
+        return instance;
+    }
+
+    public void addGameElement(GameElement gameElement) { this.gameElements.add(gameElement); }
+    public void removeGameElement(GameElement gameElement){gameElements.remove(gameElement);}
     public ArrayList<GameElement> getGameElements() { return this.gameElements; }
 }

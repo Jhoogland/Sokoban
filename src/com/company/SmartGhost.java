@@ -14,10 +14,6 @@ public class SmartGhost extends Ghost {
         current = this.getBox();
         pacman = PacmanFrame.getGameboard().getPacman().getBox();
 
-
-
-
-
     }
 
 

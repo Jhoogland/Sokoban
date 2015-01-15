@@ -24,7 +24,7 @@ public class DrunkGhost extends Ghost {
             {
                 PacmanFrame.getGameboard().reset();
                 PacmanFrame.getGameboard().getPacman().loseLife();
-                PacmanFrame.life.setText("<Html><h2 style='float: right;'>Life: " + PacmanFrame.getGameboard().getPacman().getLife() + "<br> </h3></html>");
+                PacmanFrame.life.setText("<html><h2 style='float: right;'>Life: " + PacmanFrame.getGameboard().getPacman().getLife() + "<br> </h3></html>");
             }
             else
             {

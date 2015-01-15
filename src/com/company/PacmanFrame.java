@@ -15,8 +15,8 @@ public class PacmanFrame extends JFrame {
     public static JFrame frame          = new JFrame("Pacman");
     private JPanel TopPanel             = new JPanel();
     private static Gameboard gameboard  = new Gameboard();
-    public static JLabel score          = new JLabel("<Html><h2 style='float: right;'>Score: " + gameboard.getPacman().getScore() + "<br> </h3></html>");
-    public static JLabel life           = new JLabel("<Html><h2 style='float: right;'>Score: " + gameboard.getPacman().getLife() + "<br> </h3></html>");
+    public static JLabel  score         = new JLabel("<html><h2 style='float: right;'>Score: " + gameboard.getPacman().getScore() + "<br> </h3></html>");
+    public static JLabel life           = new JLabel("<html><h2 style='float: right;'>Life: " + gameboard.getPacman().getLife() + "<br> </h3></html>");
 
     public void drawFrame()
     {
@@ -37,7 +37,7 @@ public class PacmanFrame extends JFrame {
     private void addStructure()
     {
         this.TopPanel.setPreferredSize(new Dimension(this.WIDTH, 100));
-        this.TopPanel.setLayout(new GridLayout(0, 2));
+        this.TopPanel.setLayout(new GridLayout(0, 3));
 
         this.gameboard.setPreferredSize(new Dimension(this.WIDTH, 800));
         this.gameboard.setLayout(new BorderLayout());
@@ -60,8 +60,9 @@ public class PacmanFrame extends JFrame {
                     "</div>" +
                 "</html>"));
 
-        this.TopPanel.add(score);
-        this.TopPanel.add(life);
+
+        this.TopPanel.add(this.score);
+        this.TopPanel.add(this.life);
     }
 
     public static Gameboard getGameboard()

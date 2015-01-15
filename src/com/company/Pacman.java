@@ -1,7 +1,5 @@
 package com.company;
 
-import java.util.ArrayList;
-
 /**
  * Created by Sefa on 15-12-2014.
  */
@@ -14,7 +12,7 @@ public class Pacman extends Icon {
 
     public void move(Direction direction)
     {
-        if(PacmanFrame.getGameboard().timer.isRunning())
+        if(PacmanFrame.getGameboard().timerHandler.timer.isRunning())
         {
             switch (direction)
             {
@@ -36,7 +34,7 @@ public class Pacman extends Icon {
                         }
                         else
                         {
-                            //collision();
+                            collision();
                         }
                     }
                     break;
@@ -58,7 +56,7 @@ public class Pacman extends Icon {
                         }
                         else
                         {
-                           //collision();
+                           collision();
                         }
                     }
                     break;
@@ -80,7 +78,7 @@ public class Pacman extends Icon {
                         }
                         else
                         {
-                            //collision();
+                            collision();
                         }
                     }
                     break;
@@ -102,7 +100,7 @@ public class Pacman extends Icon {
                         }
                         else
                         {
-                            //collision();
+                            collision();
                         }
                     }
                     break;
@@ -120,7 +118,7 @@ public class Pacman extends Icon {
     {
         PacmanFrame.getGameboard().reset();
         this.loseLife();
-        PacmanFrame.life.setText("<Html><h2 style='float: right;'>Life: " + this.getLife() + "<br> </h3></html>");
+        PacmanFrame.life.setText("<html><h2 style='float: right;'>Life: " + this.getLife() + "<br> </h3></html>");
     }
 
     public int getMouthAngle()
@@ -132,9 +130,21 @@ public class Pacman extends Icon {
     {
         return this.score;
     }
-    public int getLife(){return this.life;}
 
-    public void loseLife(){life -= 1;}
+    public int getLife()
+    {
+        return this.life;
+    }
+
+    public void setLife()
+    {
+        this.life = life;
+    }
+
+    public void loseLife()
+    {
+        life -= 1;
+    }
 
     public void setScore(int score)
     {

@@ -2,14 +2,12 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
  * Created by Sefa Yavuz on 17-12-2014.
  */
-public class Gameboard extends JPanel implements ActionListener {
+public class Gameboard extends JPanel {
 
     private final int BOXSIZE      = 50;
     private final int BOXGAP       = 0;
@@ -23,7 +21,7 @@ public class Gameboard extends JPanel implements ActionListener {
     private SmartGhost smartGhost1 = new SmartGhost();
     private SmartGhost smartGhost2 = new SmartGhost();
 
-    public Timer timer             = new Timer(200, this);
+    public TimerHandler timerHandler = new TimerHandler(200, this);
 
     private KeyHandler keyHandler  = new KeyHandler(this.pacman);
 
@@ -55,12 +53,11 @@ public class Gameboard extends JPanel implements ActionListener {
         createEverything();
         setNeighbors();
         System.out.println(grid[8][8].getGameElements().toString());
-
     }
 
     protected void reset()
     {
-        if(timer.isRunning())
+        if(timerHandler.timer.isRunning())
         {
             resetPosition(this.pacman, this.grid[1][1]);
             resetPosition(this.drunkGhost1, this.grid[8][5]);
@@ -74,22 +71,14 @@ public class Gameboard extends JPanel implements ActionListener {
 
     protected void start()
     {
-        if(!timer.isRunning())
+        if(!timerHandler.timer.isRunning())
         {
-            timer.start();
+            timerHandler.timer.start();
         }
         else
         {
-            timer.stop();
+            timerHandler.timer.stop();
         }
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e)
-    {
-        drunkGhost1.moveRandom();
-        drunkGhost2.moveRandom();
-        repaint();
     }
 
     private void createEverything()
@@ -217,8 +206,6 @@ public class Gameboard extends JPanel implements ActionListener {
                     paintGameElement(g, (GameElement) elements.get(lastIndex), newRow, newCol);
 
                 }
-
-
             }
         }
     }
@@ -274,9 +261,6 @@ public class Gameboard extends JPanel implements ActionListener {
 
     }
 
-
-
-
     private void resetPosition(Icon icon, Box grid)
     {
         icon.getBox().removeGameElement(icon);
@@ -288,4 +272,7 @@ public class Gameboard extends JPanel implements ActionListener {
     {
         return this.pacman;
     }
+
+    public Ghost getDrunkGhost1() { return this.drunkGhost1; }
+    public Ghost getDrunkGhost2() { return this.drunkGhost2; }
 }

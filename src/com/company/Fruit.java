@@ -15,4 +15,9 @@ public class Fruit extends GameElement {
     {
         return this.value;
     }
+
+    public void setValue(int value)
+    {
+        this.value = value;
+    }
 }

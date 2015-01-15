@@ -22,8 +22,9 @@ public class Gameboard extends JPanel {
     private SmartGhost smartGhost2 = new SmartGhost();
 
     public TimerHandler timerHandler = new TimerHandler(200, this);
-
     private KeyHandler keyHandler  = new KeyHandler(this.pacman);
+
+    private int amountOfFruits;
 
     //2D Array that holds the structure
     // 0 = Nothing ( Pathway )
@@ -34,9 +35,10 @@ public class Gameboard extends JPanel {
     // 5 = SmartGhost1
     // 6 = SmartGhost2
     // 7 = Fruit
+    // 8 = SuperFruit
     private int gridStructure[][] = {
             {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-            {1, 2, 7, 7, 7, 7, 7, 7, 7, 1},
+            {1, 2, 7, 7, 7, 7, 7, 7, 8, 1},
             {1, 0, 1, 1, 1, 0, 1, 1, 1, 1},
             {1, 0, 1, 1, 1, 0, 1, 1, 1, 1},
             {1, 0, 1, 1, 1, 0, 1, 1, 1, 1},
@@ -52,7 +54,7 @@ public class Gameboard extends JPanel {
         PacmanFrame.frame.addKeyListener(keyHandler);
         createEverything();
         setNeighbors();
-        System.out.println(grid[8][8].getGameElements().toString());
+        System.out.println(grid[1][8].getGameElements().toString());
     }
 
     protected void reset()
@@ -87,7 +89,7 @@ public class Gameboard extends JPanel {
         {
             for(int col = 0; col < this.GRIDSIZE; col++)
             {
-                if(this.gridStructure[row][col] == 0) // Box
+                if(gridStructure[row][col] == 0) // Box
                 {
                     this.grid[row][col] = new Box();
                 }
@@ -126,10 +128,19 @@ public class Gameboard extends JPanel {
                     insertInitialElement(row, col, this.smartGhost2);
                     this.smartGhost2.setBox(this.grid[row][col]);
                 }
-                else if(this.gridStructure[row][col] == 7)
+                else if(this.gridStructure[row][col] == 7) // Fruit
                 {
                     this.grid[row][col] = new Box();
                     insertInitialElement(row, col, new Fruit());
+
+                    this.amountOfFruits++;
+                }
+                else if(this.gridStructure[row][col] == 8) // SuperFruit
+                {
+                    this.grid[row][col] = new Box();
+                    insertInitialElement(row, col, new SuperFruit());
+
+                    this.amountOfFruits++;
                 }
             }
         }
@@ -204,7 +215,6 @@ public class Gameboard extends JPanel {
                 {
                     int lastIndex = elements.size()-1;
                     paintGameElement(g, (GameElement) elements.get(lastIndex), newRow, newCol);
-
                 }
             }
         }
@@ -217,18 +227,18 @@ public class Gameboard extends JPanel {
             g.setColor(Color.blue);
             g.fillRect(newCol, newRow, this.BOXSIZE, this.BOXSIZE);
         }
-        if(ge.equals(this.pacman))
+        else if(ge.equals(this.pacman))
         {
             g.setColor(Color.yellow);
             g.fillArc(newCol, newRow, this.BOXSIZE, this.BOXSIZE, 90 / 2, 360 - 90);
         }
-        if(ge instanceof Fruit)
+        else if(ge instanceof Fruit)
         {
             g.setColor(Color.white);
 
             g.fillOval(newCol + 20, newRow + 20, this.BOXSIZE / 4, this.BOXSIZE / 4);
         }
-        if(ge instanceof Ghost)
+        else if(ge instanceof Ghost)
         {
             if(ge.equals(this.drunkGhost1))
             {
@@ -275,4 +285,7 @@ public class Gameboard extends JPanel {
 
     public Ghost getDrunkGhost1() { return this.drunkGhost1; }
     public Ghost getDrunkGhost2() { return this.drunkGhost2; }
+
+    public int getAmountOfFruits() { return this.amountOfFruits; }
+    public void setAmountOfFruits(int amountOfFruits) { this.amountOfFruits = amountOfFruits; }
 }

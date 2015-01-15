@@ -8,6 +8,8 @@ public class Pacman extends Icon {
     private int score = 0;
     private int life = 3;
 
+    private boolean isInvincible = false;
+
     public Pacman() { }
 
     public void move(Direction direction)
@@ -27,9 +29,17 @@ public class Pacman extends Icon {
                             this.setPacmanPosition();
                             if(checkNeighborUp.containsInstanceOf("Fruit"))
                             {
+                                if(checkNeighborUp.containsInstanceOf("SuperFruit"))
+                                {
+                                    System.out.println("true!");
+                                    this.isInvincible = true;
+                                }
+
                                 Fruit fruit = (Fruit) checkNeighborUp.getGameElements().get(0);
                                 this.getBox().removeGameElement(fruit);
+                                PacmanFrame.getGameboard().setAmountOfFruits(PacmanFrame.getGameboard().getAmountOfFruits() - 1);
                                 this.score = fruit.getValue() + this.score;
+
                             }
                         }
                         else
@@ -49,9 +59,18 @@ public class Pacman extends Icon {
                             this.setPacmanPosition();
                             if(checkNeighborDown.containsInstanceOf("Fruit"))
                             {
+                                if(checkNeighborDown.containsInstanceOf("SuperFruit"))
+                                {
+                                    System.out.println("true!");
+                                    this.isInvincible = true;
+                                }
+
                                 Fruit fruit = (Fruit) checkNeighborDown.getGameElements().get(0);
                                 this.getBox().removeGameElement(fruit);
+                                PacmanFrame.getGameboard().setAmountOfFruits(PacmanFrame.getGameboard().getAmountOfFruits() - 1);
                                 this.score = fruit.getValue() + this.score;
+
+
                             }
                         }
                         else
@@ -62,18 +81,27 @@ public class Pacman extends Icon {
                     break;
                 case LEFT:
 
-                    Box checkNeigborLeft = this.checkNeighbor(direction.LEFT);
+                    Box checkNeighborLeft = this.checkNeighbor(direction.LEFT);
 
-                    if (!(checkNeigborLeft.containsInstanceOf("Wall")))
+                    if (!(checkNeighborLeft.containsInstanceOf("Wall")))
                     {
-                        if(!(checkNeigborLeft.containsInstanceOf("Ghost")))
+                        if(!(checkNeighborLeft.containsInstanceOf("Ghost")))
                         {
                             this.setPacmanPosition();
-                            if(checkNeigborLeft.containsInstanceOf("Fruit"))
+                            if(checkNeighborLeft.containsInstanceOf("Fruit"))
                             {
-                                Fruit fruit = (Fruit) checkNeigborLeft.getGameElements().get(0);
+
+                                if(checkNeighborLeft.containsInstanceOf("SuperFruit"))
+                                {
+                                    System.out.println("true!");
+                                    this.isInvincible = true;
+                                }
+
+                                Fruit fruit = (Fruit) checkNeighborLeft.getGameElements().get(0);
                                 this.getBox().removeGameElement(fruit);
+                                PacmanFrame.getGameboard().setAmountOfFruits(PacmanFrame.getGameboard().getAmountOfFruits() - 1);
                                 this.score = fruit.getValue() + this.score;
+
                             }
                         }
                         else
@@ -84,19 +112,29 @@ public class Pacman extends Icon {
                     break;
                 case RIGHT:
 
-                    Box checkNeigborRight = this.checkNeighbor(direction.RIGHT);
+                    Box checkNeighborRight = this.checkNeighbor(direction.RIGHT);
 
-                    if (!(checkNeigborRight.containsInstanceOf("Wall")))
+                    if (!(checkNeighborRight.containsInstanceOf("Wall")))
                     {
-                        if(!(checkNeigborRight.containsInstanceOf("Ghost")))
+                        if(!(checkNeighborRight.containsInstanceOf("Ghost")))
                         {
                             this.setPacmanPosition();
-                            if(checkNeigborRight.containsInstanceOf("Fruit"))
+                            if(checkNeighborRight.containsInstanceOf("Fruit"))
                             {
-                                Fruit fruit = (Fruit) checkNeigborRight.getGameElements().get(0);
+                                if(checkNeighborRight.containsInstanceOf("SuperFruit"))
+                                {
+                                    System.out.println("true!");
+                                    this.isInvincible = true;
+                                }
+
+                                Fruit fruit = (Fruit) checkNeighborRight.getGameElements().get(0);
                                 this.getBox().removeGameElement(fruit);
+                                PacmanFrame.getGameboard().setAmountOfFruits(PacmanFrame.getGameboard().getAmountOfFruits() - 1);
                                 this.score = fruit.getValue() + this.score;
+
                             }
+
+
                         }
                         else
                         {
@@ -149,6 +187,16 @@ public class Pacman extends Icon {
     public void setScore(int score)
     {
         this.score = score;
+    }
+
+    public boolean getInvincible()
+    {
+        return this.isInvincible;
+    }
+
+    public void setInvincible(boolean isInvincible)
+    {
+        this.isInvincible = isInvincible;
     }
 
 }

@@ -8,7 +8,6 @@ import java.util.*;
 public class Box {
 
     private ArrayList<GameElement> gameElements = new ArrayList<GameElement>();
-    private GameElement gameElement;
     private HashMap<String, Box> neighbors = new HashMap<String, Box>();
 
     public Box(){}

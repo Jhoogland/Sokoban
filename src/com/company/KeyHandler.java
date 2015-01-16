@@ -33,7 +33,9 @@ public class KeyHandler implements KeyListener {
                 this.pacman.move(Direction.DOWN);
                 break;
             case KeyEvent.VK_Z:
+
                 PacmanFrame.getGameboard().start();
+
                 break;
             case KeyEvent.VK_X:
                 PacmanFrame.getGameboard().resetTheGame();

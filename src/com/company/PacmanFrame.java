@@ -2,8 +2,7 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 /**
  * Created by Sefa on 15-12-2014.
@@ -13,10 +12,13 @@ public class PacmanFrame extends JFrame {
     private final int HEIGHT            = 680;
 
     public static JFrame frame          = new JFrame("Pacman");
-    private JPanel TopPanel             = new JPanel();
+    public static JPanel TopPanel       = new JPanel();
     private static Gameboard gameboard  = new Gameboard();
     public static JLabel  score         = new JLabel("<html><h2 style='float: right;'>Score: " + gameboard.getPacman().getScore() + "<br> </h3></html>");
     public static JLabel life           = new JLabel("<html><h2 style='float: right;'>Life: " + gameboard.getPacman().getLife() + "<br> </h3></html>");
+
+    ////////////////////////////////////////////////-----------------------------------------------//////////////////////////////////////////////////
+    public static JLabel timeLabel = new JLabel("<html><h2 style='float: right;'>Time:00 <br> </h3></html>");
 
     public void drawFrame()
     {
@@ -52,17 +54,23 @@ public class PacmanFrame extends JFrame {
     {
         this.TopPanel.add(new JLabel(
                 "<html>" +
-                    "<div style='padding: 15;'>" +
+                        "<div style='padding: 15;'>" +
                         "<h2 style='margin: 0; padding: 0;'>Instructies:</h2> " +
                         "- Beweeg door de pijltjes toetsen in te drukken " +
                         "<br> - 'Z' = start/pause " +
                         "<br> - 'X' = reset" +
-                    "</div>" +
-                "</html>"));
+                        "</div>" +
+                        "</html>"));
 
 
         this.TopPanel.add(this.score);
         this.TopPanel.add(this.life);
+        this.TopPanel.add(timeLabel);
+    }
+
+    public static void printTimerLabel(){
+        timeLabel.setText("<html><h2 style='float: right;'>Time: "+Integer.toString(gameboard.stopwatch.lvlTimer)+"<br> </h3></html>");
+        TopPanel.add(timeLabel);
     }
 
     public static Gameboard getGameboard()

@@ -25,6 +25,7 @@ public class Gameboard extends JPanel {
 
     public TimerHandler timerHandler = new TimerHandler(200, this);
     private KeyHandler keyHandler  = new KeyHandler(this.pacman);
+    public static Stopwatch stopwatch = new Stopwatch();
 
     private int amountOfFruits;
     private int startingAmountOfFruits;
@@ -100,10 +101,12 @@ public class Gameboard extends JPanel {
         if(!timerHandler.timer.isRunning())
         {
             timerHandler.timer.start();
+            stopwatch.startTimer();
         }
         else
         {
             timerHandler.timer.stop();
+            stopwatch.stopTimer();
         }
     }
 

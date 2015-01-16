@@ -9,10 +9,12 @@ import java.awt.event.*;
 public class KeyHandler implements KeyListener {
 
     private Pacman pacman;
+    private Gameboard gameboard;
 
-    public KeyHandler(Pacman pacman)
+    public KeyHandler(Pacman pacman, Gameboard gameboard)
     {
         this.pacman = pacman;
+        this.gameboard = gameboard;
     }
 
     @Override
@@ -33,12 +35,10 @@ public class KeyHandler implements KeyListener {
                 this.pacman.move(Direction.DOWN);
                 break;
             case KeyEvent.VK_Z:
-
-                PacmanFrame.getGameboard().start();
-
+                this.gameboard.start();
                 break;
             case KeyEvent.VK_X:
-                PacmanFrame.getGameboard().resetTheGame();
+                this.gameboard.resetTheGame();
                 break;
         }
 

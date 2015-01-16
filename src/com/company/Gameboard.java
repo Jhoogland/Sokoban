@@ -24,7 +24,7 @@ public class Gameboard extends JPanel {
     private SmartGhost smartGhost2 = new SmartGhost();
 
     public TimerHandler timerHandler = new TimerHandler(200, this);
-    private KeyHandler keyHandler  = new KeyHandler(this.pacman);
+    private KeyHandler keyHandler  = new KeyHandler(this.pacman, this);
     public static Stopwatch stopwatch = new Stopwatch();
 
     private int amountOfFruits;
@@ -90,6 +90,7 @@ public class Gameboard extends JPanel {
             this.pacman.setScore(0);
             this.pacman.setLife(3);
             this.pacman.setInvincible(false);
+            this.stopwatch.lvlTimer = 0;
 
             PacmanFrame.score.setText("<html><h2 style='float: right;'>Score: " + this.pacman.getScore() + "<br> </h3></html>");
             PacmanFrame.life.setText("<html><h2 style='float: right;'>Life: " + PacmanFrame.getGameboard().getPacman().getLife() + "<br> </h3></html>");

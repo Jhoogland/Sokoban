@@ -72,6 +72,25 @@ public class Gameboard extends JPanel {
         }
     }
 
+    protected void resetTheGame()
+    {
+        if(timerHandler.timer.isRunning())
+        {
+            resetPosition(this.pacman, this.grid[1][1]);
+            resetPosition(this.drunkGhost1, this.grid[8][15]);
+            resetPosition(this.drunkGhost2, this.grid[8][16]);
+            resetPosition(this.smartGhost1, this.grid[8][17]);
+            resetPosition(this.smartGhost2, this.grid[8][18]);
+
+            this.pacman.setScore(0);
+            this.pacman.setLife(3);
+            this.pacman.setInvincible(false);
+
+            PacmanFrame.score.setText("<html><h2 style='float: right;'>Score: " + this.pacman.getScore() + "<br> </h3></html>");
+            PacmanFrame.life.setText("<html><h2 style='float: right;'>Life: " + PacmanFrame.getGameboard().getPacman().getLife() + "<br> </h3></html>");
+        }
+    }
+
     protected void start()
     {
         if(!timerHandler.timer.isRunning())
@@ -239,7 +258,7 @@ public class Gameboard extends JPanel {
         else if(ge.equals(this.pacman))
         {
             g.setColor(Color.yellow);
-            g.fillArc(newCol, newRow, this.BOXSIZE, this.BOXSIZE, 90 / 2, 360 - 90);
+            g.fillArc(newCol, newRow, this.BOXSIZE, this.BOXSIZE, this.pacman.getMouthAngle() / 2, 360 - this.pacman.getMouthAngle());
         }
         else if(ge instanceof Fruit)
         {

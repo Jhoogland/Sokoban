@@ -195,7 +195,7 @@ public class Pacman extends Icon {
         return this.life;
     }
 
-    public void setLife()
+    public void setLife(int life)
     {
         this.life = life;
     }

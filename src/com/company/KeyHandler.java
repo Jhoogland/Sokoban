@@ -36,8 +36,7 @@ public class KeyHandler implements KeyListener {
                 PacmanFrame.getGameboard().start();
                 break;
             case KeyEvent.VK_X:
-                PacmanFrame.getGameboard().reset();
-                this.pacman.setScore(0);
+                PacmanFrame.getGameboard().resetTheGame();
                 break;
         }
 

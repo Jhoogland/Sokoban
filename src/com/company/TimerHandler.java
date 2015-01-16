@@ -25,6 +25,12 @@ public class TimerHandler implements ActionListener {
     {
         gameboard.getDrunkGhost1().moveRandom();
         gameboard.getDrunkGhost2().moveRandom();
+
+        if(gameboard.getPacman().getLife() == 0)
+        {
+            gameboard.resetTheGame();
+        }
+
         gameboard.repaint();
     }
 

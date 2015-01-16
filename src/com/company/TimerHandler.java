@@ -31,11 +31,18 @@ public class TimerHandler implements ActionListener {
             gameboard.resetTheGame();
         }
 
-        if(gameboard.getHalfAmountOfEatenFruits() == true)
+        if(gameboard.getHalfAmountOfEatenFruits())
         {
             gameboard.placeCherry();
             gameboard.setHalfAmountOfEatenFruits(false);
         }
+
+        if(gameboard.stopwatch.invincibleTimer == 10)
+        {
+            gameboard.getPacman().setInvincible(false);
+            gameboard.stopwatch.invincibleTimer = 0;
+        }
+
         gameboard.repaint();
     }
 

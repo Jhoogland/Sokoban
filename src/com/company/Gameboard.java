@@ -270,7 +270,7 @@ public class Gameboard extends JPanel {
         {
             if(ge instanceof SuperFruit)
             {
-                g.setColor(Color.red.brighter());
+                g.setColor(Color.green);
             }
             else if(ge instanceof Cherry)
             {

@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="534cffdd-4da8-482a-bd6c-73361abfd7ef" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Gameboard.java" afterPath="$PROJECT_DIR$/src/com/company/Gameboard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/KeyHandler.java" afterPath="$PROJECT_DIR$/src/com/company/KeyHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Pacman.java" afterPath="$PROJECT_DIR$/src/com/company/Pacman.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/TimerHandler.java" afterPath="$PROJECT_DIR$/src/com/company/TimerHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Pacman.iws" />
@@ -83,8 +80,8 @@
       <file leaf-file-name="Gameboard.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/Gameboard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.44854882" vertical-offset="1292" max-vertical-offset="5423">
-              <caret line="86" column="45" selection-start-line="86" selection-start-column="45" selection-end-line="86" selection-end-column="45" />
+            <state vertical-scroll-proportion="0.6279683" vertical-offset="4233" max-vertical-offset="5542">
+              <caret line="266" column="49" selection-start-line="266" selection-start-column="49" selection-end-line="266" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -478,7 +475,7 @@
       <workItem from="1421149564895" duration="9530000" />
       <workItem from="1421241425560" duration="12106000" />
       <workItem from="1421326768832" duration="3691000" />
-      <workItem from="1421398464331" duration="555000" />
+      <workItem from="1421398464331" duration="666000" />
     </task>
     <task id="LOCAL-00001" summary="dg">
       <created>1417185083178</created>
@@ -606,11 +603,17 @@
       <option name="project" value="LOCAL" />
       <updated>1421341607498</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Added resetTheGame() method">
+      <created>1421399045658</created>
+      <option name="number" value="00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1421399045658</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="129108000" />
+    <option name="totallyTimeSpent" value="129219000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="26" width="1374" height="746" extended-state="6" />
@@ -712,7 +715,8 @@
     <MESSAGE value="Addec cherry and superfruit class&#10;Added superfruit to the grid&#10;Added AmountOfFruits to place a cherry when more then half of the fruits are eaten (Needs some work)" />
     <MESSAGE value="cahnged GRIDSIZE to GRIDROW &amp; GRIDCOL alongside with the actual gridsize of the grid" />
     <MESSAGE value="Made the maze different" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made the maze different" />
+    <MESSAGE value="Added resetTheGame() method" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added resetTheGame() method" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1151,8 +1155,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Gameboard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44854882" vertical-offset="1292" max-vertical-offset="5423">
-          <caret line="86" column="45" selection-start-line="86" selection-start-column="45" selection-end-line="86" selection-end-column="45" />
+        <state vertical-scroll-proportion="0.6279683" vertical-offset="4233" max-vertical-offset="5542">
+          <caret line="266" column="49" selection-start-line="266" selection-start-column="49" selection-end-line="266" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

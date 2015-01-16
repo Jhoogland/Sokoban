@@ -39,7 +39,7 @@ public class Gameboard extends JPanel {
     // 8 = SuperFruit
     private int gridStructure[][] = {
             {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-            {1, 2, 8, 8, 7, 7, 7, 7, 7, 7, 1, 7, 7, 7, 7, 7, 7, 7, 8, 1},
+            {1, 2, 7, 8, 7, 7, 7, 7, 7, 7, 1, 7, 7, 7, 7, 7, 7, 7, 8, 1},
             {1, 7, 1, 1, 1, 7, 1, 1, 1, 7, 1, 7, 1, 1, 7, 1, 1, 1, 7, 1},
             {1, 7, 1, 1, 1, 7, 1, 1, 1, 7, 1, 7, 1, 1, 7, 1, 1, 1, 7, 1},
             {1, 7, 1, 1, 1, 7, 1, 1, 1, 7, 1, 7, 1, 1, 7, 1, 1, 1, 7, 1},
@@ -262,7 +262,14 @@ public class Gameboard extends JPanel {
         }
         else if(ge instanceof Fruit)
         {
-            g.setColor(Color.white);
+            if(ge instanceof SuperFruit)
+            {
+                g.setColor(Color.red.brighter());
+            }
+            else
+            {
+                g.setColor(Color.white);
+            }
 
             g.fillOval(newCol + 20, newRow + 20, this.BOXSIZE / 4, this.BOXSIZE / 4);
         }

@@ -40,7 +40,6 @@ public class KeyHandler implements KeyListener {
                 break;
         }
 
-
         PacmanFrame.score.setText("<html><h2 style='float: right;'>Score: " + this.pacman.getScore() + "<br> </h3></html>");
     }
 

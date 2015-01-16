@@ -13,8 +13,6 @@ public class Box {
 
     public Box(){}
 
-
-
     /* All these methods adds the neighbor of a Box into an HashMap; */
 
 

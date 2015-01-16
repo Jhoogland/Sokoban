@@ -8,6 +8,7 @@ import java.util.ArrayList;
  */
 public abstract class GameElement {
     private Box box;
+    private Box startPositie = null;
 
     public GameElement() { }
 
@@ -22,4 +23,6 @@ public abstract class GameElement {
     {
         this.box = box;
     }
+    public Box getStartPositie(){return  this.startPositie;}
+    public void setStartPositie(Box box){this.startPositie = box;}
 }

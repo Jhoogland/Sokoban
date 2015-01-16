@@ -3,6 +3,7 @@ package com.company;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by Sefa Yavuz on 17-12-2014.
@@ -26,6 +27,8 @@ public class Gameboard extends JPanel {
     private KeyHandler keyHandler  = new KeyHandler(this.pacman);
 
     private int amountOfFruits;
+    private int startingAmountOfFruits;
+    private boolean halfAmountOfEatenFruits = false;
 
     //2D Array that holds the structure
     // 0 = Nothing ( Pathway )
@@ -81,6 +84,7 @@ public class Gameboard extends JPanel {
             resetPosition(this.drunkGhost2, this.grid[8][16]);
             resetPosition(this.smartGhost1, this.grid[8][17]);
             resetPosition(this.smartGhost2, this.grid[8][18]);
+            this.resetFruits();
 
             this.pacman.setScore(0);
             this.pacman.setLife(3);
@@ -123,30 +127,35 @@ public class Gameboard extends JPanel {
                     this.grid[row][col] = new Box();
                     insertInitialElement(row, col, this.pacman);
                     this.pacman.setBox(this.grid[row][col]);
+                    this.pacman.setStartPositie(this.grid[row][col]);
                 }
                 else if(this.gridStructure[row][col] == 3) // DrunkGhost 1
                 {
                     this.grid[row][col] = new Box();
                     insertInitialElement(row, col, this.drunkGhost1);
                     this.drunkGhost1.setBox(this.grid[row][col]);
+                    this.drunkGhost1.setStartPositie(this.grid[row][col]);
                 }
                 else if(this.gridStructure[row][col] == 4) // DrunkGhost 2
                 {
                     this.grid[row][col] = new Box();
                     insertInitialElement(row, col, this.drunkGhost2);
                     this.drunkGhost2.setBox(this.grid[row][col]);
+                    this.drunkGhost2.setStartPositie(this.grid[row][col]);
                 }
                 else if(this.gridStructure[row][col] == 5) // SmartGhost 1
                 {
                     this.grid[row][col] = new Box();
                     insertInitialElement(row, col, this.smartGhost1);
                     this.smartGhost1.setBox(this.grid[row][col]);
+                    this.smartGhost1.setStartPositie(this.grid[row][col]);
                 }
                 else if(this.gridStructure[row][col] == 6) // SmartGhost 2
                 {
                     this.grid[row][col] = new Box();
                     insertInitialElement(row, col, this.smartGhost2);
                     this.smartGhost2.setBox(this.grid[row][col]);
+                    this.smartGhost2.setStartPositie(this.grid[row][col]);
                 }
                 else if(this.gridStructure[row][col] == 7) // Fruit
                 {
@@ -154,6 +163,7 @@ public class Gameboard extends JPanel {
                     insertInitialElement(row, col, new Fruit());
 
                     this.amountOfFruits++;
+                    this.startingAmountOfFruits++;
                 }
                 else if(this.gridStructure[row][col] == 8) // SuperFruit
                 {
@@ -161,6 +171,7 @@ public class Gameboard extends JPanel {
                     insertInitialElement(row, col, new SuperFruit());
 
                     this.amountOfFruits++;
+                    this.startingAmountOfFruits++;
                 }
             }
         }
@@ -244,16 +255,8 @@ public class Gameboard extends JPanel {
     {
         if(ge instanceof Wall)
         {
-           /* Graphics2D g2 = (Graphics2D) g;
-            Stroke oldStroke = g2.getStroke();
-            g2.setColor(Color.blue);
-            g2.setStroke(new BasicStroke(2));
-            g2.drawRect(newCol, newRow, this.BOXSIZE, this.BOXSIZE);
-            g2.setStroke(oldStroke); */
-
             g.setColor(Color.blue);
             g.fillRect(newCol, newRow, this.BOXSIZE, this.BOXSIZE);
-
         }
         else if(ge.equals(this.pacman))
         {
@@ -265,6 +268,10 @@ public class Gameboard extends JPanel {
             if(ge instanceof SuperFruit)
             {
                 g.setColor(Color.red.brighter());
+            }
+            else if(ge instanceof Cherry)
+            {
+                g.setColor(Color.red.darker());
             }
             else
             {
@@ -303,10 +310,68 @@ public class Gameboard extends JPanel {
             // Right eye of Ghost.
             g.fillOval(newCol + 30, newRow + 20, 5, 5);
         }
-
     }
 
-    private void resetPosition(Icon icon, Box grid)
+    private void resetFruits()
+    {
+        this.amountOfFruits = 0;
+        this.startingAmountOfFruits = 0;
+        for(int row = 0; row < this.GRIDROW; row++)
+        {
+            for(int col = 0; col < this.GRIDCOL; col++)
+            {
+                if(this.gridStructure[row][col] == 7) // Fruit
+                {
+                    this.grid[row][col].getGameElements().clear();
+                    insertInitialElement(row, col, new Fruit());
+
+                    this.amountOfFruits++;
+                    this.startingAmountOfFruits++;
+                }
+                else if(this.gridStructure[row][col] == 8) // SuperFruit
+                {
+                    this.grid[row][col].getGameElements().clear();
+                    insertInitialElement(row, col, new SuperFruit());
+
+                    this.amountOfFruits++;
+                    this.startingAmountOfFruits++;
+                }
+            }
+        }
+    }
+
+    public void placeCherry()
+    {
+        ArrayList<Box> boxes = this.findEmptyBoxes();
+
+        Random random = new Random();
+
+        Box cherryBox = boxes.get(random.nextInt(boxes.size()));
+
+        Cherry cherry = new Cherry(100);
+
+        cherry.setBox(cherryBox);
+        cherryBox.addGameElement(cherry);
+    }
+
+    private ArrayList<Box> findEmptyBoxes()
+    {
+        ArrayList<Box> emptyBoxes = new ArrayList<Box>();
+
+        for (int row = 0; row < this.GRIDROW; row++)
+        {
+            for (int col = 0; col < this.GRIDCOL; col++)
+            {
+                if(this.grid[row][col].getGameElements().size() == 0)
+                {
+                    emptyBoxes.add(this.grid[row][col]);
+                }
+            }
+        }
+        return emptyBoxes;
+    }
+
+    public void resetPosition(Icon icon, Box grid)
     {
         icon.getBox().removeGameElement(icon);
         icon.setBox(grid);
@@ -323,4 +388,8 @@ public class Gameboard extends JPanel {
 
     public int getAmountOfFruits() { return this.amountOfFruits; }
     public void setAmountOfFruits(int amountOfFruits) { this.amountOfFruits = amountOfFruits; }
+
+    public int getStartingAmountOfFruits() { return this.startingAmountOfFruits; }
+    public boolean getHalfAmountOfEatenFruits() { return this.halfAmountOfEatenFruits; }
+    public void setHalfAmountOfEatenFruits(boolean fruit) { this.halfAmountOfEatenFruits = fruit; }
 }

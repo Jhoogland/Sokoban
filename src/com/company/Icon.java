@@ -9,6 +9,7 @@ public abstract class Icon extends GameElement {
     private Box nextBox = null;
     public Icon(){}
 
+
     public void move(Direction direction) {}
 
     public void moveRandom() {}
@@ -38,4 +39,5 @@ public abstract class Icon extends GameElement {
     {
         return this.nextBox;
     }
+
 }

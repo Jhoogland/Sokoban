@@ -31,6 +31,11 @@ public class TimerHandler implements ActionListener {
             gameboard.resetTheGame();
         }
 
+        if(gameboard.getHalfAmountOfEatenFruits() == true)
+        {
+            gameboard.placeCherry();
+            gameboard.setHalfAmountOfEatenFruits(false);
+        }
         gameboard.repaint();
     }
 

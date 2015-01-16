@@ -9,9 +9,9 @@ import java.awt.event.ActionListener;
  * Created by Sefa on 14-1-2015.
  */
 public class TimerHandler implements ActionListener {
-    int delay;
-    Gameboard gameboard;
-    Timer timer;
+    private int delay;
+    public Gameboard gameboard;
+    public Timer timer;
 
     public TimerHandler(int delay, Gameboard gameboard)
     {

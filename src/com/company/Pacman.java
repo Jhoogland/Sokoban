@@ -127,6 +127,10 @@ public class Pacman extends Icon {
     {
         return this.score;
     }
+    public void setScore(int score)
+    {
+        this.score = score;
+    }
 
     public int getLife()
     {
@@ -141,11 +145,6 @@ public class Pacman extends Icon {
     public void loseLife()
     {
         life -= 1;
-    }
-
-    public void setScore(int score)
-    {
-        this.score = score;
     }
 
     public boolean getInvincible()

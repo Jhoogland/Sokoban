@@ -22,9 +22,13 @@ public class DrunkGhost extends Ghost {
         {
             if (nextBox.containsInstanceOf("Pacman")  && PacmanFrame.getGameboard().getPacman().getInvincible() == false)
             {
-                PacmanFrame.getGameboard().reset();
-                PacmanFrame.getGameboard().getPacman().loseLife();
+                PacmanFrame.getGameboard().resetEveryonesPosition();
+                PacmanFrame.getGameboard().getPacman().setLife(PacmanFrame.getGameboard().getPacman().getLife() - 1);
                 PacmanFrame.life.setText("<html><h2 style='float: right;'>Life: " + PacmanFrame.getGameboard().getPacman().getLife() + "<br> </h3></html>");
+            }
+            else if(nextBox.containsInstanceOf("Pacman") && PacmanFrame.getGameboard().getPacman().getInvincible())
+            {
+                //RESET GHOST POSITION
             }
             else
             {

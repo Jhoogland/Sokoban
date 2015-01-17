@@ -13,6 +13,11 @@ public class TimerHandler implements ActionListener {
     public Gameboard gameboard;
     public Timer timer;
 
+    private DrunkGhost drunkGhost1 = new DrunkGhost();
+    private DrunkGhost drunkGhost2 = new DrunkGhost();
+    private SmartGhost smartGhost1 = new SmartGhost();
+    private SmartGhost smartGhost2 = new SmartGhost();
+
     public TimerHandler(int delay, Gameboard gameboard)
     {
         this.delay = delay;
@@ -23,13 +28,8 @@ public class TimerHandler implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        gameboard.getDrunkGhost1().moveRandom();
-        gameboard.getDrunkGhost2().moveRandom();
-
-        if(gameboard.getPacman().getLife() == 0)
-        {
-            gameboard.resetTheGame();
-        }
+        drunkGhost1.moveRandom();
+        drunkGhost2.moveRandom();
 
         if(gameboard.getHalfAmountOfEatenFruits())
         {
@@ -44,6 +44,30 @@ public class TimerHandler implements ActionListener {
         }
 
         gameboard.repaint();
+    }
+
+    public Ghost getGhost(String ghost)
+    {
+        Ghost returnGhost = null;
+
+        if(ghost.equals("DrunkGhost1"))
+        {
+            returnGhost = this.drunkGhost1;
+        }
+        else if(ghost.equals("DrunkGhost2"))
+        {
+            returnGhost = this.drunkGhost2;
+        }
+        else if(ghost.equals("SmartGhost1"))
+        {
+            returnGhost = this.smartGhost1;
+        }
+        else if(ghost.equals("SmartGhost2"))
+        {
+            returnGhost = this.smartGhost2;
+        }
+
+        return returnGhost;
     }
 
 }

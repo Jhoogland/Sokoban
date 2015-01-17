@@ -17,14 +17,10 @@ public class Gameboard extends JPanel {
     private final int GRIDCOL      = 20;
     private Box grid[][]           = new Box[this.GRIDROW][this.GRIDCOL]; // 2D Array thats holds all Boxes
 
-    private Pacman pacman          = new Pacman();
-    private DrunkGhost drunkGhost1 = new DrunkGhost();
-    private DrunkGhost drunkGhost2 = new DrunkGhost();
-    private SmartGhost smartGhost1 = new SmartGhost();
-    private SmartGhost smartGhost2 = new SmartGhost();
+    private Pacman pacman        = new Pacman();
 
     public TimerHandler timerHandler = new TimerHandler(200, this);
-    private KeyHandler keyHandler  = new KeyHandler(this.pacman, this);
+    private KeyHandler keyHandler  = new KeyHandler(this);
     public static Stopwatch stopwatch = new Stopwatch();
 
     private int amountOfFruits;
@@ -62,15 +58,15 @@ public class Gameboard extends JPanel {
         System.out.println(grid[1][2].getGameElements().toString());
     }
 
-    protected void reset()
+    protected void resetEveryonesPosition()
     {
         if(timerHandler.timer.isRunning())
         {
-            resetPosition(this.pacman, this.grid[1][1]);
-            resetPosition(this.drunkGhost1, this.grid[8][15]);
-            resetPosition(this.drunkGhost2, this.grid[8][16]);
-            resetPosition(this.smartGhost1, this.grid[8][17]);
-            resetPosition(this.smartGhost2, this.grid[8][18]);
+            resetPosition(this.keyHandler.getPacman(), this.grid[1][1]);
+            resetPosition(this.timerHandler.getGhost("DrunkGhost1"), this.grid[8][15]);
+            resetPosition(this.timerHandler.getGhost("DrunkGhost2"), this.grid[8][16]);
+            resetPosition(this.timerHandler.getGhost("SmartGhost1"), this.grid[8][17]);
+            resetPosition(this.timerHandler.getGhost("SmartGhost2"), this.grid[8][18]);
 
             repaint();
         }
@@ -80,19 +76,19 @@ public class Gameboard extends JPanel {
     {
         if(timerHandler.timer.isRunning())
         {
-            resetPosition(this.pacman, this.grid[1][1]);
-            resetPosition(this.drunkGhost1, this.grid[8][15]);
-            resetPosition(this.drunkGhost2, this.grid[8][16]);
-            resetPosition(this.smartGhost1, this.grid[8][17]);
-            resetPosition(this.smartGhost2, this.grid[8][18]);
+            resetPosition(this.keyHandler.getPacman(), this.grid[1][1]);
+            resetPosition(this.timerHandler.getGhost("DrunkGhost1"), this.grid[8][15]);
+            resetPosition(this.timerHandler.getGhost("DrunkGhost2"), this.grid[8][16]);
+            resetPosition(this.timerHandler.getGhost("SmartGhost1"), this.grid[8][17]);
+            resetPosition(this.timerHandler.getGhost("SmartGhost2"), this.grid[8][18]);
             this.resetFruits();
 
-            this.pacman.setScore(0);
-            this.pacman.setLife(3);
-            this.pacman.setInvincible(false);
+            this.keyHandler.getPacman().setScore(0);
+            this.keyHandler.getPacman().setLife(3);
+            this.keyHandler.getPacman().setInvincible(false);
             this.stopwatch.lvlTimer = 0;
 
-            PacmanFrame.score.setText("<html><h2 style='float: right;'>Score: " + this.pacman.getScore() + "<br> </h3></html>");
+            PacmanFrame.score.setText("<html><h2 style='float: right;'>Score: " + this.keyHandler.getPacman().getScore() + "<br> </h3></html>");
             PacmanFrame.life.setText("<html><h2 style='float: right;'>Life: " + PacmanFrame.getGameboard().getPacman().getLife() + "<br> </h3></html>");
         }
     }
@@ -129,37 +125,37 @@ public class Gameboard extends JPanel {
                 else if(this.gridStructure[row][col] == 2) // Pacman
                 {
                     this.grid[row][col] = new Box();
-                    insertInitialElement(row, col, this.pacman);
-                    this.pacman.setBox(this.grid[row][col]);
-                    this.pacman.setStartPositie(this.grid[row][col]);
+                    insertInitialElement(row, col, this.keyHandler.getPacman());
+                    this.keyHandler.getPacman().setBox(this.grid[row][col]);
+                    this.keyHandler.getPacman().setStartPositie(this.grid[row][col]);
                 }
                 else if(this.gridStructure[row][col] == 3) // DrunkGhost 1
                 {
                     this.grid[row][col] = new Box();
-                    insertInitialElement(row, col, this.drunkGhost1);
-                    this.drunkGhost1.setBox(this.grid[row][col]);
-                    this.drunkGhost1.setStartPositie(this.grid[row][col]);
+                    insertInitialElement(row, col, this.timerHandler.getGhost("DrunkGhost1"));
+                    this.timerHandler.getGhost("DrunkGhost1").setBox(this.grid[row][col]);
+                    this.timerHandler.getGhost("DrunkGhost1").setStartPositie(this.grid[row][col]);
                 }
                 else if(this.gridStructure[row][col] == 4) // DrunkGhost 2
                 {
                     this.grid[row][col] = new Box();
-                    insertInitialElement(row, col, this.drunkGhost2);
-                    this.drunkGhost2.setBox(this.grid[row][col]);
-                    this.drunkGhost2.setStartPositie(this.grid[row][col]);
+                    insertInitialElement(row, col, this.timerHandler.getGhost("DrunkGhost2"));
+                    this.timerHandler.getGhost("DrunkGhost2").setBox(this.grid[row][col]);
+                    this.timerHandler.getGhost("DrunkGhost2").setStartPositie(this.grid[row][col]);
                 }
                 else if(this.gridStructure[row][col] == 5) // SmartGhost 1
                 {
                     this.grid[row][col] = new Box();
-                    insertInitialElement(row, col, this.smartGhost1);
-                    this.smartGhost1.setBox(this.grid[row][col]);
-                    this.smartGhost1.setStartPositie(this.grid[row][col]);
+                    insertInitialElement(row, col, this.timerHandler.getGhost("SmartGhost1"));
+                    this.timerHandler.getGhost("SmartGhost1").setBox(this.grid[row][col]);
+                    this.timerHandler.getGhost("SmartGhost1").setStartPositie(this.grid[row][col]);
                 }
                 else if(this.gridStructure[row][col] == 6) // SmartGhost 2
                 {
                     this.grid[row][col] = new Box();
-                    insertInitialElement(row, col, this.smartGhost2);
-                    this.smartGhost2.setBox(this.grid[row][col]);
-                    this.smartGhost2.setStartPositie(this.grid[row][col]);
+                    insertInitialElement(row, col, this.timerHandler.getGhost("SmartGhost2"));
+                    this.timerHandler.getGhost("SmartGhost2").setBox(this.grid[row][col]);
+                    this.timerHandler.getGhost("SmartGhost2").setStartPositie(this.grid[row][col]);
                 }
                 else if(this.gridStructure[row][col] == 7) // Fruit
                 {
@@ -262,10 +258,10 @@ public class Gameboard extends JPanel {
             g.setColor(Color.blue);
             g.fillRect(newCol, newRow, this.BOXSIZE, this.BOXSIZE);
         }
-        else if(ge.equals(this.pacman))
+        else if(ge.equals(this.keyHandler.getPacman()))
         {
             g.setColor(Color.yellow);
-            g.fillArc(newCol, newRow, this.BOXSIZE, this.BOXSIZE, this.pacman.getMouthAngle() / 2, 360 - this.pacman.getMouthAngle());
+            g.fillArc(newCol, newRow, this.BOXSIZE, this.BOXSIZE, this.keyHandler.getPacman().getMouthAngle() / 2, 360 - this.keyHandler.getPacman().getMouthAngle());
         }
         else if(ge instanceof Fruit)
         {
@@ -286,19 +282,19 @@ public class Gameboard extends JPanel {
         }
         else if(ge instanceof Ghost)
         {
-            if(ge.equals(this.drunkGhost1))
+            if(ge.equals(this.timerHandler.getGhost("DrunkGhost1")))
             {
                 g.setColor(Color.RED);
             }
-            else if(ge.equals(this.drunkGhost2))
+            else if(ge.equals(this.timerHandler.getGhost("DrunkGhost2")))
             {
                 g.setColor(Color.ORANGE);
             }
-            else if(ge.equals(this.smartGhost1))
+            else if(ge.equals(this.timerHandler.getGhost("SmartGhost1")))
             {
                 g.setColor(Color.CYAN);
             }
-            else if(ge.equals(this.smartGhost2))
+            else if(ge.equals(this.timerHandler.getGhost("SmartGhost2")))
             {
                 g.setColor(Color.PINK);
             }
@@ -384,12 +380,8 @@ public class Gameboard extends JPanel {
 
     public Pacman getPacman()
     {
-        return this.pacman;
+        return this.keyHandler.getPacman();
     }
-
-    public Ghost getDrunkGhost1() { return this.drunkGhost1; }
-    public Ghost getDrunkGhost2() { return this.drunkGhost2; }
-
     public int getAmountOfFruits() { return this.amountOfFruits; }
     public void setAmountOfFruits(int amountOfFruits) { this.amountOfFruits = amountOfFruits; }
 

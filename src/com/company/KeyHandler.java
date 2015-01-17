@@ -8,12 +8,11 @@ import java.awt.event.*;
  */
 public class KeyHandler implements KeyListener {
 
-    private Pacman pacman;
+    private Pacman pacman = new Pacman();
     private Gameboard gameboard;
 
-    public KeyHandler(Pacman pacman, Gameboard gameboard)
+    public KeyHandler(Gameboard gameboard)
     {
-        this.pacman = pacman;
         this.gameboard = gameboard;
     }
 
@@ -42,7 +41,17 @@ public class KeyHandler implements KeyListener {
                 break;
         }
 
+        if(this.pacman.getLife() == 0)
+        {
+            gameboard.resetTheGame();
+        }
+
         PacmanFrame.score.setText("<html><h2 style='float: right;'>Score: " + this.pacman.getScore() + "<br> </h3></html>");
+    }
+
+    public Pacman getPacman()
+    {
+        return this.pacman;
     }
 
     public void keyReleased(KeyEvent e) { }

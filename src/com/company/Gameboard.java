@@ -96,11 +96,13 @@ public class Gameboard extends JPanel {
         {
             timerHandler.timer.start();
             stopwatch.startTimer();
+            keyHandler.getPacman().setActive(true);
         }
         else
         {
             timerHandler.timer.stop();
             stopwatch.stopTimer();
+            keyHandler.getPacman().setActive(false);
         }
     }
 

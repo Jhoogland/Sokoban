@@ -9,10 +9,11 @@ public class Pacman extends Icon {
     private int score              = 0;
     private int life               = 3;
     private boolean isInvincible   = false;
+    private boolean isActive       = false;
 
     public void move(Direction direction)
     {
-        if(PacmanFrame.getGameboard().timerHandler.timer.isRunning())
+        if(this.isActive)
         {
             Box nextNeighbor = this.setNextBox(direction);
 
@@ -23,7 +24,7 @@ public class Pacman extends Icon {
                     this.setPacmanPosition();
                     this.eatFruits(nextNeighbor);
                 }
-                else if(nextNeighbor.containsInstanceOf("Ghost") && this.isInvincible == true)
+                else if(nextNeighbor.containsInstanceOf("Ghost") && this.isInvincible)
                 {
                     ArrayList<GameElement> neighborElements = nextNeighbor.getGameElements();
                     this.setPacmanPosition();
@@ -86,6 +87,8 @@ public class Pacman extends Icon {
         this.getNextBox().addGameElement(this);
     }
 
+
+
     private void collide()
     {
         PacmanFrame.getGameboard().resetEveryonesPosition();
@@ -119,5 +122,7 @@ public class Pacman extends Icon {
     {
         this.isInvincible = isInvincible;
     }
+
+    public void setActive(boolean active) { this.isActive = active; }
 
 }

@@ -26,26 +26,9 @@ public class Pacman extends Icon {
                 }
                 else if(nextNeighbor.containsInstanceOf("Ghost") && this.isInvincible)
                 {
-                    ArrayList<GameElement> neighborElements = nextNeighbor.getGameElements();
                     this.setPacmanPosition();
-                    this.score += 200;
-                    Ghost ghost;
-
                     this.eatFruits(nextNeighbor);
-
-                    if(nextNeighbor.getGameElements().size() == 1)
-                    {
-                        ghost = (Ghost)neighborElements.get(0);
-                        nextNeighbor.removeGameElement(ghost);
-                    }
-                    else
-                    {
-                        for(GameElement ge : neighborElements)
-                        {
-                            nextNeighbor.removeGameElement(ge);
-                            ge.setBox(ge.getStartPosition());
-                        }
-                    }
+                    this.eatGhosts(nextNeighbor);
                 }
                 else
                 {
@@ -55,7 +38,29 @@ public class Pacman extends Icon {
         }
     }
 
-    public void eatFruits(Box nextNeighbor)
+    private void eatGhosts(Box nextNeighbor)
+    {
+        ArrayList<GameElement> neighborElements = nextNeighbor.getGameElements();
+        this.score += 200;
+
+        Ghost ghost;
+
+        if(nextNeighbor.getGameElements().size() == 1)
+        {
+            ghost = (Ghost)neighborElements.get(0);
+            nextNeighbor.removeGameElement(ghost);
+        }
+        else
+        {
+            for(GameElement ge : neighborElements)
+            {
+                nextNeighbor.removeGameElement(ge);
+                ge.setBox(ge.getStartPosition());
+            }
+        }
+    }
+
+    private void eatFruits(Box nextNeighbor)
     {
         ArrayList<GameElement> neighborElements = nextNeighbor.getGameElements();
         Fruit fruit;

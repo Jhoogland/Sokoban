@@ -1,14 +1,11 @@
 package com.company;
 
-import java.awt.*;
-import java.util.ArrayList;
-
 /**
  * Created by Sefa Yavuz on 17-12-2014.
  */
 public abstract class GameElement {
     private Box box;
-    private Box startPositie = null;
+    private Box startPosition = null;
 
     public GameElement() { }
 
@@ -23,6 +20,6 @@ public abstract class GameElement {
     {
         this.box = box;
     }
-    public Box getStartPositie(){return  this.startPositie;}
-    public void setStartPositie(Box box){this.startPositie = box;}
+    public Box getStartPosition(){return  this.startPosition;}
+    public void setStartPosition(Box box){this.startPosition = box;}
 }

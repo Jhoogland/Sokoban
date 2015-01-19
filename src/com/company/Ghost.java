@@ -5,7 +5,7 @@ package com.company;
  */
 public abstract class Ghost extends Icon {
 
-    public Ghost() { }
+    public abstract void move();
 
     protected void setGhostPosition(Box nextBox)
     {
@@ -13,7 +13,5 @@ public abstract class Ghost extends Icon {
         this.setBox(nextBox);
         nextBox.addGameElement(this);
     }
-
-    public void moveRandom() { }
 
 }

@@ -1,6 +1,5 @@
 package com.company;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -9,9 +8,8 @@ import java.util.Random;
  */
 public class DrunkGhost extends Ghost {
 
-    public DrunkGhost() { }
-
-    public void moveRandom()
+    @Override
+    public void move()
     {
         HashMap<String, Box> neighbors  = this.getBox().getNeighbors();
         Random generator                = new Random();

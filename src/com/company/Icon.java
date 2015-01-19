@@ -7,14 +7,8 @@ import java.util.ArrayList;
  */
 public abstract class Icon extends GameElement {
     private Box nextBox = null;
-    public Icon(){}
 
-
-    public void move(Direction direction) {}
-
-    public void moveRandom() {}
-
-    public Box checkNeighbor(Direction direction)
+    public Box setNextBox(Direction direction)
     {
         switch (direction)
         {

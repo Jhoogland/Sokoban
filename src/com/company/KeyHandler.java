@@ -34,7 +34,7 @@ public class KeyHandler implements KeyListener {
                 this.pacman.move(Direction.DOWN);
                 break;
             case KeyEvent.VK_Z:
-                this.gameboard.start();
+                this.gameboard.startPause();
                 break;
             case KeyEvent.VK_X:
                 this.gameboard.resetTheGame();
@@ -44,6 +44,12 @@ public class KeyHandler implements KeyListener {
         if(this.pacman.getLife() == 0)
         {
             gameboard.resetTheGame();
+        }
+
+        if(gameboard.getHalfAmountOfEatenFruits())
+        {
+            gameboard.placeCherry();
+            gameboard.setHalfAmountOfEatenFruits(false);
         }
 
         PacmanFrame.score.setText("<html><h2 style='float: right;'>Score: " + this.pacman.getScore() + "<br> </h3></html>");

@@ -9,14 +9,9 @@ import java.util.TimerTask;
  */
 public class Stopwatch {
 
-    public int  lvlTimer = 0;
+    public int lvlTimer = 0;
     public int invincibleTimer = 0;
     public Timer timer;
-
-
-    public Stopwatch(){
-
-    }
 
     public void startTimer()
     {
@@ -24,7 +19,7 @@ public class Stopwatch {
             @Override
             public void run() {
                 lvlTimer +=1;
-                PacmanFrame.printTimerLabel();
+                PacmanFrame.time.setText("<html><h2 style='float: right;'>Time: " + lvlTimer + " <br> </h3></html>");
 
                 if(PacmanFrame.getGameboard().getPacman().getInvincible())
                 {

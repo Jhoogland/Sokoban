@@ -20,22 +20,16 @@ public class TimerHandler implements ActionListener {
 
     public TimerHandler(int delay, Gameboard gameboard)
     {
-        this.delay = delay;
-        this.gameboard = gameboard;
-        this.timer = new Timer(delay, this);
+        this.delay      = delay;
+        this.gameboard  = gameboard;
+        this.timer      = new Timer(delay, this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        drunkGhost1.moveRandom();
-        drunkGhost2.moveRandom();
-
-        if(gameboard.getHalfAmountOfEatenFruits())
-        {
-            gameboard.placeCherry();
-            gameboard.setHalfAmountOfEatenFruits(false);
-        }
+        drunkGhost1.move();
+        drunkGhost2.move();
 
         if(gameboard.stopwatch.invincibleTimer == 10)
         {

@@ -14,11 +14,9 @@ public class PacmanFrame extends JFrame {
     public static JFrame frame          = new JFrame("Pacman");
     public static JPanel TopPanel       = new JPanel();
     private static Gameboard gameboard  = new Gameboard();
-    public static JLabel  score         = new JLabel("<html><h2 style='float: right;'>Score: " + gameboard.getPacman().getScore() + "<br> </h3></html>");
-    public static JLabel life           = new JLabel("<html><h2 style='float: right;'>Life: " + gameboard.getPacman().getLife() + "<br> </h3></html>");
-
-    ////////////////////////////////////////////////-----------------------------------------------//////////////////////////////////////////////////
-    public static JLabel timeLabel = new JLabel("<html><h2 style='float: right;'>Time:00 <br> </h3></html>");
+    public static JLabel score          = new JLabel("<html><h2 style='float: right;'>Score: 0<br> </h3></html>");
+    public static JLabel life           = new JLabel("<html><h2 style='float: right;'>Life: 3<br> </h3></html>");
+    public static JLabel time           = new JLabel("<html><h2 style='float: right;'>Time: 0 <br> </h3></html>");
 
     public void drawFrame()
     {
@@ -39,12 +37,11 @@ public class PacmanFrame extends JFrame {
     private void addStructure()
     {
         this.TopPanel.setPreferredSize(new Dimension(this.WIDTH, 100));
-        this.TopPanel.setLayout(new GridLayout(0, 3));
+        this.TopPanel.setLayout(new GridLayout(0, 4));
 
         this.gameboard.setPreferredSize(new Dimension(this.WIDTH, 800));
         this.gameboard.setLayout(new BorderLayout());
-        this.gameboard.setBackground(
-                Color.gray);
+        this.gameboard.setBackground(Color.gray);
 
         this.frame.add(TopPanel, BorderLayout.NORTH);
         this.frame.add(gameboard, BorderLayout.CENTER);
@@ -62,15 +59,9 @@ public class PacmanFrame extends JFrame {
                         "</div>" +
                         "</html>"));
 
-
         this.TopPanel.add(this.score);
         this.TopPanel.add(this.life);
-        this.TopPanel.add(timeLabel);
-    }
-
-    public static void printTimerLabel(){
-        timeLabel.setText("<html><h2 style='float: right;'>Time: "+Integer.toString(gameboard.stopwatch.lvlTimer)+"<br> </h3></html>");
-        TopPanel.add(timeLabel);
+        this.TopPanel.add(this.time);
     }
 
     public static Gameboard getGameboard()

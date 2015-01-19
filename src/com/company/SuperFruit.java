@@ -5,5 +5,4 @@ package com.company;
  */
 public class SuperFruit extends Fruit {
 
-
 }

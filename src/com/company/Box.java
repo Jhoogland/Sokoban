@@ -8,13 +8,9 @@ import java.util.*;
 public class Box {
 
     private ArrayList<GameElement> gameElements = new ArrayList<GameElement>();
-    private HashMap<String, Box> neighbors = new HashMap<String, Box>();
-
-    public Box(){}
+    private HashMap<String, Box> neighbors      = new HashMap<String, Box>();
 
     /* All these methods adds the neighbor of a Box into an HashMap; */
-
-
     public void addNeighbor(String neighbor, Box box)
     {
         if(neighbor.equals("Top"))
@@ -43,7 +39,6 @@ public class Box {
     }
 
     public HashMap<String, Box> getNeighbors(){return neighbors;}
-
 
     public boolean containsInstanceOf(String element)
     {
@@ -98,6 +93,6 @@ public class Box {
     }
 
     public void addGameElement(GameElement gameElement) { this.gameElements.add(gameElement); }
-    public void removeGameElement(GameElement gameElement){gameElements.remove(gameElement);}
+    public void removeGameElement(GameElement gameElement){ this.gameElements.remove(gameElement);}
     public ArrayList<GameElement> getGameElements() { return this.gameElements; }
 }

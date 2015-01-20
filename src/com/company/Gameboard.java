@@ -53,6 +53,8 @@ public class Gameboard extends JPanel {
         PacmanFrame.frame.addKeyListener(keyHandler);
         createEverything();
         setNeighbors();
+        System.out.println(grid[5][5].getAccessibleNeighbors().toString());
+
     }
 
     protected void resetEveryonesPosition()
@@ -192,22 +194,43 @@ public class Gameboard extends JPanel {
                 if (upRow >= 0)
                 {
                     grid[row][col].addNeighbor("Top", grid[upRow][col]);
+                    if(!grid[upRow][col].containsInstanceOf("Wall"))
+                    {
+                        grid[row][col].addAccessibleNeighbor("Top", grid[upRow][col]);
+                    }
+
                 }
                 if (downRow <= (this.GRIDROW -1))
                 {
                     grid[row][col].addNeighbor("Bottom", grid[downRow][col]);
+                    if(!grid[downRow][col].containsInstanceOf("Wall"))
+                    {
+                        grid[row][col].addAccessibleNeighbor("Bottom", grid[downRow][col]);
+                    }
                 }
                 if(leftCol >=0 )
                 {
                     grid[row][col].addNeighbor("Left", grid[row][leftCol]);
+                    if(!grid[row][leftCol].containsInstanceOf("Wall"))
+                    {
+                        grid[row][col].addAccessibleNeighbor("Left", grid[row][leftCol]);
+                    }
                 }
                 if (rightCol <= (this.GRIDCOL - 1))
                 {
                     grid[row][col].addNeighbor("Right", grid[row][rightCol]);
+                    if(!grid[row][rightCol].containsInstanceOf("Wall"))
+                    {
+                        grid[row][col].addAccessibleNeighbor("Right", grid[row][rightCol]);
+                    }
                 }
             }
         }
     }
+
+
+
+
 
     @Override
     public void paintComponent(Graphics g)

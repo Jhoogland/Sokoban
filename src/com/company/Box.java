@@ -9,6 +9,8 @@ public class Box {
 
     private ArrayList<GameElement> gameElements = new ArrayList<GameElement>();
     private HashMap<String, Box> neighbors      = new HashMap<String, Box>();
+    private HashMap<String, Box> accessibleNeighbors = new HashMap<String, Box>();
+
 
     /* All these methods adds the neighbor of a Box into an HashMap; */
     public void addNeighbor(String neighbor, Box box)
@@ -31,6 +33,28 @@ public class Box {
         }
     }
 
+    public void addAccessibleNeighbor(String neighbor, Box box)
+    {
+        if(neighbor.equals("Top"))
+        {
+            this.accessibleNeighbors.put(neighbor, box);
+        }
+        else if(neighbor.equals("Bottom"))
+        {
+            this.accessibleNeighbors.put(neighbor, box);
+        }
+        else if(neighbor.equals("Left"))
+        {
+            this.accessibleNeighbors.put(neighbor, box);
+        }
+        else if(neighbor.equals("Right"))
+        {
+            this.accessibleNeighbors.put(neighbor, box);
+        }
+    }
+
+
+
     /*  Getters & Setters */
 
     public Box getNeighbor(String key)
@@ -39,6 +63,7 @@ public class Box {
     }
 
     public HashMap<String, Box> getNeighbors(){return neighbors;}
+    public HashMap<String, Box> getAccessibleNeighbors(){return accessibleNeighbors;}
 
     public boolean containsInstanceOf(String element)
     {

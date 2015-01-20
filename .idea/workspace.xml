@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="534cffdd-4da8-482a-bd6c-73361abfd7ef" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/DrunkGhost.java" afterPath="$PROJECT_DIR$/src/com/company/DrunkGhost.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Gameboard.java" afterPath="$PROJECT_DIR$/src/com/company/Gameboard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Ghost.java" afterPath="$PROJECT_DIR$/src/com/company/Ghost.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Pacman.iws" />
@@ -98,11 +96,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Gameboard.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Gameboard.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/Gameboard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.044270832" vertical-offset="2550" max-vertical-offset="6953">
-              <caret line="151" column="21" selection-start-line="151" selection-start-column="21" selection-end-line="151" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2533" max-vertical-offset="6953">
+              <caret line="150" column="21" selection-start-line="150" selection-start-column="21" selection-end-line="150" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -122,11 +120,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DrunkGhost.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DrunkGhost.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/DrunkGhost.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="385" max-vertical-offset="850">
-              <caret line="37" column="52" selection-start-line="37" selection-start-column="52" selection-end-line="37" selection-end-column="52" />
+            <state vertical-scroll-proportion="0.6574307" vertical-offset="300" max-vertical-offset="850">
+              <caret line="33" column="38" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -172,8 +170,8 @@
         <option value="$PROJECT_DIR$/src/com/company/SmartGhost.java" />
         <option value="$PROJECT_DIR$/src/com/company/Box.java" />
         <option value="$PROJECT_DIR$/src/com/company/Ghost.java" />
-        <option value="$PROJECT_DIR$/src/com/company/DrunkGhost.java" />
         <option value="$PROJECT_DIR$/src/com/company/Gameboard.java" />
+        <option value="$PROJECT_DIR$/src/com/company/DrunkGhost.java" />
       </list>
     </option>
   </component>
@@ -565,7 +563,7 @@
       <workItem from="1421410515910" duration="5320000" />
       <workItem from="1421658577445" duration="9491000" />
       <workItem from="1421745006648" duration="2820000" />
-      <workItem from="1421750530568" duration="852000" />
+      <workItem from="1421750530568" duration="968000" />
     </task>
     <task id="LOCAL-00001" summary="dg">
       <created>1417185083178</created>
@@ -735,11 +733,17 @@
       <option name="project" value="LOCAL" />
       <updated>1421689932605</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="fixed broken ghosts movement">
+      <created>1421751400512</created>
+      <option name="number" value="00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1421751400512</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="157333000" />
+    <option name="totallyTimeSpent" value="157449000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="26" width="1374" height="746" extended-state="6" />
@@ -818,7 +822,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Added KeyEvent, KeyHandler and Richting class" />
     <MESSAGE value="Added ability to handle pressed keys" />
     <MESSAGE value="Refactored code" />
     <MESSAGE value="Added the ability to start the game through a button" />
@@ -843,7 +846,8 @@
     <MESSAGE value="removed gameElement variable from Box" />
     <MESSAGE value="refacotred code" />
     <MESSAGE value="made the variable iActive in pacman" />
-    <option name="LAST_COMMIT_MESSAGE" value="made the variable iActive in pacman" />
+    <MESSAGE value="fixed broken ghosts movement" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed broken ghosts movement" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1312,20 +1316,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/DrunkGhost.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/Gameboard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="385" max-vertical-offset="850">
-          <caret line="37" column="52" selection-start-line="37" selection-start-column="52" selection-end-line="37" selection-end-column="52" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2533" max-vertical-offset="6953">
+          <caret line="150" column="21" selection-start-line="150" selection-start-column="21" selection-end-line="150" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Gameboard.java">
+    <entry file="file://$PROJECT_DIR$/src/com/company/DrunkGhost.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.044270832" vertical-offset="2550" max-vertical-offset="6953">
-          <caret line="151" column="21" selection-start-line="151" selection-start-column="21" selection-end-line="151" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.6574307" vertical-offset="300" max-vertical-offset="850">
+          <caret line="33" column="38" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

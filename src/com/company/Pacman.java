@@ -41,7 +41,6 @@ public class Pacman extends Icon {
     private void eatGhosts(Box nextNeighbor)
     {
         ArrayList<GameElement> neighborElements = nextNeighbor.getGameElements();
-        this.score += 200;
 
         Ghost ghost;
 
@@ -58,6 +57,8 @@ public class Pacman extends Icon {
                 ge.setBox(ge.getStartPosition());
             }
         }
+
+        this.score += 200;
     }
 
     private void eatFruits(Box nextNeighbor)
@@ -92,13 +93,11 @@ public class Pacman extends Icon {
         this.getNextBox().addGameElement(this);
     }
 
-
-
     private void collide()
     {
         PacmanFrame.getGameboard().resetEveryonesPosition();
-        this.life -= 1;
-        PacmanFrame.life.setText("<html><h2 style='float: right;'>Life: " + this.getLife() + "<br> </h3></html>");
+        this.setLife(this.life -= 1);
+        //PacmanFrame.life.setText("<html><h2 style='float: right;'>Life: " + this.getLife() + "<br> </h3></html>");
     }
 
     public int getScore()
@@ -117,6 +116,7 @@ public class Pacman extends Icon {
     public void setLife(int life)
     {
         this.life = life;
+        PacmanFrame.life.setText("<html><h2 style='float: right;'>Life: " + this.getLife() + "<br> </h3></html>");
     }
 
     public boolean getInvincible()

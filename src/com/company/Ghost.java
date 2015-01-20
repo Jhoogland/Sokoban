@@ -14,4 +14,8 @@ public abstract class Ghost extends Icon {
         nextBox.addGameElement(this);
     }
 
+    public Pacman getPacman()
+    {
+        return PacmanFrame.getGameboard().getPacman();
+    }
 }

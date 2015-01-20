@@ -370,7 +370,7 @@ public class Gameboard extends JPanel {
         return emptyBoxes;
     }
 
-    private void resetPosition(Icon icon, Box grid)
+    protected void resetPosition(Icon icon, Box grid)
     {
         icon.getBox().removeGameElement(icon);
         icon.setBox(grid);

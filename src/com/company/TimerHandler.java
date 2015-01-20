@@ -20,9 +20,9 @@ public class TimerHandler implements ActionListener {
 
     public TimerHandler(int delay, Gameboard gameboard)
     {
-        this.delay      = delay;
-        this.gameboard  = gameboard;
-        this.timer      = new Timer(delay, this);
+        this.delay       = delay;
+        this.gameboard   = gameboard;
+        this.timer       = new Timer(delay, this);
     }
 
     @Override

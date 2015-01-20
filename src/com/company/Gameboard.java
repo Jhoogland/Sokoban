@@ -228,10 +228,6 @@ public class Gameboard extends JPanel {
         }
     }
 
-
-
-
-
     @Override
     public void paintComponent(Graphics g)
     {

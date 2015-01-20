@@ -13,35 +13,31 @@ public class DrunkGhost extends Ghost {
     {
         Box nextBox = this.getRandomBox();
 
-        if(!(nextBox.containsInstanceOf("Wall")))
+        if(nextBox.containsInstanceOf("Pacman"))
         {
-            if (nextBox.containsInstanceOf("Pacman"))
+            if(this.getPacman().getInvincible())
             {
-                if(this.getPacman().getInvincible())
-                {
-                    PacmanFrame.getGameboard().resetPosition(this, this.getStartPosition());
-                }
-                else
-                {
-                    PacmanFrame.getGameboard().resetPosition(this.getPacman(), this.getPacman().getStartPosition());
-                    this.getPacman().setLife(this.getPacman().getLife() - 1);
-                }
+                PacmanFrame.getGameboard().resetPosition(this, this.getStartPosition());
             }
             else
             {
-                this.setGhostPosition(nextBox);
+                PacmanFrame.getGameboard().resetPosition(this.getPacman(), this.getPacman().getStartPosition());
+                this.getPacman().setLife(this.getPacman().getLife() - 1);
             }
-
+        }
+        else
+        {
+            this.setGhostPosition(nextBox);
         }
     }
 
     private Box getRandomBox()
     {
-        HashMap<String, Box> neighbors  = this.getBox().getNeighbors();
-        Random generator                = new Random();
-        Object[] values                 = neighbors.values().toArray();
-        Object randomValue              = values[generator.nextInt(values.length)];
-        Box nextBox                     = (Box) randomValue;
+        HashMap<String, Box> accessibleNeighbors    = this.getBox().getAccessibleNeighbors();
+        Random generator                            = new Random();
+        Object[] values                             = accessibleNeighbors.values().toArray();
+        Object randomValue                          = values[generator.nextInt(values.length)];
+        Box nextBox                                 = (Box) randomValue;
 
         return nextBox;
     }

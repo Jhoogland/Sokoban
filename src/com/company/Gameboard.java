@@ -295,21 +295,28 @@ public class Gameboard extends JPanel {
         }
         else if(ge instanceof Ghost)
         {
-            if(ge.equals(this.timerHandler.getGhost("DrunkGhost1")))
+            if(this.keyHandler.getPacman().getInvincible())
             {
-                g.setColor(Color.RED);
+                g.setColor(Color.lightGray);
             }
-            else if(ge.equals(this.timerHandler.getGhost("DrunkGhost2")))
+            else
             {
-                g.setColor(Color.ORANGE);
-            }
-            else if(ge.equals(this.timerHandler.getGhost("SmartGhost1")))
-            {
-                g.setColor(Color.CYAN);
-            }
-            else if(ge.equals(this.timerHandler.getGhost("SmartGhost2")))
-            {
-                g.setColor(Color.PINK);
+                if (ge.equals(this.timerHandler.getGhost("DrunkGhost1")))
+                {
+                    g.setColor(Color.RED);
+                }
+                else if (ge.equals(this.timerHandler.getGhost("DrunkGhost2")))
+                {
+                    g.setColor(Color.ORANGE);
+                }
+                else if (ge.equals(this.timerHandler.getGhost("SmartGhost1")))
+                {
+                    g.setColor(Color.CYAN);
+                }
+                else if (ge.equals(this.timerHandler.getGhost("SmartGhost2")))
+                {
+                    g.setColor(Color.PINK);
+                }
             }
 
             // Body of Ghosts.

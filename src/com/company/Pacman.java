@@ -22,13 +22,13 @@ public class Pacman extends Icon {
                 if(!(nextNeighbor.containsInstanceOf("Ghost")))
                 {
                     this.setPacmanPosition();
-                    this.eatFruits(nextNeighbor);
+                    this.eatFruit(nextNeighbor);
                 }
                 else if(nextNeighbor.containsInstanceOf("Ghost") && this.isInvincible)
                 {
                     this.setPacmanPosition();
-                    this.eatFruits(nextNeighbor);
-                    this.eatGhosts(nextNeighbor);
+                    this.eatFruit(nextNeighbor);
+                    this.eatGhost(nextNeighbor);
                 }
                 else
                 {
@@ -38,7 +38,7 @@ public class Pacman extends Icon {
         }
     }
 
-    private void eatGhosts(Box nextNeighbor)
+    private void eatGhost(Box nextNeighbor)
     {
         ArrayList<GameElement> neighborElements = nextNeighbor.getGameElements();
 
@@ -61,7 +61,7 @@ public class Pacman extends Icon {
         this.score += 200;
     }
 
-    private void eatFruits(Box nextNeighbor)
+    private void eatFruit(Box nextNeighbor)
     {
         ArrayList<GameElement> neighborElements = nextNeighbor.getGameElements();
         Fruit fruit;

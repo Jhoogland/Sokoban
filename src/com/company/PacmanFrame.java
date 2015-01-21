@@ -9,7 +9,7 @@ import java.awt.*;
  */
 public class PacmanFrame extends JFrame {
     private final int WIDTH             = 1000;
-    private final int HEIGHT            = 680;
+    private final int HEIGHT            = 600;
 
     public static JFrame frame          = new JFrame("Pacman");
     public static JPanel TopPanel       = new JPanel();

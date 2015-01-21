@@ -1,6 +1,5 @@
 package com.company;
 
-import java.awt.event.ActionListener;
 public class LevelHandler{
 
     //2D Array that holds the structure
@@ -54,8 +53,8 @@ public class LevelHandler{
     };
 
     private int gridStructure[][];
-
     private int currentLvl = 0;
+    private boolean allLvlsCleared = false;
 
    public int[][] getGridStructure(int lvl)
    {
@@ -94,6 +93,16 @@ public class LevelHandler{
     public void setCurrentLvl(int lvl)
     {
         this.currentLvl = lvl;
+    }
+
+    public void setAllLvlsCleared(boolean cleared)
+    {
+        this.allLvlsCleared = cleared;
+    }
+
+    public boolean getAllLvlsCleared()
+    {
+        return this.allLvlsCleared;
     }
 
 }

@@ -11,7 +11,7 @@ public class DrunkGhost extends Ghost {
     @Override
     public void move()
     {
-        Box nextBox = this.getAccessibleRandomBox();
+        Box nextBox = this.getRandomAccessibleBox();
 
         if(nextBox.containsInstanceOf("Pacman"))
         {
@@ -31,7 +31,7 @@ public class DrunkGhost extends Ghost {
         }
     }
 
-    private Box getAccessibleRandomBox()
+    private Box getRandomAccessibleBox()
     {
         HashMap<String, Box> accessibleNeighbors    = this.getBox().getAccessibleNeighbors();
         Random generator                            = new Random();

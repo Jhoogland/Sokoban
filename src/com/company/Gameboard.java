@@ -27,6 +27,8 @@ public class Gameboard extends JPanel {
     private boolean halfAmountOfEatenFruits = false;
     private int gridStructure[][];
 
+    private boolean isGameReset         = false;
+
     public Gameboard()
     {
         PacmanFrame.frame.addKeyListener(keyHandler);
@@ -40,21 +42,25 @@ public class Gameboard extends JPanel {
             this.levelHandler.setCurrentLvl(1);
             this.levelHandler.setGridStructure(this.levelHandler.getGridStructure(1));
         }
-        if(this.levelHandler.getCurrentLvl() == 1)
+        else if(this.levelHandler.getCurrentLvl() == 1)
         {
+            this.timerHandler.setDelay(100);
             this.levelHandler.setCurrentLvl(2);
             this.levelHandler.setGridStructure(this.levelHandler.getGridStructure(2));
         }
-        else
+        else if(this.levelHandler.getCurrentLvl() == 2)
         {
+            this.timerHandler.setDelay(600);
             this.levelHandler.setCurrentLvl(3);
             this.levelHandler.setGridStructure(this.levelHandler.getGridStructure(3));
+        }
+        else
+        {
+            this.levelHandler.setAllLvlsCleared(true);
         }
 
         createEverything();
         setNeighbors();
-        System.out.println(grid[5][5].getAccessibleNeighbors().toString());
-
     }
 
     protected void resetEveryonesPosition()
@@ -73,38 +79,43 @@ public class Gameboard extends JPanel {
 
     protected void resetTheGame()
     {
-        if(timerHandler.timer.isRunning())
-        {
-            resetPosition(this.keyHandler.getPacman(), this.grid[1][1]);
-            resetPosition(this.timerHandler.getGhost("DrunkGhost1"), this.grid[8][15]);
-            resetPosition(this.timerHandler.getGhost("DrunkGhost2"), this.grid[8][16]);
-            resetPosition(this.timerHandler.getGhost("SmartGhost1"), this.grid[8][17]);
-            resetPosition(this.timerHandler.getGhost("SmartGhost2"), this.grid[8][18]);
-            this.resetFruits();
+        resetPosition(this.keyHandler.getPacman(), this.grid[1][1]);
+        resetPosition(this.timerHandler.getGhost("DrunkGhost1"), this.grid[8][15]);
+        resetPosition(this.timerHandler.getGhost("DrunkGhost2"), this.grid[8][16]);
+        resetPosition(this.timerHandler.getGhost("SmartGhost1"), this.grid[8][17]);
+        resetPosition(this.timerHandler.getGhost("SmartGhost2"), this.grid[8][18]);
 
-            this.keyHandler.getPacman().setScore(0);
-            this.keyHandler.getPacman().setLife(3);
-            this.keyHandler.getPacman().setInvincible(false);
-            this.stopwatch.lvlTimer = 0;
+        this.resetFruits();
+        this.keyHandler.getPacman().setScore(0);
+        this.keyHandler.getPacman().setLife(3);
+        this.keyHandler.getPacman().setInvincible(false);
+        this.stopwatch.lvlTimer = 0;
 
-            PacmanFrame.score.setText("<html><h2 style='float: right;'>Score: " + this.keyHandler.getPacman().getScore() + "<br> </h3></html>");
-            PacmanFrame.life.setText("<html><h2 style='float: right;'>Life: " + PacmanFrame.getGameboard().getPacman().getLife() + "<br> </h3></html>");
-        }
+        this.levelHandler.setCurrentLvl(1);
+        this.levelHandler.setGridStructure(this.levelHandler.getGridStructure(1));
+        this.levelHandler.setAllLvlsCleared(false);
+
+        this.isGameReset = true;
+
+        PacmanFrame.score.setText("<html><h2 style='float: right;'>Score: " + this.keyHandler.getPacman().getScore() + "<br> </h3></html>");
+        PacmanFrame.life.setText("<html><h2 style='float: right;'>Life: " +this.keyHandler.getPacman().getLife() + "<br> </h3></html>");
+
+        repaint();
     }
 
     protected void startPause()
     {
-        if(!timerHandler.timer.isRunning())
+        if(!this.timerHandler.timer.isRunning())
         {
-            timerHandler.timer.start();
-            stopwatch.startTimer();
-            keyHandler.getPacman().setActive(true);
+            this.timerHandler.timer.start();
+            this.stopwatch.startTimer();
+            this.keyHandler.getPacman().setActive(true);
         }
         else
         {
-            timerHandler.timer.stop();
-            stopwatch.stopTimer();
-            keyHandler.getPacman().setActive(false);
+            this.timerHandler.timer.stop();
+            this.stopwatch.stopTimer();
+            this.keyHandler.getPacman().setActive(false);
         }
     }
 
@@ -243,7 +254,6 @@ public class Gameboard extends JPanel {
         {
             for (int col = 0; col < this.GRIDCOL; col++) {
                 int newBoxSize = this.BOXSIZE + this.BOXGAP;
-
                 int newRow = row * newBoxSize;
                 int newCol = col * newBoxSize;
 
@@ -251,7 +261,6 @@ public class Gameboard extends JPanel {
                 g.fillRect(newCol, newRow, this.BOXSIZE, this.BOXSIZE);
 
                 ArrayList elements = grid[row][col].getGameElements();
-
                 if(elements.size() == 1)
                 {
                     paintGameElement(g, (GameElement) elements.get(0), newRow, newCol);
@@ -260,6 +269,30 @@ public class Gameboard extends JPanel {
                 {
                     int lastIndex = elements.size()-1;
                     paintGameElement(g, (GameElement) elements.get(lastIndex), newRow, newCol);
+                }
+
+                if(this.levelHandler.getAllLvlsCleared())
+                {
+                    Graphics g2 = g;
+
+                    if(this.timerHandler.timer.isRunning())
+                    {
+                        this.timerHandler.timer.stop();
+                        this.stopwatch.stopTimer();
+                        this.keyHandler.getPacman().setActive(false);
+                    }
+
+                    g2.setColor(Color.white);
+                    g2.fillRect(350, 150, 300, 200);
+
+                    g2.setColor(Color.black);
+                    g2.setFont(new Font("TimesRoman", Font.PLAIN, 24));
+                    g2.drawString("GAME OVER", 430, 200);
+
+                    g2.setFont(new Font("TimesRoman", Font.PLAIN, 20));
+                    g2.drawString("Uw score: " + this.getPacman().getScore(), 430, 250);
+                    g2.drawString("Uw tijd: " + this.stopwatch.lvlTimer, 430, 300);
+
                 }
             }
         }

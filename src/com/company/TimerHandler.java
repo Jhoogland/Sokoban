@@ -30,6 +30,8 @@ public class TimerHandler implements ActionListener {
     {
         drunkGhost1.move();
         drunkGhost2.move();
+        smartGhost1.move();
+
 
         if(gameboard.stopwatch.invincibleTimer == 10)
         {
@@ -62,6 +64,20 @@ public class TimerHandler implements ActionListener {
             returnGhost = this.smartGhost2;
         }
 
+        return returnGhost;
+    }
+
+    public SmartGhost getSmartGhost(int ghost)
+    {
+        SmartGhost returnGhost = null;
+        if(ghost == 1 )
+        {
+            returnGhost = this.smartGhost1;
+        }
+        else if(ghost == 2)
+        {
+            returnGhost = this.smartGhost2;
+        }
         return returnGhost;
     }
 

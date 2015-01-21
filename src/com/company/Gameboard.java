@@ -65,13 +65,20 @@ public class Gameboard extends JPanel {
 
     protected void resetEveryonesPosition()
     {
+        Pacman pacman = this.keyHandler.getPacman();
+        Ghost drunkGhost1 = this.timerHandler.getGhost("DrunkGhost1");
+        Ghost drunkGhost2 = this.timerHandler.getGhost("DrunkGhost2");
+        Ghost smartGhost1 = this.timerHandler.getGhost("SmartGhost1");
+        Ghost smartGhost2 = this.timerHandler.getGhost("SmartGhost2");
+
         if(timerHandler.timer.isRunning())
         {
-            resetPosition(this.keyHandler.getPacman(), this.grid[1][1]);
-            resetPosition(this.timerHandler.getGhost("DrunkGhost1"), this.grid[8][15]);
-            resetPosition(this.timerHandler.getGhost("DrunkGhost2"), this.grid[8][16]);
-            resetPosition(this.timerHandler.getGhost("SmartGhost1"), this.grid[8][17]);
-            resetPosition(this.timerHandler.getGhost("SmartGhost2"), this.grid[8][18]);
+            resetPosition(pacman, pacman.getStartPosition());
+            resetPosition(drunkGhost1, drunkGhost1.getStartPosition());
+            resetPosition(drunkGhost2, drunkGhost2.getStartPosition());
+            resetPosition(smartGhost1, smartGhost1.getStartPosition());
+            resetPosition(smartGhost2, smartGhost2.getStartPosition());
+            this.resetFruits();
 
             repaint();
         }
@@ -79,26 +86,25 @@ public class Gameboard extends JPanel {
 
     protected void resetTheGame()
     {
-        resetPosition(this.keyHandler.getPacman(), this.grid[1][1]);
-        resetPosition(this.timerHandler.getGhost("DrunkGhost1"), this.grid[8][15]);
-        resetPosition(this.timerHandler.getGhost("DrunkGhost2"), this.grid[8][16]);
-        resetPosition(this.timerHandler.getGhost("SmartGhost1"), this.grid[8][17]);
-        resetPosition(this.timerHandler.getGhost("SmartGhost2"), this.grid[8][18]);
+        Pacman pacman = this.keyHandler.getPacman();
 
-        this.resetFruits();
-        this.keyHandler.getPacman().setScore(0);
-        this.keyHandler.getPacman().setLife(3);
-        this.keyHandler.getPacman().setInvincible(false);
+        resetEveryonesPosition();
+        pacman.setScore(0);
+        pacman.setLife(3);
+        pacman.setInvincible(false);
+
         this.stopwatch.lvlTimer = 0;
 
-        this.levelHandler.setCurrentLvl(1);
-        this.levelHandler.setGridStructure(this.levelHandler.getGridStructure(1));
-        this.levelHandler.setAllLvlsCleared(false);
+        LevelHandler levelHandler = this.levelHandler;
+
+        levelHandler.setCurrentLvl(1);
+        levelHandler.setGridStructure(levelHandler.getGridStructure(1));
+        levelHandler.setAllLvlsCleared(false);
 
         this.isGameReset = true;
 
-        PacmanFrame.score.setText("<html><h2 style='float: right;'>Score: " + this.keyHandler.getPacman().getScore() + "<br> </h3></html>");
-        PacmanFrame.life.setText("<html><h2 style='float: right;'>Life: " +this.keyHandler.getPacman().getLife() + "<br> </h3></html>");
+        PacmanFrame.score.setText("<html><h2 style='float: right;'>Score: " + pacman.getScore() + "<br> </h3></html>");
+        PacmanFrame.life.setText("<html><h2 style='float: right;'>Life: " + pacman.getLife() + "<br> </h3></html>");
 
         repaint();
     }

@@ -40,7 +40,6 @@ public class  SmartGhost extends Ghost {
         movementStack.clear();
         currentBox.clear();
         neighborBox.clear();
-
     }
 
     private void search()

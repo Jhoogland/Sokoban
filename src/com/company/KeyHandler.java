@@ -31,6 +31,7 @@ public class KeyHandler implements KeyListener {
                 this.pacman.move(Direction.LEFT);
                 break;
             case KeyEvent.VK_DOWN:
+
                 this.pacman.move(Direction.DOWN);
                 break;
             case KeyEvent.VK_Z:

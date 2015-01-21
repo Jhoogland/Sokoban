@@ -37,6 +37,7 @@ public class TimerHandler implements ActionListener {
             gameboard.stopwatch.invincibleTimer = 0;
         }
 
+
         gameboard.repaint();
     }
 
@@ -64,4 +65,7 @@ public class TimerHandler implements ActionListener {
         return returnGhost;
     }
 
+    public void setDelay(int delay){
+        this.delay=delay;
+    }
 }

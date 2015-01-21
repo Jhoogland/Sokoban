@@ -20,37 +20,37 @@ public class Gameboard extends JPanel {
     public TimerHandler timerHandler    = new TimerHandler(200, this);
     private KeyHandler keyHandler       = new KeyHandler(this);
     public static Stopwatch stopwatch   = new Stopwatch();
+    private LevelHandler levelHandler   = new LevelHandler();
 
     private int currentAmountOfFruits;
     private int startingAmountOfFruits;
     private boolean halfAmountOfEatenFruits = false;
-
-    //2D Array that holds the structure
-    // 0 = Nothing ( Pathway )
-    // 1 = Walls
-    // 2 = Pacman
-    // 3 = DrunkGhost1
-    // 4 = DrunkGhost2
-    // 5 = SmartGhost1
-    // 6 = SmartGhost2
-    // 7 = Fruit
-    // 8 = SuperFruit
-    private int gridStructure[][] = {
-            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-            {1, 2, 7, 7, 7, 7, 7, 7, 7, 7, 1, 8, 7, 7, 7, 7, 7, 7, 8, 1},
-            {1, 7, 1, 1, 1, 7, 1, 1, 1, 7, 1, 7, 1, 1, 7, 1, 1, 1, 7, 1},
-            {1, 7, 1, 1, 1, 7, 1, 1, 1, 7, 1, 7, 1, 1, 7, 1, 1, 1, 7, 1},
-            {1, 7, 1, 1, 1, 7, 1, 1, 1, 7, 1, 7, 1, 1, 7, 1, 1, 1, 7, 1},
-            {1, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 1},
-            {1, 7, 1, 1, 1, 7, 1, 1, 7, 1, 7, 1, 7, 1, 7, 1, 1, 1, 7, 1},
-            {1, 7, 1, 1, 1, 7, 1, 1, 7, 1, 7, 1, 7, 1, 7, 1, 1, 1, 7, 1},
-            {1, 8, 7, 7, 7, 7, 7, 7, 7, 7, 8, 7, 7, 1, 7, 3, 4, 5, 6, 1},
-            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-    };
+    private int gridStructure[][];
 
     public Gameboard()
     {
         PacmanFrame.frame.addKeyListener(keyHandler);
+        this.changeLvl();
+    }
+
+    public void changeLvl()
+    {
+        if(this.levelHandler.getCurrentLvl() == 0)
+        {
+            this.levelHandler.setCurrentLvl(1);
+            this.levelHandler.setGridStructure(this.levelHandler.getGridStructure(1));
+        }
+        if(this.levelHandler.getCurrentLvl() == 1)
+        {
+            this.levelHandler.setCurrentLvl(2);
+            this.levelHandler.setGridStructure(this.levelHandler.getGridStructure(2));
+        }
+        else
+        {
+            this.levelHandler.setCurrentLvl(3);
+            this.levelHandler.setGridStructure(this.levelHandler.getGridStructure(3));
+        }
+
         createEverything();
         setNeighbors();
         System.out.println(grid[5][5].getAccessibleNeighbors().toString());
@@ -110,11 +110,12 @@ public class Gameboard extends JPanel {
 
     private void createEverything()
     {
+        this.gridStructure = this.levelHandler.getGridStructure(0);
         for(int row = 0;  row < this.GRIDROW; row++)
         {
             for(int col = 0; col < this.GRIDCOL; col++)
             {
-                if(gridStructure[row][col] == 0) // Box
+                if(this.gridStructure[row][col] == 0) // Box
                 {
                     this.grid[row][col] = new Box();
                 }

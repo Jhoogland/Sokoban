@@ -9,7 +9,6 @@ public class  SmartGhost extends Ghost {
 
     private Queue<Box> boxesToInspect               = new LinkedList<Box>();
     private ArrayList<Box> visitedBoxes             = new ArrayList<Box>();
-    private HashMap<Box, Box> connectedBoxes        = new HashMap<Box, Box>();
     private ArrayList<Box> currentBox               = new ArrayList<Box>();
     private ArrayList<Box> neighborBox              = new ArrayList<Box>();
     private Stack<Box> movementStack                = new Stack<Box>();
@@ -41,7 +40,7 @@ public class  SmartGhost extends Ghost {
         movementStack.clear();
         currentBox.clear();
         neighborBox.clear();
-        connectedBoxes.clear();
+
     }
 
     private void search()
@@ -49,11 +48,9 @@ public class  SmartGhost extends Ghost {
         while(!boxesToInspect.isEmpty())
         {
             Box current = boxesToInspect.remove();
-            if(!visitedBoxes.contains(current))
-            {
-                visitedBoxes.add(current);
-                checkNeighbors(current);
-            }
+            visitedBoxes.add(current);
+            checkNeighbors(current);
+
         }
     }
 
@@ -63,7 +60,7 @@ public class  SmartGhost extends Ghost {
         {
             if(!neighbor.containsInstanceOf("Pacman"))
             {
-                if (!neighborBox.contains(neighbor))
+                if (!currentBox.contains(neighbor))
                 {
                     boxesToInspect.add(neighbor);
                     currentBox.add(box);
@@ -80,7 +77,6 @@ public class  SmartGhost extends Ghost {
                 }
 
                 buildMovementStack(neighbor);
-                setSearching(false);
                 break;
             }
         }
@@ -93,8 +89,8 @@ public class  SmartGhost extends Ghost {
 
         while(current != this.getBox())
         {
-            int index    = neighborBox.indexOf(current);
-            Box nextStep = currentBox.get(index);
+            int index    = currentBox.indexOf(current);
+            Box nextStep = neighborBox.get(index);
             movementStack.add(nextStep);
         }
     }

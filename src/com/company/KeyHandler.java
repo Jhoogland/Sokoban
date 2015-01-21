@@ -25,15 +25,19 @@ public class KeyHandler implements KeyListener {
         {
             case KeyEvent.VK_UP:
                 this.pacman.move(Direction.UP);
+                ghost.findPacman();
                 break;
             case KeyEvent.VK_RIGHT:
                 this.pacman.move(Direction.RIGHT);
+                ghost.findPacman();
                 break;
             case KeyEvent.VK_LEFT:
                 this.pacman.move(Direction.LEFT);
+                ghost.findPacman();
                 break;
             case KeyEvent.VK_DOWN:
                 this.pacman.move(Direction.DOWN);
+                ghost.findPacman();
                 break;
             case KeyEvent.VK_Z:
                 this.gameboard.startPause();
@@ -43,7 +47,7 @@ public class KeyHandler implements KeyListener {
                 break;
         }
 
-        ghost.findPacman();
+
 
         if(this.pacman.getLife() == 0)
         {

@@ -10,6 +10,7 @@ public class KeyHandler implements KeyListener {
 
     private Pacman pacman = new Pacman();
     private Gameboard gameboard;
+    SmartGhost ghost;
 
     public KeyHandler(Gameboard gameboard)
     {
@@ -19,50 +20,30 @@ public class KeyHandler implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e)
     {
-        SmartGhost ghost = this.gameboard.timerHandler.getSmartGhost(1);
+        this.ghost = this.gameboard.timerHandler.getSmartGhost(1);
         switch (e.getKeyCode())
         {
-
             case KeyEvent.VK_UP:
                 this.pacman.move(Direction.UP);
-                if(!ghost.isSearching())
-                {
-                    ghost.findPacman();
-                }
                 break;
-
             case KeyEvent.VK_RIGHT:
                 this.pacman.move(Direction.RIGHT);
-                if(!ghost.isSearching())
-                {
-                    ghost.findPacman();
-                }
                 break;
-
             case KeyEvent.VK_LEFT:
                 this.pacman.move(Direction.LEFT);
-                if(!ghost.isSearching())
-                {
-                    ghost.findPacman();
-                }
                 break;
-
             case KeyEvent.VK_DOWN:
                 this.pacman.move(Direction.DOWN);
-                if(!ghost.isSearching())
-                {
-                    ghost.findPacman();
-                }
                 break;
-
             case KeyEvent.VK_Z:
                 this.gameboard.startPause();
                 break;
-
             case KeyEvent.VK_X:
                 this.gameboard.resetTheGame();
                 break;
         }
+
+        ghost.findPacman();
 
         if(this.pacman.getLife() == 0)
         {

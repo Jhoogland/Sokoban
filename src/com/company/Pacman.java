@@ -103,7 +103,6 @@ public class Pacman extends Icon {
     {
         PacmanFrame.getGameboard().resetEveryonesPosition();
         this.setLife(this.life -= 1);
-        //PacmanFrame.life.setText("<html><h2 style='float: right;'>Life: " + this.getLife() + "<br> </h3></html>");
     }
 
     public int getScore()

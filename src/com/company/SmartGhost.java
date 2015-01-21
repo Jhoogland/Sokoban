@@ -5,41 +5,33 @@ import java.util.*;
 /**
  * Created by Sefa on 9-1-2015.
  */
-public class SmartGhost extends Ghost {
+public class  SmartGhost extends Ghost {
 
-    private Queue<Box> boxesToInspect = new LinkedList<Box>();
-    private ArrayList<Box> visitedBoxes = new ArrayList<Box>();
-    private HashMap<Box, Box> connectedBoxes = new HashMap<Box, Box>();
-    private ArrayList<Box> currentBox = new ArrayList<Box>();
-    private ArrayList<Box> neighborBox = new ArrayList<Box>();
-    private Stack<Box> movementStack = new Stack<Box>();
-    private boolean searching = false;
-
-
+    private Queue<Box> boxesToInspect               = new LinkedList<Box>();
+    private ArrayList<Box> visitedBoxes             = new ArrayList<Box>();
+    private HashMap<Box, Box> connectedBoxes        = new HashMap<Box, Box>();
+    private ArrayList<Box> currentBox               = new ArrayList<Box>();
+    private ArrayList<Box> neighborBox              = new ArrayList<Box>();
+    private Stack<Box> movementStack                = new Stack<Box>();
+    private boolean searching                       = false;
 
     @Override
     public void move()
     {
         useStack();
-
-
     }
 
     public void findPacman()
     {
-
         createInitialState();
         search();
     }
-
-
 
     private void createInitialState()
     {
         reset();
         Box box = this.getBox();
         boxesToInspect.add(box);
-
     }
 
     private void reset()
@@ -57,7 +49,8 @@ public class SmartGhost extends Ghost {
         while(!boxesToInspect.isEmpty())
         {
             Box current = boxesToInspect.remove();
-            if(!visitedBoxes.contains(current)) {
+            if(!visitedBoxes.contains(current))
+            {
                 visitedBoxes.add(current);
                 checkNeighbors(current);
             }
@@ -70,12 +63,12 @@ public class SmartGhost extends Ghost {
         {
             if(!neighbor.containsInstanceOf("Pacman"))
             {
-                if (!neighborBox.contains(neighbor)) {
+                if (!neighborBox.contains(neighbor))
+                {
                     boxesToInspect.add(neighbor);
                     currentBox.add(box);
                     neighborBox.add(neighbor);
                 }
-
             }
             else
             {
@@ -85,10 +78,10 @@ public class SmartGhost extends Ghost {
                     currentBox.add(box);
                     neighborBox.add(neighbor);
                 }
+
                 buildMovementStack(neighbor);
                 setSearching(false);
                 break;
-
             }
         }
     }
@@ -100,30 +93,24 @@ public class SmartGhost extends Ghost {
 
         while(current != this.getBox())
         {
-
-            int index = neighborBox.indexOf(box);
+            int index    = neighborBox.indexOf(current);
             Box nextStep = currentBox.get(index);
             movementStack.add(nextStep);
-            current = nextStep;
         }
-
-
     }
 
     private void useStack()
     {
-        if(!movementStack.isEmpty()) {
+        if(!movementStack.isEmpty())
+        {
             Box box = movementStack.pop();
             setGhostPosition(box);
         }
-
-
     }
 
     public void setSearching(boolean searching)
     {
         this.searching = searching;
-
     }
 
     public boolean isSearching()

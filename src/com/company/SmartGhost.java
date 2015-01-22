@@ -10,7 +10,7 @@ public class  SmartGhost extends Ghost {
     private Queue<Box> boxesToInspect               = new LinkedList<Box>();
     private ArrayList<Box> visitedBoxes             = new ArrayList<Box>();
     private ArrayList<Box> currentBox               = new ArrayList<Box>();
-    private ArrayList<Box> neighborBox              = new ArrayList<Box>();
+    private ArrayList<Box> previousBox              = new ArrayList<Box>();
     private Stack<Box> movementStack                = new Stack<Box>();
     private boolean searching                       = false;
 
@@ -39,7 +39,8 @@ public class  SmartGhost extends Ghost {
         visitedBoxes.clear();
         movementStack.clear();
         currentBox.clear();
-        neighborBox.clear();
+        previousBox.clear();
+
     }
 
     private void search()
@@ -57,26 +58,28 @@ public class  SmartGhost extends Ghost {
     {
         for(Box neighbor : box.getAccessibleNeighbors().values())
         {
-            if(!neighbor.containsInstanceOf("Pacman"))
+            if(neighbor.containsInstanceOf("Pacman"))
             {
                 if (!currentBox.contains(neighbor))
                 {
                     boxesToInspect.add(neighbor);
                     currentBox.add(box);
-                    neighborBox.add(neighbor);
+                    previousBox.add(neighbor);
+
                 }
+
+                break;
             }
             else
             {
-                if (!neighborBox.contains(neighbor))
+                if (!currentBox.contains(neighbor))
                 {
                     boxesToInspect.add(neighbor);
                     currentBox.add(box);
-                    neighborBox.add(neighbor);
+                    previousBox.add(neighbor);
                 }
 
-                buildMovementStack(neighbor);
-                break;
+
             }
         }
     }
@@ -89,7 +92,7 @@ public class  SmartGhost extends Ghost {
         while(current != this.getBox())
         {
             int index    = currentBox.indexOf(current);
-            Box nextStep = neighborBox.get(index);
+            Box nextStep = previousBox.get(index);
             movementStack.add(nextStep);
         }
     }

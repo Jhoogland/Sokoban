@@ -14,7 +14,20 @@ public abstract class Ghost extends Icon {
         nextBox.addGameElement(this);
     }
 
-    public Pacman getPacman()
+    protected void eatPacman()
+    {
+        if(this.getPacman().getInvincible())
+        {
+            PacmanFrame.getGameboard().resetPosition(this, this.getStartPosition());
+        }
+        else
+        {
+            PacmanFrame.getGameboard().resetEveryonesPosition();
+            this.getPacman().setLife(this.getPacman().getLife() - 1);
+        }
+    }
+
+    private Pacman getPacman()
     {
         return PacmanFrame.getGameboard().getPacman();
     }

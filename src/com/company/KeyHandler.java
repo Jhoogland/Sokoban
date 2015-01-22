@@ -10,7 +10,7 @@ public class KeyHandler implements KeyListener {
 
     private Pacman pacman = new Pacman();
     private Gameboard gameboard;
-    SmartGhost ghost;
+
 
     public KeyHandler(Gameboard gameboard)
     {
@@ -20,7 +20,7 @@ public class KeyHandler implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e)
     {
-        //this.ghost = this.gameboard.timerHandler.getSmartGhost(1);
+
         switch (e.getKeyCode())
         {
             case KeyEvent.VK_UP:

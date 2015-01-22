@@ -17,18 +17,35 @@ public class  SmartGhost extends Ghost {
     @Override
     public void move()
     {
-        useStack();
+        if(!searching)
+        {
+            setSearching(true);
+            findPacman();
+        }
+        if(movementStack.size() > 0)
+        {
+            Box box = movementStack.pop();
+
+            if(!box.containsInstanceOf("Pacman"))
+            {
+                setGhostPosition(box);
+            }
+            else
+            {
+                this.eatPacman();
+            }
+        }
     }
 
     public void findPacman()
     {
+        reset();
         createInitialState();
         search();
     }
 
     private void createInitialState()
     {
-        reset();
         Box box = this.getBox();
         boxesToInspect.add(box);
     }
@@ -40,7 +57,6 @@ public class  SmartGhost extends Ghost {
         movementStack.clear();
         currentBox.clear();
         previousBox.clear();
-
     }
 
     private void search()
@@ -50,7 +66,6 @@ public class  SmartGhost extends Ghost {
             Box current = boxesToInspect.remove();
             visitedBoxes.add(current);
             checkNeighbors(current);
-
         }
     }
 
@@ -60,26 +75,25 @@ public class  SmartGhost extends Ghost {
         {
             if(neighbor.containsInstanceOf("Pacman"))
             {
-                if (!currentBox.contains(neighbor))
+                if (!visitedBoxes.contains(neighbor))
                 {
                     boxesToInspect.add(neighbor);
-                    currentBox.add(box);
-                    previousBox.add(neighbor);
+                    currentBox.add(neighbor);
+                    previousBox.add(box);
 
                 }
-
+                buildMovementStack(neighbor);
+                setSearching(false);
                 break;
             }
             else
             {
-                if (!currentBox.contains(neighbor))
+                if (!visitedBoxes.contains(neighbor))
                 {
                     boxesToInspect.add(neighbor);
-                    currentBox.add(box);
-                    previousBox.add(neighbor);
+                    currentBox.add(neighbor);
+                    previousBox.add(box);
                 }
-
-
             }
         }
     }
@@ -87,32 +101,18 @@ public class  SmartGhost extends Ghost {
     private void buildMovementStack(Box box)
     {
         Box current = box;
-        movementStack.add(current);
 
-        while(current != this.getBox())
+        while(current != this.getBox() && !movementStack.contains(current))
         {
+            movementStack.push(current);
             int index    = currentBox.indexOf(current);
             Box nextStep = previousBox.get(index);
-            movementStack.add(nextStep);
-        }
-    }
-
-    private void useStack()
-    {
-        if(!movementStack.isEmpty())
-        {
-            Box box = movementStack.pop();
-            setGhostPosition(box);
+            current = nextStep;
         }
     }
 
     public void setSearching(boolean searching)
     {
         this.searching = searching;
-    }
-
-    public boolean isSearching()
-    {
-        return searching;
     }
 }

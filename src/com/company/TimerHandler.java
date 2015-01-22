@@ -30,7 +30,7 @@ public class TimerHandler implements ActionListener {
     {
         drunkGhost1.move();
         drunkGhost2.move();
-        smartGhost1.findPacman();
+
         smartGhost1.move();
 
 

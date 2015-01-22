@@ -15,15 +15,7 @@ public class DrunkGhost extends Ghost {
 
         if(nextBox.containsInstanceOf("Pacman"))
         {
-            if(this.getPacman().getInvincible())
-            {
-                PacmanFrame.getGameboard().resetPosition(this, this.getStartPosition());
-            }
-            else
-            {
-                PacmanFrame.getGameboard().resetPosition(this.getPacman(), this.getPacman().getStartPosition());
-                this.getPacman().setLife(this.getPacman().getLife() - 1);
-            }
+            this.eatPacman();
         }
         else
         {

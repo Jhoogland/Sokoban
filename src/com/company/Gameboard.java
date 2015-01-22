@@ -17,7 +17,7 @@ public class Gameboard extends JPanel {
     private final int GRIDCOL           = 20;
     private Box grid[][]                = new Box[this.GRIDROW][this.GRIDCOL]; // 2D Array thats holds all Boxes
 
-    public TimerHandler timerHandler    = new TimerHandler(200, this);
+    public TimerHandler timerHandler    = new TimerHandler(400, this);
     private KeyHandler keyHandler       = new KeyHandler(this);
     public static Stopwatch stopwatch   = new Stopwatch();
     private LevelHandler levelHandler   = new LevelHandler();
@@ -37,6 +37,10 @@ public class Gameboard extends JPanel {
 
     public void changeLvl()
     {
+
+        this.currentAmountOfFruits = 0;
+        this.startingAmountOfFruits = 0;
+
         if(this.levelHandler.getCurrentLvl() == 0)
         {
             this.levelHandler.setCurrentLvl(1);
@@ -92,11 +96,13 @@ public class Gameboard extends JPanel {
 
         if(isGameReset)
         {
+            this.currentAmountOfFruits = 0;
+            this.startingAmountOfFruits = 0;
+
             pacman.setScore(0);
             this.stopwatch.lvlTimer = 0;
             this.timerHandler.timer.stop();
         }
-
 
         LevelHandler levelHandler = this.levelHandler;
 
@@ -104,7 +110,6 @@ public class Gameboard extends JPanel {
         levelHandler.setGridStructure(levelHandler.getGridStructure(1));
         levelHandler.setAllLvlsCleared(false);
 
-        PacmanFrame.score.setText("<html><h2 style='float: right;'>Score: " + pacman.getScore() + "<br> </h3></html>");
         PacmanFrame.life.setText("<html><h2 style='float: right;'>Life: " + pacman.getLife() + "<br> </h3></html>");
 
         repaint();
@@ -137,6 +142,7 @@ public class Gameboard extends JPanel {
 
     private void createEverything()
     {
+
         this.gridStructure = this.levelHandler.getGridStructure(0);
         for(int row = 0;  row < this.GRIDROW; row++)
         {

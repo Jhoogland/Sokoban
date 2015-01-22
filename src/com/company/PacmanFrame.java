@@ -17,6 +17,7 @@ public class PacmanFrame extends JFrame {
     public static JLabel score          = new JLabel("<html><h2 style='float: right;'>Score: 0<br> </h3></html>");
     public static JLabel life           = new JLabel("<html><h2 style='float: right;'>Life: 3<br> </h3></html>");
     public static JLabel time           = new JLabel("<html><h2 style='float: right;'>Time: 0 <br> </h3></html>");
+    public static JLabel level           = new JLabel("<html><h2 style='float: right;'>Level: 1 <br> </h3></html>");
 
     public void drawFrame()
     {
@@ -62,6 +63,7 @@ public class PacmanFrame extends JFrame {
         this.TopPanel.add(this.score);
         this.TopPanel.add(this.life);
         this.TopPanel.add(this.time);
+        this.TopPanel.add(this.level);
     }
 
     public static Gameboard getGameboard()

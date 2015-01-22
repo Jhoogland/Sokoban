@@ -19,14 +19,13 @@ public class Pacman extends Icon {
 
             if (!nextNeighbor.containsInstanceOf("Wall"))
             {
+                this.setPacmanPosition();
                 if(!(nextNeighbor.containsInstanceOf("Ghost")))
                 {
-                    this.setPacmanPosition();
                     this.eatFruit(nextNeighbor);
                 }
                 else if(nextNeighbor.containsInstanceOf("Ghost") && this.isInvincible)
                 {
-                    this.setPacmanPosition();
                     this.eatFruit(nextNeighbor);
                     this.eatGhost(nextNeighbor);
                 }
@@ -44,7 +43,7 @@ public class Pacman extends Icon {
 
         Ghost ghost;
 
-        if(nextNeighbor.getGameElements().size() == 1)
+        if(nextNeighbor.getGameElements().size() >= 1)
         {
             ghost = (Ghost)neighborElements.get(0);
             nextNeighbor.removeGameElement(ghost);

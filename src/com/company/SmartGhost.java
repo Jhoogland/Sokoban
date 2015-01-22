@@ -17,11 +17,8 @@ public class  SmartGhost extends Ghost {
         {
             Box box = this.movementStack.pop();
 
-            if(!box.containsInstanceOf("Pacman"))
-            {
-                setGhostPosition(box);
-            }
-            else
+            setGhostPosition(box);
+            if(box.containsInstanceOf("Pacman"))
             {
                 this.eatPacman();
             }

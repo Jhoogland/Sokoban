@@ -13,13 +13,10 @@ public class DrunkGhost extends Ghost {
     {
         Box nextBox = this.getRandomAccessibleBox();
 
+        this.setGhostPosition(nextBox);
         if(nextBox.containsInstanceOf("Pacman"))
         {
             this.eatPacman();
-        }
-        else
-        {
-            this.setGhostPosition(nextBox);
         }
     }
 

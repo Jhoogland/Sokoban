@@ -109,13 +109,15 @@ public abstract class Ghost extends Icon {
         }
     }
 
-    public void setSearching(boolean searching)
-    {
-        this.searching = searching;
-    }
 
     private Pacman getPacman()
     {
         return PacmanFrame.getGameboard().getPacman();
     }
+
+    public void setSearching(boolean searching)
+    {
+        this.searching = searching;
+    }
+
 }

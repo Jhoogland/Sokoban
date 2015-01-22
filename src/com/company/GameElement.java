@@ -7,8 +7,6 @@ public abstract class GameElement {
     private Box box;
     private Box startPosition = null;
 
-    public GameElement() { }
-
     /* Getters & Setters */
 
     public Box getBox()
@@ -20,6 +18,12 @@ public abstract class GameElement {
     {
         this.box = box;
     }
-    public Box getStartPosition(){return  this.startPosition;}
-    public void setStartPosition(Box box){this.startPosition = box;}
+    public Box getStartPosition()
+    {
+        return  this.startPosition;
+    }
+    public void setStartPosition(Box box)
+    {
+        this.startPosition = box;
+    }
 }

@@ -7,10 +7,9 @@ import java.util.*;
  */
 public class Box {
 
-    private ArrayList<GameElement> gameElements = new ArrayList<GameElement>();
-    private HashMap<String, Box> neighbors      = new HashMap<String, Box>();
-    private HashMap<String, Box> accessibleNeighbors = new HashMap<String, Box>();
-
+    private ArrayList<GameElement> gameElements         = new ArrayList<GameElement>();
+    private HashMap<String, Box> neighbors              = new HashMap<String, Box>();
+    private HashMap<String, Box> accessibleNeighbors    = new HashMap<String, Box>();
 
     /* All these methods adds the neighbor of a Box into an HashMap; */
     public void addNeighbor(String neighbor, Box box)
@@ -52,18 +51,6 @@ public class Box {
             this.accessibleNeighbors.put(neighbor, box);
         }
     }
-
-
-
-    /*  Getters & Setters */
-
-    public Box getNeighbor(String key)
-    {
-        return neighbors.get(key);
-    }
-
-    public HashMap<String, Box> getNeighbors(){return neighbors;}
-    public HashMap<String, Box> getAccessibleNeighbors(){return accessibleNeighbors;}
 
     public boolean containsInstanceOf(String element)
     {
@@ -116,6 +103,14 @@ public class Box {
 
         return instance;
     }
+
+    /*  Getters & Setters */
+
+    public Box getNeighbor(String key)
+    {
+        return neighbors.get(key);
+    }
+    public HashMap<String, Box> getAccessibleNeighbors(){return accessibleNeighbors;}
 
     public void addGameElement(GameElement gameElement) { this.gameElements.add(gameElement); }
     public void removeGameElement(GameElement gameElement){ this.gameElements.remove(gameElement);}

@@ -32,13 +32,12 @@ public class PacmanFrame extends JFrame {
         this.frame.setFocusable(true);
         this.frame.setFocusTraversalKeysEnabled(false);
         this.frame.setResizable(false);
-
     }
 
     private void addStructure()
     {
         this.TopPanel.setPreferredSize(new Dimension(this.WIDTH, 100));
-        this.TopPanel.setLayout(new GridLayout(0, 4));
+        this.TopPanel.setLayout(new GridLayout(0, 5));
 
         this.gameboard.setPreferredSize(new Dimension(this.WIDTH, 800));
         this.gameboard.setLayout(new BorderLayout());

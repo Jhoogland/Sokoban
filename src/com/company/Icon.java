@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public abstract class Icon extends GameElement {
     private Box nextBox = null;
 
-    public Box setNextBox(Direction direction)
+    protected Box setNextBox(Direction direction)
     {
         switch (direction)
         {
@@ -29,7 +29,7 @@ public abstract class Icon extends GameElement {
         return this.nextBox;
     }
 
-    public Box getNextBox()
+    protected Box getNextBox()
     {
         return this.nextBox;
     }

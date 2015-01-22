@@ -9,7 +9,7 @@ import java.util.Random;
 public class DrunkGhost extends Ghost {
 
     @Override
-    public void move()
+    protected void move()
     {
         Box nextBox = this.getRandomAccessibleBox();
 

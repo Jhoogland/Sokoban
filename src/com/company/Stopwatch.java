@@ -3,14 +3,13 @@ package com.company;
 import java.util.Timer;
 import java.util.TimerTask;
 
-
 /**
  * Created by admin on 1/16/2015.
  */
 public class Stopwatch {
 
-    public int lvlTimer = 0;
-    public int invincibleTimer = 0;
+    public int lvlTimer         = 0;
+    public int invincibleTimer  = 0;
     public Timer timer;
 
     public void startTimer()
@@ -25,7 +24,6 @@ public class Stopwatch {
                 {
                     invincibleTimer++;
                 }
-
             }
         };
 

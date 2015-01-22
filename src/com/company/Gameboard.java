@@ -37,7 +37,6 @@ public class Gameboard extends JPanel {
 
     public void changeLvl()
     {
-
         this.currentAmountOfFruits = 0;
         this.startingAmountOfFruits = 0;
 
@@ -142,7 +141,6 @@ public class Gameboard extends JPanel {
 
     private void createEverything()
     {
-
         this.gridStructure = this.levelHandler.getGridStructure(0);
         for(int row = 0;  row < this.GRIDROW; row++)
         {
@@ -159,38 +157,46 @@ public class Gameboard extends JPanel {
                 }
                 else if(this.gridStructure[row][col] == 2) // Pacman
                 {
+                    Pacman pacman = this.keyHandler.getPacman();
                     this.grid[row][col] = new Box();
-                    insertInitialElement(row, col, this.keyHandler.getPacman());
-                    this.keyHandler.getPacman().setBox(this.grid[row][col]);
-                    this.keyHandler.getPacman().setStartPosition(this.grid[row][col]);
+                    insertInitialElement(row, col, pacman);
+                    pacman.setBox(this.grid[row][col]);
+                    pacman.setStartPosition(this.grid[row][col]);
                 }
                 else if(this.gridStructure[row][col] == 3) // DrunkGhost 1
                 {
+                    Ghost drunkGhost1 = this.timerHandler.getGhost("DrunkGhost1");
                     this.grid[row][col] = new Box();
-                    insertInitialElement(row, col, this.timerHandler.getGhost("DrunkGhost1"));
-                    this.timerHandler.getGhost("DrunkGhost1").setBox(this.grid[row][col]);
-                    this.timerHandler.getGhost("DrunkGhost1").setStartPosition(this.grid[row][col]);
+                    insertInitialElement(row, col, drunkGhost1);
+                    drunkGhost1.setBox(this.grid[row][col]);
+                    drunkGhost1.setStartPosition(this.grid[row][col]);
                 }
                 else if(this.gridStructure[row][col] == 4) // DrunkGhost 2
                 {
+                    Ghost drunkGhost2 = this.timerHandler.getGhost("DrunkGhost2");
                     this.grid[row][col] = new Box();
-                    insertInitialElement(row, col, this.timerHandler.getGhost("DrunkGhost2"));
-                    this.timerHandler.getGhost("DrunkGhost2").setBox(this.grid[row][col]);
-                    this.timerHandler.getGhost("DrunkGhost2").setStartPosition(this.grid[row][col]);
+                    insertInitialElement(row, col, drunkGhost2);
+                    drunkGhost2.setBox(this.grid[row][col]);
+                    drunkGhost2.setStartPosition(this.grid[row][col]);
                 }
                 else if(this.gridStructure[row][col] == 5) // SmartGhost 1
                 {
+                    Ghost smartGhost1 = this.timerHandler.getGhost("SmartGhost1");
                     this.grid[row][col] = new Box();
-                    insertInitialElement(row, col, this.timerHandler.getGhost("SmartGhost1"));
-                    this.timerHandler.getGhost("SmartGhost1").setBox(this.grid[row][col]);
-                    this.timerHandler.getGhost("SmartGhost1").setStartPosition(this.grid[row][col]);
+                    insertInitialElement(row, col, smartGhost1);
+                    smartGhost1.setBox(this.grid[row][col]);
+                    smartGhost1.setStartPosition(this.grid[row][col]);
+                    smartGhost1.setSearching(false);
                 }
                 else if(this.gridStructure[row][col] == 6) // SmartGhost 2
                 {
+                    Ghost smartGhost2 = this.timerHandler.getGhost("SmartGhost2");
+
                     this.grid[row][col] = new Box();
-                    insertInitialElement(row, col, this.timerHandler.getGhost("SmartGhost2"));
-                    this.timerHandler.getGhost("SmartGhost2").setBox(this.grid[row][col]);
-                    this.timerHandler.getGhost("SmartGhost2").setStartPosition(this.grid[row][col]);
+                    insertInitialElement(row, col, smartGhost2);
+                    smartGhost2.setBox(this.grid[row][col]);
+                    smartGhost2.setStartPosition(this.grid[row][col]);
+                    smartGhost2.setSearching(false);
                 }
                 else if(this.gridStructure[row][col] == 7) // Fruit
                 {

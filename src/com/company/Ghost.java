@@ -9,12 +9,12 @@ public abstract class Ghost extends Icon {
 
     private Queue<Box> boxesToInspect               = new LinkedList<Box>();
     private ArrayList<Box> visitedBoxes             = new ArrayList<Box>();
-    private ArrayList<Box> currentBox               = new ArrayList<Box>();
-    private ArrayList<Box> previousBox              = new ArrayList<Box>();
-    protected Stack<Box> movementStack                = new Stack<Box>();
+    private ArrayList<Box> currentBoxes             = new ArrayList<Box>();
+    private ArrayList<Box> previousBoxes            = new ArrayList<Box>();
+    protected Stack<Box> movementStack              = new Stack<Box>();
     protected boolean searching                     = false;
 
-    public abstract void move();
+    protected abstract void move();
 
     protected void setGhostPosition(Box nextBox)
     {
@@ -25,14 +25,15 @@ public abstract class Ghost extends Icon {
 
     protected void eatPacman()
     {
-        PacmanFrame.getGameboard().resetEveryonesPosition();
-        this.getPacman().setLife(this.getPacman().getLife() - 1);
-    }
-
-    protected void flee()
-    {
-        PacmanFrame.getGameboard().resetPosition(this, this.getStartPosition());
-        setGhostPosition(this.getFleeBox(this.getBox()));
+        if(this.getPacman().getInvincible())
+        {
+            PacmanFrame.getGameboard().resetPosition(this, this.getStartPosition());
+        }
+        else
+        {
+            PacmanFrame.getGameboard().resetEveryonesPosition();
+            this.getPacman().setLife(this.getPacman().getLife() - 1);
+        }
     }
 
     protected void findPacman()
@@ -53,8 +54,8 @@ public abstract class Ghost extends Icon {
         boxesToInspect.clear();
         visitedBoxes.clear();
         movementStack.clear();
-        currentBox.clear();
-        previousBox.clear();
+        currentBoxes.clear();
+        previousBoxes.clear();
     }
 
     private void search()
@@ -76,8 +77,8 @@ public abstract class Ghost extends Icon {
                 if (!visitedBoxes.contains(neighbor))
                 {
                     boxesToInspect.add(neighbor);
-                    currentBox.add(neighbor);
-                    previousBox.add(box);
+                    currentBoxes.add(neighbor);
+                    previousBoxes.add(box);
                 }
                 buildMovementStack(neighbor);
                 setSearching(false);
@@ -88,8 +89,8 @@ public abstract class Ghost extends Icon {
                 if (!visitedBoxes.contains(neighbor))
                 {
                     boxesToInspect.add(neighbor);
-                    currentBox.add(neighbor);
-                    previousBox.add(box);
+                    currentBoxes.add(neighbor);
+                    previousBoxes.add(box);
                 }
             }
         }
@@ -102,22 +103,10 @@ public abstract class Ghost extends Icon {
         while(current != this.getBox() && !movementStack.contains(current))
         {
             movementStack.push(current);
-            int index    = currentBox.indexOf(current);
-            Box nextStep = previousBox.get(index);
+            int index    = currentBoxes.indexOf(current);
+            Box nextStep = previousBoxes.get(index);
             current = nextStep;
         }
-    }
-
-    private Box getFleeBox(Box box)
-    {
-        ArrayList<Box> boxes = null;
-        boxes.addAll(box.getAccessibleNeighbors().values());
-
-        boxes.remove(movementStack.peek());
-        int random = new Random().nextInt(boxes.size());
-
-        return boxes.get(random);
-
     }
 
     public void setSearching(boolean searching)

@@ -28,17 +28,6 @@ public class TimerHandler implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e)
     {
-//        if(gameboard.getPacman().getInvincible())
-//        {
-//            drunkGhost1.flee();
-//            drunkGhost2.flee();
-//            smartGhost1.flee();
-//            smartGhost2.flee();
-//        }
-//        else
-//        {
-//        }
-
         drunkGhost1.move();
         drunkGhost2.move();
         smartGhost1.move();
@@ -76,20 +65,6 @@ public class TimerHandler implements ActionListener {
             returnGhost = this.smartGhost2;
         }
 
-        return returnGhost;
-    }
-
-    public SmartGhost getSmartGhost(int ghost)
-    {
-        SmartGhost returnGhost = null;
-        if(ghost == 1 )
-        {
-            returnGhost = this.smartGhost1;
-        }
-        else if(ghost == 2)
-        {
-            returnGhost = this.smartGhost2;
-        }
         return returnGhost;
     }
 

@@ -1,15 +1,12 @@
 package com.company;
 
-import java.util.*;
-
 /**
  * Created by Sefa on 9-1-2015.
  */
 public class  SmartGhost extends Ghost {
 
-
     @Override
-    public void move()
+    protected void move()
     {
         if(!this.searching)
         {

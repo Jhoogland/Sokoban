@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
  * Created by Sefa on 14-1-2015.
  */
 public class TimerHandler implements ActionListener {
-    private int delay;
+    public int delay;
     public Gameboard gameboard;
     public Timer timer;
 
@@ -68,7 +68,7 @@ public class TimerHandler implements ActionListener {
         return returnGhost;
     }
 
-    public void setDelay(int delay){
-        this.delay=delay;
-    }
+//    public void setDelay(int delay){
+//        this.delay=delay;
+//    }
 }

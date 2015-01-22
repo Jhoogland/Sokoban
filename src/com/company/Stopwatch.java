@@ -4,7 +4,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
- * Created by admin on 1/16/2015.
+ * Created by Sudip on 1/16/2015.
  */
 public class Stopwatch {
 

@@ -17,7 +17,7 @@ public class Gameboard extends JPanel {
     private final int GRIDCOL           = 20;
     private Box grid[][]                = new Box[this.GRIDROW][this.GRIDCOL]; // 2D Array thats holds all Boxes
 
-    public TimerHandler timerHandler    = new TimerHandler(400, this);
+    public TimerHandler timerHandler    = new TimerHandler(600, this);
     private KeyHandler keyHandler       = new KeyHandler(this);
     public static Stopwatch stopwatch   = new Stopwatch();
     private LevelHandler levelHandler   = new LevelHandler();
@@ -45,18 +45,19 @@ public class Gameboard extends JPanel {
             this.levelHandler.setCurrentLvl(1);
             this.levelHandler.setGridStructure(this.levelHandler.getGridStructure(1));
         }
+
         else if(this.levelHandler.getCurrentLvl() == 1)
         {
-            this.timerHandler.setDelay(100);
             this.levelHandler.setCurrentLvl(2);
             this.levelHandler.setGridStructure(this.levelHandler.getGridStructure(2));
         }
+
         else if(this.levelHandler.getCurrentLvl() == 2)
         {
-            this.timerHandler.setDelay(600);
             this.levelHandler.setCurrentLvl(3);
             this.levelHandler.setGridStructure(this.levelHandler.getGridStructure(3));
         }
+
         else
         {
             this.levelHandler.setAllLvlsCleared(true);

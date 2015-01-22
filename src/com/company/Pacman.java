@@ -84,11 +84,12 @@ public class Pacman extends Icon {
 
             this.score = fruit.getValue() + this.score;
 
-            if(PacmanFrame.getGameboard().getCurrentAmountOfFruits() < 1)
+            if(PacmanFrame.getGameboard().getCurrentAmountOfFruits() < 0)
             {
                 PacmanFrame.getGameboard().resetEveryonesPosition();
                 PacmanFrame.getGameboard().changeLvl();
                 int currentLvl = PacmanFrame.getGameboard().getLevelHandler().currentLvl;
+                System.out.println(currentLvl);
                 PacmanFrame.level.setText("<html><h2 style='float: right;'>Level: " +currentLvl + " <br> </h3></html>");
             }
         }

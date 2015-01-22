@@ -120,6 +120,14 @@ public class Pacman extends Icon {
     }
     public void setLife(int life)
     {
+        if(life == 0)
+        {
+            Gameboard gameboard = PacmanFrame.getGameboard();
+
+            gameboard.resetTheGame();
+            gameboard.getLevelHandler().setAllLvlsCleared(true);
+        }
+
         this.life = life;
         PacmanFrame.life.setText("<html><h2 style='float: right;'>Life: " + this.getLife() + "<br> </h3></html>");
     }

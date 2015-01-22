@@ -28,10 +28,20 @@ public class TimerHandler implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        drunkGhost1.move();
-        drunkGhost2.move();
-
-        smartGhost1.move();
+        if(gameboard.getPacman().getInvincible())
+        {
+            drunkGhost1.flee();
+            drunkGhost2.flee();
+            smartGhost1.flee();
+            smartGhost2.flee();
+        }
+        else
+        {
+            drunkGhost1.move();
+            drunkGhost2.move();
+            smartGhost1.move();
+            smartGhost2.move();
+        }
 
 
         if(gameboard.stopwatch.invincibleTimer == 10)

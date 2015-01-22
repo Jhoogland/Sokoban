@@ -20,7 +20,6 @@ public class KeyHandler implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e)
     {
-
         switch (e.getKeyCode())
         {
             case KeyEvent.VK_UP:
@@ -43,12 +42,6 @@ public class KeyHandler implements KeyListener {
                 break;
         }
 
-
-
-        if(this.pacman.getLife() == 0)
-        {
-            gameboard.resetTheGame();
-        }
 
         if(gameboard.getHalfAmountOfEatenFruits())
         {

@@ -78,9 +78,6 @@ public class Gameboard extends JPanel {
             resetPosition(drunkGhost2, drunkGhost2.getStartPosition());
             resetPosition(smartGhost1, smartGhost1.getStartPosition());
             resetPosition(smartGhost2, smartGhost2.getStartPosition());
-            this.resetFruits();
-
-            repaint();
         }
     }
 
@@ -89,11 +86,17 @@ public class Gameboard extends JPanel {
         Pacman pacman = this.keyHandler.getPacman();
 
         resetEveryonesPosition();
-        pacman.setScore(0);
+        this.resetFruits();
         pacman.setLife(3);
         pacman.setInvincible(false);
 
-        this.stopwatch.lvlTimer = 0;
+        if(isGameReset)
+        {
+            pacman.setScore(0);
+            this.stopwatch.lvlTimer = 0;
+            this.timerHandler.timer.stop();
+        }
+
 
         LevelHandler levelHandler = this.levelHandler;
 
@@ -101,21 +104,28 @@ public class Gameboard extends JPanel {
         levelHandler.setGridStructure(levelHandler.getGridStructure(1));
         levelHandler.setAllLvlsCleared(false);
 
-        this.isGameReset = true;
-
         PacmanFrame.score.setText("<html><h2 style='float: right;'>Score: " + pacman.getScore() + "<br> </h3></html>");
         PacmanFrame.life.setText("<html><h2 style='float: right;'>Life: " + pacman.getLife() + "<br> </h3></html>");
 
         repaint();
     }
 
+
     protected void startPause()
     {
         if(!this.timerHandler.timer.isRunning())
         {
-            this.timerHandler.timer.start();
-            this.stopwatch.startTimer();
-            this.keyHandler.getPacman().setActive(true);
+            if(this.isGameReset)
+            {
+                resetTheGame();
+                isGameReset = false;
+            }
+            else
+            {
+                this.timerHandler.timer.start();
+                this.stopwatch.startTimer();
+                this.keyHandler.getPacman().setActive(true);
+            }
         }
         else
         {
@@ -299,6 +309,7 @@ public class Gameboard extends JPanel {
                     g2.drawString("Uw score: " + this.getPacman().getScore(), 430, 250);
                     g2.drawString("Uw tijd: " + this.stopwatch.lvlTimer, 430, 300);
 
+                    this.isGameReset = true;
                 }
             }
         }
@@ -453,4 +464,6 @@ public class Gameboard extends JPanel {
     public int getStartingAmountOfFruits() { return this.startingAmountOfFruits; }
     public boolean getHalfAmountOfEatenFruits() { return this.halfAmountOfEatenFruits; }
     public void setHalfAmountOfEatenFruits(boolean fruit) { this.halfAmountOfEatenFruits = fruit; }
+
+    public LevelHandler getLevelHandler() { return this.levelHandler; }
 }

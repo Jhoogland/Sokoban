@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="534cffdd-4da8-482a-bd6c-73361abfd7ef" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/Gameboard.java" afterPath="$PROJECT_DIR$/src/com/company/Gameboard.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Pacman.iws" />
@@ -44,7 +45,7 @@
       <file leaf-file-name="SmartGhost.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/SmartGhost.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="578">
+            <state vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="578">
               <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
               <folding />
             </state>
@@ -64,7 +65,7 @@
       <file leaf-file-name="DrunkGhost.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/DrunkGhost.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646">
+            <state vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="646">
               <caret line="19" column="9" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
               <folding />
             </state>
@@ -74,8 +75,8 @@
       <file leaf-file-name="Gameboard.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/Gameboard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7308917" vertical-offset="136" max-vertical-offset="8194">
-              <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.83917195" vertical-offset="1513" max-vertical-offset="8228">
+              <caret line="120" column="48" selection-start-line="120" selection-start-column="48" selection-end-line="120" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -161,7 +162,6 @@
         <option value="$PROJECT_DIR$/src/com/company/AlgoritmeHelper.java" />
         <option value="$PROJECT_DIR$/src/com/company/AlgorithmHelper.java" />
         <option value="$PROJECT_DIR$/src/com/company/KeyHandler.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Gameboard.java" />
         <option value="$PROJECT_DIR$/src/com/company/TimerHandler.java" />
         <option value="$PROJECT_DIR$/src/com/company/LevelHandler.java" />
         <option value="$PROJECT_DIR$/src/com/company/PacmanFrame.java" />
@@ -169,6 +169,7 @@
         <option value="$PROJECT_DIR$/src/com/company/DrunkGhost.java" />
         <option value="$PROJECT_DIR$/src/com/company/Ghost.java" />
         <option value="$PROJECT_DIR$/src/com/company/SmartGhost.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Gameboard.java" />
       </list>
     </option>
   </component>
@@ -675,7 +676,13 @@
       <option name="project" value="LOCAL" />
       <updated>1421949355148</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="moved method">
+      <created>1421958029499</created>
+      <option name="number" value="00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1421958029499</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1096,7 +1103,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
           <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1104,7 +1110,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="60" max-vertical-offset="680">
           <caret line="21" column="47" selection-start-line="21" selection-start-column="47" selection-end-line="21" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1186,8 +1191,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Gameboard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7308917" vertical-offset="136" max-vertical-offset="8194">
-          <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.83917195" vertical-offset="1513" max-vertical-offset="8228">
+          <caret line="120" column="48" selection-start-line="120" selection-start-column="48" selection-end-line="120" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

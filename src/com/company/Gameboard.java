@@ -312,15 +312,17 @@ public class Gameboard extends JPanel {
                     }
 
                     g2.setColor(Color.white);
-                    g2.fillRect(350, 150, 300, 200);
+                    g2.fillRect(300, 150, 450, 250);
 
                     g2.setColor(Color.black);
                     g2.setFont(new Font("TimesRoman", Font.PLAIN, 24));
-                    g2.drawString("GAME OVER", 430, 200);
+                    g2.drawString("GAME OVER", 375, 200);
 
                     g2.setFont(new Font("TimesRoman", Font.PLAIN, 20));
-                    g2.drawString("Uw score: " + this.getPacman().getScore(), 430, 250);
-                    g2.drawString("Uw tijd: " + this.stopwatch.lvlTimer, 430, 300);
+                    g2.drawString("Uw score: " + this.getPacman().getScore(), 375, 250);
+                    g2.drawString("Uw tijd: " + this.stopwatch.lvlTimer, 375, 300);
+                    g2.drawString("Druk op X om opnieuw te starten", 375, 350);
+
 
                     this.isGameReset = true;
                 }

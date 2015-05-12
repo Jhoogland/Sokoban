@@ -11,6 +11,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.*;
 
 /**
  *
@@ -21,42 +23,34 @@ public class Scherm extends javax.swing.JFrame {
     private int breedte;
     private Speelveld speelveld;
     private Menu menu;
-    
+    private JButton start;
     /**
      * Creates new form Scherm
      */
     public Scherm() {
-        System.out.println("testGit");
-        this.setPreferredSize(new Dimension(800, 1000));     
+        
+        this.setSize(new Dimension(600,800));
+        
         this.getContentPane().setBackground(Color.GRAY);
         this.setTitle("Sokoban");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+        this.setVisible(true);
         this.setLayout(new BorderLayout());
+        menu = new Menu();
+        speelveld = new Speelveld();
+        this.add(speelveld, BorderLayout.CENTER);
+        this.add(menu, BorderLayout.NORTH);
+
+
         
         
         
-        Menu menu = new Menu();
-        menu.setBackground(Color.BLUE);
-        menu.setSize(new Dimension (800,200));
-        JButton start = new JButton("start");
-        menu.add(start);
-     //   this.add(menu, BorderLayout.NORTH);
-        setup();
         
-    //    this.add(menu,BorderLayout.NORTH);
-        Speelveld speelveld = new Speelveld();
-       // this.add(speelveld,BorderLayout.CENTER);
-        
-        initComponents();
-        this.setVisible(true); 
     }
-    public void setup(){
-        Speelveld speelveld = new Speelveld();
-        speelveld.setBackground(Color.GREEN);
-        speelveld.setSize(new Dimension(800,800));
-        this.add(speelveld, BorderLayout.SOUTH);
-    }
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

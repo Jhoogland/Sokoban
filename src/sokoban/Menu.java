@@ -8,6 +8,8 @@ package sokoban;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 
@@ -15,29 +17,24 @@ import javax.swing.JButton;
  *
  * @author Jhoog_000
  */
-public class Menu extends javax.swing.JPanel {
+public class Menu extends javax.swing.JPanel implements ActionListener{
     
     /**
      * Creates new form Menu
      */
     public Menu() {
+        
+        this.setSize(new Dimension(800, 100));
+        this.setBackground(Color.GRAY);
         JButton start = new JButton("start"); 
         this.add(start);
-        this.setSize(new Dimension(800, 200));
-        this.setBackground(Color.BLUE);
-        initComponents();
-        maakMenu();
+        
+        ActionListener listener = new ClickListener();
+        start.addActionListener(listener);
         
     }
     
-    private void maakMenu(){
-        
-        
-        JButton start = new JButton("start");
-        this.add(start);
-        System.out.println("Jeff");
-        
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -63,4 +60,9 @@ public class Menu extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        System.out.println("i was clicked");
+    }
 }

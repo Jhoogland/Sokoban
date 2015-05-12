@@ -8,25 +8,28 @@ package sokoban;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import javax.swing.JButton;
 
 /**
  *
  * @author Jhoog_000
  */
 public class Speelveld extends javax.swing.JPanel {
-
+    private JButton start;
     /**
      * Creates new form Speelveld
      */
     public Speelveld() {
-        initComponents();
+       // initComponents();
         setup();
-        System.out.println("test");
+        
     }
     
     public void setup(){
-        this.setSize(new Dimension(800, 800));
+        this.setSize(new Dimension(600, 800));
         this.setBackground(Color.GREEN);
+        
+        
     }
 
     /**

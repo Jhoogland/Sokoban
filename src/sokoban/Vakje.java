@@ -11,10 +11,18 @@ package sokoban;
  * @author Jhoog_000
  */
 public abstract class Vakje {
+    
     private int hoogte;
     private int breedte;
     private int x;
     private int y;
     
+    public Vakje(int hoogte, int breedte, int x, int y){
+        this.hoogte = hoogte;
+        this.breedte = breedte;
+        this.x = x;
+        this.y = y;
+        
+    }
     public abstract Vakje geefVakje();
 }

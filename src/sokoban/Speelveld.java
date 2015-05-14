@@ -20,7 +20,7 @@ public class Speelveld extends javax.swing.JPanel {
      * Creates new form Speelveld
      */
     public Speelveld() {
-       // initComponents();
+       
         setup();
         
     }
@@ -31,6 +31,7 @@ public class Speelveld extends javax.swing.JPanel {
         
         
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

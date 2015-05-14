@@ -5,14 +5,11 @@ import java.awt.event.ActionListener;
 
 
 public class ClickListener implements ActionListener {
+    private Speelveld speelveld;
+  
     
-    class JavaDocent
-    {
-        public void actionPerformed(ActionEvent event){
-            
-        }
-    }
     public void actionPerformed(ActionEvent event){
         System.out.println("I was clicked");
+       
     }
 }

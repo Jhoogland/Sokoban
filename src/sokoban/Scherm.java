@@ -41,11 +41,6 @@ public class Scherm extends javax.swing.JFrame {
         this.add(speelveld, BorderLayout.CENTER);
         this.add(menu, BorderLayout.NORTH);
 
-
-        
-        
-        
-        
     }
     
     

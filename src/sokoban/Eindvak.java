@@ -10,13 +10,10 @@ package sokoban;
  *
  * @author Jhoog_000
  */
-public class Muurvak extends Vakje {
+public class Eindvak extends Vakje{
     
-    
-    public Muurvak(int hoogte, int breedte, int x, int y){
-     super(hoogte,breedte,x,y);
+    public Eindvak(int hoogte, int breedte, int x, int y){
+        super(hoogte,breedte,x,y);
     }
-  public Vakje geefVakje(){return this;} 
-    
+   public Vakje geefVakje(){return this;}
 }
- 

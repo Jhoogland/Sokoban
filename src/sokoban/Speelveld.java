@@ -8,6 +8,7 @@ package sokoban;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import javax.swing.JButton;
 
 /**
@@ -16,13 +17,16 @@ import javax.swing.JButton;
  */
 public class Speelveld extends javax.swing.JPanel {
     private JButton start;
+    private Muurvak muurvak;
+    private Leegvak leegvak;
+    private Eindvak eindvak;
     /**
      * Creates new form Speelveld
      */
     public Speelveld() {
        
         setup();
-        
+        initComponents();
     }
     
     public void setup(){
@@ -32,7 +36,61 @@ public class Speelveld extends javax.swing.JPanel {
         
     }
     
-
+     private int gridStructureLvl1[][] = {
+           //0   1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19
+            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 2, 1, 2, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+    };
+     int z=10;
+     
+     private void draw(Graphics g){
+         int x=0;
+         int y=50;
+         
+    for(int q = 0 ; q < 10; q++){
+        x+=50;
+        
+        for(int w = 0; w < 10; w++){
+        y+=50;
+        if(y==550){
+            y=50;
+        }
+            
+    if(this.gridStructureLvl1[w][q] == 1)
+    {   
+        muurvak = new Muurvak(x,y,20,20);
+        this.muurvak.zetX(x);
+        this.muurvak.zetY(y);
+        this.muurvak.zetBreedte(50);
+        this.muurvak.zetHoogte(50);
+        this.muurvak.paintComponent(g);
+    }
+    else if(this.gridStructureLvl1[w][q] == 2)
+    {   
+        leegvak = new Leegvak(x,y,20,20);
+        this.leegvak.zetX(x);
+        this.leegvak.zetY(y);
+        this.leegvak.zetBreedte(50);
+        this.leegvak.zetHoogte(50);
+        this.leegvak.paintComponent(g);
+    }
+    
+    }
+}
+    }
+@Override
+    public void paintComponent(Graphics g) {
+        this.draw(g);
+        requestFocus();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

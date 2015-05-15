@@ -6,17 +6,46 @@
 
 package sokoban;
 
+import java.awt.Color;
+import java.awt.Graphics;
+
 /**
  *
  * @author Jhoog_000
  */
 public class Muurvak extends Vakje {
-    
+    private int hoogte;
+    private int breedte;
+    private int x;
+    private int y;
     
     public Muurvak(int hoogte, int breedte, int x, int y){
-     super(hoogte,breedte,x,y);
+     super(20,20,x,y);
     }
-  public Vakje geefVakje(){return this;} 
     
+  public Vakje geefVakje(){return this;} 
+  
+  protected void paintComponent(Graphics g) {
+        this.draw(g);
+        draw(g);
+    }
+  
+      public void draw(Graphics g) {
+        g.setColor(Color.BLUE);
+        g.fillRect(x, y, hoogte, breedte);
+    
+  }  
+      public void zetHoogte(int hoogte){
+          this.hoogte = hoogte;
+      }
+      public void zetBreedte(int breedte){
+          this.breedte = breedte;
+      }
+      public void zetX(int x){
+          this.x = x;
+      }
+      public void zetY(int y){
+          this.y = y;
+      }
 }
  

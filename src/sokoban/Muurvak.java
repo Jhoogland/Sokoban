@@ -8,6 +8,11 @@ package sokoban;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -31,10 +36,12 @@ public class Muurvak extends Vakje {
     }
   
       public void draw(Graphics g) {
-        g.setColor(Color.BLUE);
-        g.fillRect(x, y, hoogte, breedte);
-    
-  }  
+        try {
+          g.drawImage(ImageIO.read(new File("C:\\Users\\Jhoog_000\\Documents\\NetBeansProjects\\Sokoban\\src\\SokobanMuur.png")), x, y,breedte,hoogte, null);
+        } catch (IOException ex) {
+            Logger.getLogger(Speler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      }
       public void zetHoogte(int hoogte){
           this.hoogte = hoogte;
       }

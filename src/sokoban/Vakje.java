@@ -6,6 +6,8 @@
 
 package sokoban;
     
+import java.util.HashMap;
+
 /**
  *
  * @author Jhoog_000
@@ -16,6 +18,7 @@ public abstract class Vakje {
     private int breedte;
     private int x;
     private int y;
+    private HashMap<String, Vakje> buren = new HashMap<>();
     
     public Vakje(int hoogte, int breedte, int x, int y){
         this.hoogte = hoogte;
@@ -25,4 +28,6 @@ public abstract class Vakje {
         
     }
     public abstract Vakje geefVakje();
+    
+    
 }

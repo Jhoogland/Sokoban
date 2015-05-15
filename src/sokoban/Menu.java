@@ -27,10 +27,13 @@ public class Menu extends javax.swing.JPanel implements ActionListener{
         this.setSize(new Dimension(800, 100));
         this.setBackground(Color.GRAY);
         JButton start = new JButton("start"); 
+        JButton reset = new JButton("reset");
         this.add(start);
+        this.add(reset);
         
         ActionListener listener = new ClickListener();
         start.addActionListener(listener);
+        reset.addActionListener(listener);
         
     }
     

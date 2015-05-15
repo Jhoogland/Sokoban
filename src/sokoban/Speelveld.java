@@ -20,6 +20,8 @@ public class Speelveld extends javax.swing.JPanel {
     private Muurvak muurvak;
     private Leegvak leegvak;
     private Eindvak eindvak;
+    private Speler speler;
+    private Doos doos;
     /**
      * Creates new form Speelveld
      */
@@ -38,18 +40,18 @@ public class Speelveld extends javax.swing.JPanel {
     
      private int gridStructureLvl1[][] = {
            //0   1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19
-            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-            {1, 1, 1, 1, 2, 1, 2, 1, 1, 1},
-            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+            {2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+            {2, 1, 1, 1, 1, 1, 1, 1, 1, 2},
+            {2, 1, 4, 1, 1, 4, 1, 1, 1, 2},
+            {2, 1, 1, 1, 1, 1, 1, 1, 1, 2},
+            {2, 1, 1, 1, 2, 1, 2, 1, 1, 2},
+            {2, 1, 4, 1, 1, 1, 1, 1, 1, 2},
+            {2, 1, 1, 1, 1, 1, 1, 1, 1, 2},
+            {2, 1, 1, 1, 1, 1, 1, 1, 1, 2},
+            {2, 1, 3, 1, 1, 1, 1, 1, 1, 2},
+            {2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
     };
-     int z=10;
+     
      
      private void draw(Graphics g){
          int x=0;
@@ -60,20 +62,12 @@ public class Speelveld extends javax.swing.JPanel {
         
         for(int w = 0; w < 10; w++){
         y+=50;
-        if(y==550){
-            y=50;
+            System.out.println(w);
+        if(y==600){
+            y=100;
         }
             
     if(this.gridStructureLvl1[w][q] == 1)
-    {   
-        muurvak = new Muurvak(x,y,20,20);
-        this.muurvak.zetX(x);
-        this.muurvak.zetY(y);
-        this.muurvak.zetBreedte(50);
-        this.muurvak.zetHoogte(50);
-        this.muurvak.paintComponent(g);
-    }
-    else if(this.gridStructureLvl1[w][q] == 2)
     {   
         leegvak = new Leegvak(x,y,20,20);
         this.leegvak.zetX(x);
@@ -82,7 +76,33 @@ public class Speelveld extends javax.swing.JPanel {
         this.leegvak.zetHoogte(50);
         this.leegvak.paintComponent(g);
     }
-    
+    else if(this.gridStructureLvl1[w][q] == 2)
+    {   
+        muurvak = new Muurvak(x,y,20,20);
+        this.muurvak.zetX(x);
+        this.muurvak.zetY(y);
+        this.muurvak.zetBreedte(50);
+        this.muurvak.zetHoogte(50);
+        this.muurvak.paintComponent(g);
+    }
+    else if(this.gridStructureLvl1[w][q] == 3)
+    {   
+        speler = new Speler(x,y,20,20);
+        this.speler.zetX(x);
+        this.speler.zetY(y);
+        this.speler.zetBreedte(50);
+        this.speler.zetHoogte(50);
+        this.speler.paintComponent(g);
+    }
+    else if(this.gridStructureLvl1[w][q] == 4)
+    {   
+        doos = new Doos(x,y,20,20);
+        this.doos.zetX(x);
+        this.doos.zetY(y);
+        this.doos.zetBreedte(50);
+        this.doos.zetHoogte(50);
+        this.doos.paintComponent(g);
+    }
     }
 }
     }
